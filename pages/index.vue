@@ -1,3 +1,4 @@
 <template>
-  <h1 class="text-center">HOME</h1>
+  <HomeHero />
+  <HomeServices />
 </template>
