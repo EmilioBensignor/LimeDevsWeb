@@ -1,0 +1,22 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "start": "git pull origin main && npm i && nuxt dev --open",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/icon": "^1.5.2",
+    "@nuxt/image": "^1.8.0",
+    "@primevue/nuxt-module": "^4.0.7",
+    "nuxt": "^3.13.0",
+    "primeflex": "^3.3.1",
+    "vue": "latest",
+    "vue-router": "latest"
+  }
+}
