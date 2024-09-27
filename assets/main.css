@@ -22,6 +22,8 @@
 body {
   background-color: var(--color-dark-violet);
   color: var(--color-white);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* Flex */

@@ -1,4 +1,7 @@
 <template>
-  <HomeHero />
-  <HomeServices />
+  <div>
+    <HomeHero />
+    <HomeTest />
+    <HomeServices />
+  </div>
 </template>
