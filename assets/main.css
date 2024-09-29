@@ -95,6 +95,12 @@ h2 {
   background-repeat: no-repeat;
 }
 
+.bgContain {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .bg-gradient-violet {
   background: linear-gradient(90deg, var(--color-violet), var(--color-light-violet));
 }

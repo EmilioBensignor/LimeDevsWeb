@@ -3,13 +3,15 @@
     <div
       v-for="(service, index) in services"
       :key="index"
-      class="service bg-gradient-violet"
+      class="service"
       :data-index="index"
-      :ref="setServiceRef"
-    >
-      <div class="serviceInner column">
+      :ref="setServiceRef">
+      <div class="serviceInner column bg-gradient-violet">
         <div class="w-full serviceImageContainer columnAlignCenter">
-          <img class="serviceImage" :src="`/images/home/${service.img}.png`" alt="" />
+          <img
+            class="serviceImage"
+            :src="`/images/home/${service.img}.png`"
+            alt="" />
         </div>
         <div class="serviceContent column">
           <h3 class="serviceTitle">{{ service.title }}</h3>
@@ -21,126 +23,123 @@
 </template>
 
 <script>
-import { ref, onMounted, nextTick } from "vue";
-import { ScrollObserver, valueAtPercentage } from "aatjs";
+  import { ref, onMounted, nextTick } from "vue";
+  import { ScrollObserver, valueAtPercentage } from "aatjs";
 
-export default {
-  name: "ScrollingServices",
-  props: {
-    services: {
-      type: Array,
-      required: true,
+  export default {
+    name: "ScrollingServices",
+    props: {
+      services: {
+        type: Array,
+        required: true,
+      },
     },
-  },
-  setup(props) {
-    const servicesContainer = ref(null);
-    const serviceRefs = ref([]);
+    setup(props) {
+      const servicesContainer = ref(null);
+      const serviceRefs = ref([]);
 
-    const setServiceRef = (el) => {
-      if (el) {
-        serviceRefs.value.push(el);
-      }
-    };
-
-    onMounted(async () => {
-      await nextTick();
-
-      const serviceElements = serviceRefs.value;
-      servicesContainer.value.style.setProperty(
-        "--services-count",
-        serviceElements.length
-      );
-      servicesContainer.value.style.setProperty(
-        "--service-height",
-        `${serviceElements[0].clientHeight}px`
-      );
-
-      serviceElements.forEach((service, index) => {
-        const offsetTop = 20 + index * 20;
-        service.style.paddingTop = `${offsetTop}px`;
-        if (index === serviceElements.length - 1) {
-          return;
+      const setServiceRef = (el) => {
+        if (el) {
+          serviceRefs.value.push(el);
         }
-        const toScale = 1 - (serviceElements.length - 1 - index) * 0.1;
-        const nextService = serviceElements[index + 1];
-        const serviceInner = service.querySelector(".serviceInner");
-        ScrollObserver.Element(nextService, {
-          offsetTop,
-          offsetBottom: window.innerHeight - service.clientHeight,
-        }).onScroll(({ percentageY }) => {
-          serviceInner.style.scale = valueAtPercentage({
-            from: 1,
-            to: toScale,
-            percentage: percentageY,
+      };
+
+      onMounted(async () => {
+        await nextTick();
+
+        const serviceElements = serviceRefs.value;
+        servicesContainer.value.style.setProperty(
+          "--services-count",
+          serviceElements.length
+        );
+
+        serviceElements.forEach((service, index) => {
+          const offsetTop = 20 + index * 20;
+          service.style.paddingTop = `${offsetTop}px`;
+          if (index === serviceElements.length - 1) {
+            return;
+          }
+          const toScale = 1 - (serviceElements.length - 1 - index) * 0.1;
+          const nextService = serviceElements[index + 1];
+          const serviceInner = service.querySelector(".serviceInner");
+          ScrollObserver.Element(nextService, {
+            offsetTop,
+            offsetBottom: window.innerHeight - service.clientHeight,
+          }).onScroll(({ percentageY }) => {
+            serviceInner.style.scale = valueAtPercentage({
+              from: 1,
+              to: toScale,
+              percentage: percentageY,
+            });
+            serviceInner.style.filter = `brightness(${valueAtPercentage({
+              from: 1,
+              to: 0.6,
+              percentage: percentageY,
+            })})`;
           });
-          serviceInner.style.filter = `brightness(${valueAtPercentage({
-            from: 1,
-            to: 0.6,
-            percentage: percentageY,
-          })})`;
         });
       });
-    });
 
-    return {
-      servicesContainer,
-      setServiceRef,
-    };
-  },
-};
+      return {
+        servicesContainer,
+        setServiceRef,
+      };
+    },
+  };
 </script>
 
 <style scoped>
-.services {
-  width: 100%;
-  display: grid;
-  grid-template-rows: repeat(var(--services-count), var(--service-height));
-  gap: 2.5rem;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
+  .services {
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(var(--services-count), var(--service-height));
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
 
-.service {
-  position: sticky;
-  top: 0;
-  border-radius: 18px;
-  padding: 3.75rem 1.25rem 1.25rem 1.25rem;
-}
+  .service {
+    height: 100%;
+    position: sticky;
+    top: 0;
+  }
 
-.serviceInner {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 14px;
-  overflow: hidden;
-  will-change: transform;
-  transform-origin: center top;
-}
+  .serviceInner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    border-radius: 18px;
+    overflow: hidden;
+    will-change: transform;
+    transform-origin: center top;
+    padding: 1.25rem;
+  }
 
-.serviceImageContainer {
-  width: 11.75rem;
-  height: 10.25rem;
-  flex-shrink: 0;
-}
+  .serviceImageContainer {
+    width: 11.75rem;
+    height: 10.25rem;
+    flex-shrink: 0;
+  }
 
-.serviceImage {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  aspect-ratio: 1;
-}
+  .serviceImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    aspect-ratio: 1;
+  }
 
-.serviceContent {
-  gap: 0.75rem;
-}
+  .serviceContent {
+    gap: 0.75rem;
+  }
 
-.serviceTitle {
-  font-size: 1.125rem;
-}
+  .serviceTitle {
+    font-size: 1.125rem;
+  }
 
-.serviceDescription {
-  line-height: 1.4;
-  font-size: 0.75rem;
-}
+  .serviceDescription {
+    line-height: 1.4;
+    font-size: 0.75rem;
+  }
 </style>
