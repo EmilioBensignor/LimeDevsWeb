@@ -11,7 +11,7 @@
           <img
             class="serviceImage"
             :src="`/images/home/${service.img}.png`"
-            alt="" />
+            :alt="service.alt" />
         </div>
         <div class="serviceContent column">
           <h3 class="serviceTitle">{{ service.title }}</h3>

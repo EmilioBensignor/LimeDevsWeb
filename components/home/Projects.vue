@@ -22,10 +22,10 @@
         <img
           :src="project.img"
           :alt="project.alt"
-          class="w-full h-full object-cover" />
-        <div class="project-info">
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.service }}</p>
+          class="w-full h-full" />
+        <div class="projectInfo">
+          <h3 class="text-center">{{ project.title }}</h3>
+          <p class="text-center">{{ project.service }}</p>
         </div>
       </SwiperSlide>
     </Swiper>
@@ -95,6 +95,7 @@
     width: 13.875rem !important;
     height: 100%;
     background-color: #39385ef2;
+    border-radius: 18px;
     position: relative;
     overflow: hidden;
   }
@@ -107,14 +108,21 @@
     transform: scale(1.05);
   }
 
-  .project-info {
+  .projectInfo {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
+    padding: 0.75rem 0;
+    background: #39385EF2;
+  }
+
+  .projectInfo h3 {
+    font-size: 1.125rem;
+  }
+
+  .projectInfo p {
+    font-size: 0.75rem;
   }
 
   :deep(.swiper-wrapper) {

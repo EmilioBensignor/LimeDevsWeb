@@ -105,6 +105,14 @@ h2 {
   background: linear-gradient(90deg, var(--color-violet), var(--color-light-violet));
 }
 
+.bg-dark-violet {
+  background-color: var(--color-dark-violet);
+}
+
+.bg-violet-60 {
+  background-color: var(--color-60-violet);
+}
+
 .text-lime {
   color: var(--color-lime);
 }
