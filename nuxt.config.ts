@@ -7,12 +7,12 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/main.css"],
   modules: ["@primevue/nuxt-module", "@nuxt/image", "@nuxt/icon", "nuxt-swiper"],
-  // icon: {
-  //   size: '1rem',
-  //   serverBundle: {
-  //     collections: ['mingcute']
-  //   }
-  // },
+  icon: {
+    size: '1rem',
+    serverBundle: {
+      collections: ['mingcute']
+    }
+  },
   app: {
     head: {
       link: [

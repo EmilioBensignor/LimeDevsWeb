@@ -17,7 +17,7 @@
     </div>
     <div class="w-full accordionMobile pb-5">
       <ClientOnly>
-        <Accordion value="0" class="w-full">
+        <Accordion :value="0" class="w-full">
           <AccordionPanel
             :value="value.value"
             v-for="(value, index) in values"
