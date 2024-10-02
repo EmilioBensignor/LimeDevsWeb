@@ -1,5 +1,5 @@
 <template>
-  <div class="services" ref="servicesContainer">
+  <div class="servicesContainer" ref="servicesContainer">
     <div
       v-for="(service, index) in services"
       :key="index"
@@ -89,18 +89,17 @@
 </script>
 
 <style scoped>
-  .services {
+  .servicesContainer {
     width: 100%;
     display: grid;
     grid-template-rows: repeat(var(--services-count), var(--service-height));
     margin: 0 auto;
-    padding: 2rem 1rem;
   }
 
   .service {
     height: 100%;
     position: sticky;
-    top: 0;
+    top: 7.687rem;
   }
 
   .serviceInner {

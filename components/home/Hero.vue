@@ -24,4 +24,15 @@ h1 > span > span {
 .hero > img {
   width: 11.75rem;
 }
+
+@media (width >= 700px) {
+  .hero {
+    flex-direction: row;
+    padding: 2.75rem 3.75rem;
+  }
+
+  h1 {
+    text-align: start;
+  }
+}
 </style>
