@@ -1,7 +1,7 @@
 <template>
   <section class="w-full aboutUs columnAlignCenter">
     <div class="column gap-5">
-      <h2 class="column">
+      <h2>
         We are your partner in building
         <span class="text-lime underline">technological solutions.</span>
       </h2>
@@ -37,6 +37,28 @@
         </Accordion>
       </ClientOnly>
     </div>
+    <div class="aboutDesktop">
+      <div class="aboutContainer column">
+        <div
+          v-for="(item, index) in values"
+          :key="index"
+          @click="setSelectedStep(index)"
+          :class="{ 'valueBtn-active': selectedValue === index }"
+          class="w-full valueBtn relative bg-blue-light-gradient">
+          <h3>{{ item.title }}</h3>
+        </div>
+      </div>
+      <ClientOnly>
+        <div class="desktopContentPanel column">
+          <div class="columnAlignCenter">
+            <NuxtImg
+              :src="`/images/home/${values[selectedValue].img}.png`"
+              :alt="values[selectedValue].alt" />
+            <p v-html="values[selectedValue].text" class="text-center"></p>
+          </div>
+        </div>
+      </ClientOnly>
+    </div>
   </section>
 </template>
 
@@ -44,6 +66,7 @@
   export default {
     data() {
       return {
+        selectedValue: 0,
         values: [
           {
             value: 0,
@@ -77,6 +100,11 @@
           },
         ],
       };
+    },
+    methods: {
+      setSelectedStep(index) {
+        this.selectedValue = index;
+      },
     },
   };
 </script>
@@ -156,7 +184,7 @@
 
 <style scoped>
   .aboutUs > div:first-of-type {
-    padding: 2rem 1rem 1.25rem 1rem;
+    padding: 2rem 1.5rem 1.25rem 1.5rem;
   }
 
   h3 {
@@ -168,9 +196,13 @@
     padding: 1.25rem;
   }
 
+  .aboutDesktop {
+    display: none;
+  }
+
   @media (width >= 700px) {
     .aboutUs > div:first-of-type {
-      padding: 2.75rem 3.75rem;
+      padding: 2.75rem 3.75rem 1.25rem 3.75rem;
     }
 
     h2 {
@@ -184,6 +216,55 @@
 
     .atLime p {
       text-align: center;
+    }
+
+    .aboutDesktop {
+      display: flex;
+    }
+
+    .aboutDesktop {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 3.75rem 2.75rem 0;
+    }
+
+    .desktopContentPanel {
+      width: 14.875rem;
+    }
+
+    .aboutContainer {
+      gap: 1.25rem;
+    }
+
+    .valueBtn {
+      width: 17.5rem;
+      background: var(--color-60-violet);
+      border-radius: 0 50px 50px 0;
+      color: var(--color-white);
+      font-weight: 700;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      padding: 1rem 3.75rem;
+    }
+
+    .valueBtn-active {
+      width: 20.625rem;
+      background: var(--gradient-violet-light);
+    }
+
+    .desktopContentPanel > div {
+      gap: 1.25rem;
+    }
+
+    .desktopContentPanel img {
+      width: 12.875rem;
+    }
+
+    .desktopContentPanel p {
+      font-size: 0.875rem;
     }
   }
 </style>
