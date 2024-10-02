@@ -141,4 +141,14 @@
     line-height: 1.4;
     font-size: 0.75rem;
   }
+
+  @media (width >= 480px) {
+    .serviceTitle {
+      font-size: 1.25rem;
+    }
+
+    .serviceDescription {
+      font-size: 0.875rem;
+    }
+  }
 </style>

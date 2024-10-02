@@ -5,6 +5,9 @@
       :slides-per-view="1.2"
       :space-between="12"
       :breakpoints="{
+        500: {
+          slidesPerView: 4,
+        },
         700: {
           slidesPerView: 2.8,
           spaceBetween: 16,
@@ -79,7 +82,7 @@
 <style scoped>
   .projects {
     gap: 1.25rem;
-    padding: 2rem 0 2rem 1rem;
+    padding: 2rem 0 2rem 1.5rem;
   }
 
   h2 {

@@ -2,7 +2,7 @@
   <footer id="contactUs" class="bg-violet-60">
     <section class="column gap-5">
       <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" />
-      <div class="column gap-4">
+      <div class="column gap-5">
         <h2>
           Ready to
           <span class="text-lime underline">transform your business</span>?
@@ -184,6 +184,10 @@
     color: var(--color-lime);
   }
 
+  .stepperFooter .p-steplist {
+    margin-bottom: 1rem;
+  }
+
   .stepperFooter .p-step-active .p-step-header {
     background: var(--color-lime);
     color: var(--color-violet);
@@ -337,7 +341,7 @@
 
 <style scoped>
   footer > section {
-    padding: 2rem 1rem;
+    padding: 3rem 1.5rem;
   }
 
   footer > section > img:first-of-type {
@@ -378,7 +382,7 @@
   }
 
   .rightsReserved {
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
 
   .rightsReserved p {

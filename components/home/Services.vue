@@ -1,7 +1,7 @@
 <template>
   <section class="w-full services relative columnAlignCenter">
     <div class="headerServices">
-      <h2 class="column">
+      <h2>
         Solutions that drive your
         <span class="text-lime underline">growth.</span>
       </h2>
@@ -51,7 +51,7 @@
 
 <style scoped>
   .services {
-    padding: 2rem 1rem;
+    padding: 2rem 1.5rem;
   }
 
   .headerServices {

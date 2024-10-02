@@ -102,7 +102,7 @@
 <style scoped>
   header {
     z-index: 5;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
   }
 
   header img {
@@ -148,6 +148,12 @@
     text-decoration: none;
     position: relative;
     z-index: 1;
+  }
+
+  @media (width >= 480px) {
+    header img {
+      width: 3rem;
+    }
   }
 
   @media (width >= 700px) {

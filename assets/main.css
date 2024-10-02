@@ -6,6 +6,7 @@
   --color-violet: #39385E;
   --color-60-violet: #39385E99;
   --color-light-violet: #7372B5;
+  --gradient-violet-light: linear-gradient(90deg, var(--color-violet), var(--color-light-violet));
   --color-lime: #ACCD00;
   --color-light-lime: #F2FFBB;
 }
@@ -132,6 +133,16 @@ h2 {
 
 .primaryButton:hover {
   background: linear-gradient(90deg, var(--color-lime), var(--color-light-lime));
+}
+
+@media (width >= 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+  }
 }
 
 @media (width >= 700px) {
