@@ -45,8 +45,8 @@
           v-for="(item, index) in values"
           :key="index"
           @click="setSelectedStep(index)"
-          :class="{ 'valueBtn-active': selectedValue === index }"
-          class="w-full valueBtn relative bg-blue-light-gradient"
+          :class="{ 'valueBtnActive': selectedValue === index }"
+          class="valueBtn relative bg-blue-light-gradient"
         >
           <h3>{{ item.title }}</h3>
         </div>
@@ -279,7 +279,7 @@ h3 {
 
   .valueBtn {
     width: 17.5rem;
-    background: var(--color-60-violet);
+    background: linear-gradient(90deg, var(--color-60-violet), var(--color-60-violet));
     border-radius: 0 50px 50px 0;
     color: var(--color-white);
     font-weight: 700;
@@ -289,9 +289,10 @@ h3 {
     padding: 1rem 3.75rem;
   }
 
-  .valueBtn-active {
+  .valueBtnActive {
     width: 20.625rem;
     background: var(--gradient-violet-light);
+    transition: all 0.3s;
   }
 
   .desktopContentPanel > div {
