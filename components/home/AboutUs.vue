@@ -21,7 +21,8 @@
           <AccordionPanel
             :value="value.value"
             v-for="(value, index) in values"
-            :key="index">
+            :key="index"
+          >
             <AccordionHeader :class="value.class">
               <h3>{{ value.title }}</h3>
             </AccordionHeader>
@@ -29,7 +30,8 @@
               <div class="columnAlignCenter">
                 <NuxtImg
                   :src="`/images/home/${value.img}.png`"
-                  :alt="value.alt" />
+                  :alt="value.alt"
+                />
                 <p v-html="value.text" class="text-center"></p>
               </div>
             </AccordionContent>
@@ -44,7 +46,8 @@
           :key="index"
           @click="setSelectedStep(index)"
           :class="{ 'valueBtn-active': selectedValue === index }"
-          class="w-full valueBtn relative bg-blue-light-gradient">
+          class="w-full valueBtn relative bg-blue-light-gradient"
+        >
           <h3>{{ item.title }}</h3>
         </div>
       </div>
@@ -53,7 +56,8 @@
           <div class="columnAlignCenter">
             <NuxtImg
               :src="`/images/home/${values[selectedValue].img}.png`"
-              :alt="values[selectedValue].alt" />
+              :alt="values[selectedValue].alt"
+            />
             <p v-html="values[selectedValue].text" class="text-center"></p>
           </div>
         </div>
@@ -63,208 +67,243 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        selectedValue: 0,
-        values: [
-          {
-            value: 0,
-            img: "animacionHero",
-            alt: "Innovation",
-            title: "Innovation",
-            text: "<p>We constantly explore <span class='text-lime'>new technologies</span> to develop <span class='text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
-          },
-          {
-            value: 1,
-            img: "animacionHero",
-            alt: "Collaboration",
-            title: "Collaboration",
-            text: "We believe in working closely with our clients, understanding their challenges, and <span class='text-lime'>building solutions together.</span>",
-            class: "rightHeader",
-          },
-          {
-            value: 2,
-            img: "animacionHero",
-            alt: "Adaptability",
-            title: "Adaptability",
-            text: "<p>We quickly adapt to the <span class='text-lime'>fast-changing technological landscape</span>, ensuring that our clients stay ahead.</p>",
-          },
-          {
-            value: 3,
-            img: "animacionHero",
-            alt: "Excellence",
-            title: "Excellence",
-            text: "<p>We strive for the <span class='text-lime'>highest standards</span> in every project, ensuring <span class='text-lime'>quality</span> and <span class='text-lime'>scalability</span> in our solutions. to develop <span class='text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
-            class: "rightHeader",
-          },
-        ],
-      };
+export default {
+  data() {
+    return {
+      selectedValue: 0,
+      values: [
+        {
+          value: 0,
+          img: "animacionHero",
+          alt: "Innovation",
+          title: "Innovation",
+          text: "<p>We constantly explore <span class='font-bold text-lime'>new technologies</span> to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
+        },
+        {
+          value: 1,
+          img: "animacionHero",
+          alt: "Collaboration",
+          title: "Collaboration",
+          text: "We believe in working closely with our clients, understanding their challenges, and <span class='font-bold text-lime'>building solutions together.</span>",
+          class: "rightHeader",
+        },
+        {
+          value: 2,
+          img: "animacionHero",
+          alt: "Adaptability",
+          title: "Adaptability",
+          text: "<p>We quickly adapt to the <span class='font-bold text-lime'>fast-changing technological landscape</span>, ensuring that our clients stay ahead.</p>",
+        },
+        {
+          value: 3,
+          img: "animacionHero",
+          alt: "Excellence",
+          title: "Excellence",
+          text: "<p>We strive for the <span class='font-bold text-lime'>highest standards</span> in every project, ensuring <span class='font-bold text-lime'>quality</span> and <span class='font-bold text-lime'>scalability</span> in our solutions. to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
+          class: "rightHeader",
+        },
+      ],
+    };
+  },
+  methods: {
+    setSelectedStep(index) {
+      this.selectedValue = index;
     },
-    methods: {
-      setSelectedStep(index) {
-        this.selectedValue = index;
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style>
-  .accordionMobile .p-accordionpanel,
-  .accordionMobile .p-accordionheader,
-  .accordionMobile .p-accordionpanel:first-child > .p-accordionheader,
-  .accordionMobile .p-accordioncontent-content {
-    border: none !important;
-    box-sizing: border-box;
-    transition: all 0.5s ease;
-  }
+.accordionMobile .p-accordionpanel,
+.accordionMobile .p-accordionheader,
+.accordionMobile .p-accordionpanel:first-child > .p-accordionheader,
+.accordionMobile .p-accordioncontent-content {
+  border: none !important;
+  box-sizing: border-box;
+  transition: all 0.5s ease;
+}
 
-  .accordionMobile .p-accordion {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+.accordionMobile .p-accordion {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
 
+.accordionMobile .p-accordionheader {
+  width: 16.25rem;
+  display: flex;
+  justify-content: center;
+  background: #39385e99;
+  border-radius: 0 50px 50px 0 !important;
+  transition: all 0.3s ease;
+  padding: 0.5rem 3.75rem;
+}
+
+.accordionMobile .rightHeader {
+  align-self: flex-end;
+  border-radius: 50px 0 0 50px !important;
+}
+
+.accordionMobile
+  .p-accordionpanel:not(.p-disabled).p-accordionpanel-active
+  > .p-accordionheader {
+  background: linear-gradient(
+    90deg,
+    var(--color-violet),
+    var(--color-light-violet)
+  );
+}
+
+.accordionMobile
+  .p-accordionpanel:not(.p-accordionpanel-active):not(.p-disabled)
+  > .p-accordionheader:hover {
+  background: #39385e99;
+}
+
+.accordionMobile
+  .p-accordionpanel:not(.p-disabled).p-accordionpanel-active
+  > .p-accordionheader:hover {
+  background: linear-gradient(
+    90deg,
+    var(--color-violet),
+    var(--color-light-violet)
+  );
+}
+
+.accordionMobile .p-accordionheader-toggle-icon {
+  visibility: hidden;
+}
+
+.accordionMobile .p-accordioncontent-content {
+  padding: 0.75rem 1.875rem;
+}
+
+.accordionMobile .p-accordioncontent-content div {
+  gap: 1.25rem;
+  padding: 0.75rem 0;
+}
+
+.accordionMobile .p-accordioncontent-content div p {
+  max-width: 320px;
+  font-size: 0.75rem;
+}
+
+@media (width >= 480px) {
   .accordionMobile .p-accordionheader {
-    width: 16.25rem;
-    background: #39385e99;
-    border-radius: 0 50px 50px 0 !important;
-    transition: all 0.3s ease;
-    padding: 0.5rem 3.75rem;
-  }
-
-  .accordionMobile .rightHeader {
-    align-self: flex-end;
-    border-radius: 50px 0 0 50px !important;
-  }
-
-  .accordionMobile
-    .p-accordionpanel:not(.p-accordionpanel-active):not(.p-disabled)
-    > .p-accordionheader:hover,
-  .accordionMobile
-    .p-accordionpanel:not(.p-disabled).p-accordionpanel-active
-    > .p-accordionheader {
-    background: linear-gradient(
-      90deg,
-      var(--color-violet),
-      var(--color-light-violet)
-    );
-  }
-
-  .accordionMobile
-    .p-accordionpanel:not(.p-disabled).p-accordionpanel-active
-    > .p-accordionheader:hover {
-    background: #39385e99;
-  }
-
-  .accordionMobile .p-accordionheader-toggle-icon {
-    visibility: hidden;
-  }
-
-  .accordionMobile .p-accordioncontent-content {
-    padding: 0.75rem 1.875rem;
-  }
-
-  .accordionMobile .p-accordioncontent-content div {
-    gap: 1.25rem;
-    padding: 0.75rem 0;
+    width: 22rem;
+    padding: 0.75rem 4.5rem;
   }
 
   .accordionMobile .p-accordioncontent-content div p {
-    font-size: 0.75rem;
+    max-width: 370px;
+    font-size: 0.875rem;
   }
+}
 
-  @media (width >= 700px) {
-    .accordionMobile {
-      display: none;
-    }
+@media (width >= 600px) {
+  .accordionMobile .p-accordionheader {
+    width: 24rem;
   }
+}
+
+@media (width >= 700px) {
+  .accordionMobile {
+    display: none;
+  }
+}
 </style>
 
 <style scoped>
+.aboutUs > div:first-of-type {
+  padding: 2rem 1.5rem 1.25rem 1.5rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+.atLime {
+  border-radius: 19px;
+  padding: 1.25rem;
+}
+
+.aboutDesktop {
+  display: none;
+}
+
+@media (width >= 480px) {
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+
+@media (width >= 700px) {
   .aboutUs > div:first-of-type {
-    padding: 2rem 1.5rem 1.25rem 1.5rem;
+    padding: 2.75rem 3.75rem 1.25rem 3.75rem;
   }
 
-  h3 {
-    font-size: 1.125rem;
+  h2 {
+    text-align: start;
   }
 
   .atLime {
-    border-radius: 19px;
-    padding: 1.25rem;
+    border-radius: 26px;
+    padding: 1.5rem;
+  }
+
+  .atLime p {
+    text-align: center;
   }
 
   .aboutDesktop {
-    display: none;
+    display: flex;
   }
 
-  @media (width >= 700px) {
-    .aboutUs > div:first-of-type {
-      padding: 2.75rem 3.75rem 1.25rem 3.75rem;
-    }
-
-    h2 {
-      text-align: start;
-    }
-
-    .atLime {
-      border-radius: 26px;
-      padding: 1.5rem;
-    }
-
-    .atLime p {
-      text-align: center;
-    }
-
-    .aboutDesktop {
-      display: flex;
-    }
-
-    .aboutDesktop {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 3.75rem 2.75rem 0;
-    }
-
-    .desktopContentPanel {
-      width: 14.875rem;
-    }
-
-    .aboutContainer {
-      gap: 1.25rem;
-    }
-
-    .valueBtn {
-      width: 17.5rem;
-      background: var(--color-60-violet);
-      border-radius: 0 50px 50px 0;
-      color: var(--color-white);
-      font-weight: 700;
-      font-size: 1.25rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      padding: 1rem 3.75rem;
-    }
-
-    .valueBtn-active {
-      width: 20.625rem;
-      background: var(--gradient-violet-light);
-    }
-
-    .desktopContentPanel > div {
-      gap: 1.25rem;
-    }
-
-    .desktopContentPanel img {
-      width: 12.875rem;
-    }
-
-    .desktopContentPanel p {
-      font-size: 0.875rem;
-    }
+  .aboutDesktop {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3.75rem 2.75rem 0;
   }
+
+  .desktopContentPanel {
+    width: 14.875rem;
+  }
+
+  .aboutContainer {
+    gap: 1.25rem;
+  }
+
+  .valueBtn {
+    width: 17.5rem;
+    background: var(--color-60-violet);
+    border-radius: 0 50px 50px 0;
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 1rem 3.75rem;
+  }
+
+  .valueBtn-active {
+    width: 20.625rem;
+    background: var(--gradient-violet-light);
+  }
+
+  .desktopContentPanel > div {
+    gap: 1.25rem;
+  }
+
+  .desktopContentPanel img {
+    width: 12.875rem;
+  }
+
+  .desktopContentPanel p {
+    font-size: 0.875rem;
+  }
+}
 </style>

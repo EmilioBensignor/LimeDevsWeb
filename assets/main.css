@@ -90,6 +90,10 @@ h2 {
   font-size: 1.25rem;
 }
 
+h2 span {
+  font-weight: 800;
+}
+
 .bgCover {
   background-position: center;
   background-size: cover;

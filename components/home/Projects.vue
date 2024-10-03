@@ -2,18 +2,20 @@
   <section class="w-full projects columnAlignCenter">
     <h2>Our most <span class="text-lime underline">recent work.</span></h2>
     <Swiper
-      :slides-per-view="1.2"
+      :slides-per-view="1.3"
       :space-between="12"
       :breakpoints="{
-        500: {
-          slidesPerView: 4,
+        380: {
+          slidesPerView: 1.5,
+        },
+        450: {
+          slidesPerView: 1.8,
+        },
+        550: {
+          slidesPerView: 2.2,
         },
         700: {
           slidesPerView: 2.8,
-          spaceBetween: 16,
-        },
-        1024: {
-          slidesPerView: 3.2,
           spaceBetween: 16,
         },
       }"
@@ -96,7 +98,7 @@
   }
 
   .slideProject {
-    width: 13.875rem !important;
+    /* width: 13.875rem !important; */
     height: 100%;
     background-color: #39385ef2;
     border-radius: 18px;
@@ -137,6 +139,8 @@
   :deep(.swiper-slide) {
     height: auto;
   }
+
+  @media (width >= 480px) {}
 
   @media (width >= 700px) {
     .projects {
