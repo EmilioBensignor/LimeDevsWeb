@@ -35,4 +35,15 @@ h1 > span > span {
     text-align: start;
   }
 }
+
+@media (width >= 1080px) {
+  .hero {
+    gap: 4.375rem !important;
+    padding: 5.625rem;
+  }
+
+  .hero > img {
+    width: 21.25rem;
+  }
+}
 </style>

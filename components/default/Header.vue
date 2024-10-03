@@ -21,6 +21,19 @@
         </ul>
       </Drawer>
     </div>
+    <div class="menuDesktop">
+      <nav>
+        <ul class="menuList rowSpaceBetweenCenter">
+          <li v-for="(item, index) in menu" :key="index">
+            <NuxtLink
+              :to="item.link"
+              class="text-white no-underline">
+              {{ item.title }}
+            </NuxtLink>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </header>
 </template>
 
@@ -150,6 +163,10 @@
     z-index: 1;
   }
 
+  .menuDesktop {
+    display: none;
+  }
+
   @media (width >= 480px) {
     header img {
       width: 3rem;
@@ -171,6 +188,30 @@
 
     .menuList li a {
       font-size: 1.5rem;
+    }
+  }
+
+  @media (width >= 1080px) {
+    header {
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 5.625rem;
+    }
+
+    header img {
+      width: 5.75rem;
+    }
+
+    .menuSidebar, .hamburger {
+      display: none
+    }
+
+    .menuDesktop {
+      display: inline;
+    }
+
+    .menuList {
+      gap: 3.75rem;
     }
   }
 </style>
