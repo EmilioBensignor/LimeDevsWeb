@@ -192,7 +192,6 @@
     width: 100%;
     display: grid;
     grid-template-rows: repeat(var(--services-count), var(--service-height));
-    padding-bottom: 100px;
   }
 
   .service {
