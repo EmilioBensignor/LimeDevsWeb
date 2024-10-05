@@ -42,13 +42,27 @@
     <div class="aboutDesktop">
       <div class="aboutContainer column">
         <div
-          v-for="(item, index) in values"
-          :key="index"
-          @click="setSelectedStep(index)"
-          :class="{ 'valueBtnActive': selectedValue === index }"
-          class="valueBtn relative bg-blue-light-gradient"
+          class="atLimeDesktop bg-gradient-light-violet"
+          :class="values[selectedValue].border"
         >
-          <h3>{{ item.title }}</h3>
+          <p>
+            At Lime, we are a team with
+            <span class="text-lime font-bold"
+              >expertise in both digital and physical products</span
+            >, focused on solving the concrete, day-to-day challenges of your
+            business.
+          </p>
+        </div>
+        <div class="column">
+          <div
+            v-for="(item, index) in values"
+            :key="index"
+            @click="setSelectedStep(index)"
+            :class="{ valueBtnActive: selectedValue === index }"
+            class="valueBtn relative bg-blue-light-gradient"
+          >
+            <h3>{{ item.title }}</h3>
+          </div>
         </div>
       </div>
       <ClientOnly>
@@ -78,6 +92,7 @@ export default {
           alt: "Innovation",
           title: "Innovation",
           text: "<p>We constantly explore <span class='font-bold text-lime'>new technologies</span> to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
+          border: "borderInnovation",
         },
         {
           value: 1,
@@ -101,6 +116,7 @@ export default {
           title: "Excellence",
           text: "<p>We strive for the <span class='font-bold text-lime'>highest standards</span> in every project, ensuring <span class='font-bold text-lime'>quality</span> and <span class='font-bold text-lime'>scalability</span> in our solutions. to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
           class: "rightHeader",
+          border: "borderExcellence",
         },
       ],
     };
@@ -136,7 +152,7 @@ export default {
   justify-content: center;
   background: #39385e99;
   border-radius: 0 50px 50px 0 !important;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   padding: 0.5rem 3.75rem;
 }
 
@@ -228,7 +244,8 @@ h3 {
   padding: 1.25rem;
 }
 
-.aboutDesktop {
+.aboutDesktop,
+.atLimeDesktop {
   display: none;
 }
 
@@ -237,7 +254,6 @@ h3 {
     font-size: 1.25rem;
   }
 }
-
 
 @media (width >= 700px) {
   .aboutUs > div:first-of-type {
@@ -258,10 +274,6 @@ h3 {
   }
 
   .aboutDesktop {
-    display: flex;
-  }
-
-  .aboutDesktop {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -273,26 +285,30 @@ h3 {
     width: 14.875rem;
   }
 
-  .aboutContainer {
+  .aboutContainer > div:last-child {
     gap: 1.25rem;
   }
 
   .valueBtn {
     width: 17.5rem;
-    background: linear-gradient(90deg, var(--color-60-violet), var(--color-60-violet));
+    background: linear-gradient(
+      90deg,
+      var(--color-60-violet),
+      var(--color-60-violet)
+    );
     border-radius: 0 50px 50px 0;
     color: var(--color-white);
     font-weight: 700;
     font-size: 1.25rem;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.4s;
     padding: 1rem 3.75rem;
   }
 
   .valueBtnActive {
     width: 20.625rem;
     background: var(--gradient-violet-light);
-    transition: all 0.3s;
+    transition: all 0.4s;
   }
 
   .desktopContentPanel > div {
@@ -305,6 +321,62 @@ h3 {
 
   .desktopContentPanel p {
     font-size: 0.875rem;
+  }
+}
+
+@media (width >= 1080px) {
+  .aboutUs {
+    padding: 3.75rem 5.625rem;
+  }
+
+  .aboutUs > div:first-of-type {
+    padding: 0 0 2rem 0;
+  }
+
+  .atLime {
+    display: none;
+  }
+
+  .aboutDesktop {
+    padding: 0;
+  }
+
+  .atLimeDesktop {
+    width: 20rem;
+    display: block;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s;
+    border-radius: 32px;
+    padding: 1.75rem;
+  }
+
+  .borderInnovation {
+    border-radius: 32px 0 32px 32px;
+  }
+
+  .borderExcellence {
+    border-radius: 32px 32px 0 32px;
+  }
+
+  .atLimeDesktop p {
+    font-size: 1.5rem;
+  }
+
+  .aboutContainer {
+    flex-direction: row;
+  }
+
+  .valueBtn {
+    width: 15.313rem;
+    position: relative;
+    transition: all 0.4s;
+    padding: 1rem 1.25rem 1rem 3.125rem;
+    margin-left: -2rem;
+  }
+
+  .valueBtnActive {
+    margin-left: 0;
   }
 }
 </style>

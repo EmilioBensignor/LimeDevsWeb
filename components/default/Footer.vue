@@ -2,78 +2,54 @@
   <footer id="contactUs" class="bg-violet-60">
     <section class="column gap-5">
       <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" />
-      <div class="column gap-5">
-        <h2>
-          Ready to
-          <span class="text-lime underline">transform your business</span>?
-        </h2>
-        <div class="stepperFooter">
-          <Stepper :value="1">
-            <StepList>
-              <Step v-for="step in steps" :key="step.value" :value="step.value">
-                {{ step.title }}
-              </Step>
-            </StepList>
-            <StepPanels>
-              <form @submit.prevent="handleSubmit">
-                <StepPanel
+      <div class="stepperSocialMedia column gap-5">
+        <div class="column gap-5">
+          <h2>
+            Ready to
+            <span class="text-lime underline">transform your business</span>?
+          </h2>
+          <div class="stepperFooter">
+            <Stepper :value="1">
+              <StepList>
+                <Step
                   v-for="step in steps"
                   :key="step.value"
                   :value="step.value"
-                  v-slot="{ activateCallback }"
                 >
-                  <div v-if="step.value !== 1" class="nextBack">
-                    <Button
-                      class="back"
-                      @click="activateCallback(step.value - 1)"
-                    >
-                      <Icon name="mingcute:arrow-left-line" />
-                    </Button>
-                  </div>
-                  <div class="stepContent column">
-                    <div>
-                      <label :for="step.id" v-html="step.label"></label>
-                      <component
-                        :is="step.id === 'idea' ? 'textarea' : 'input'"
-                        v-model="formData[step.id]"
-                        :id="step.id"
-                        :type="step.type"
-                        :placeholder="step.placeholder"
-                        autocomplete="off"
-                      />
-                    </div>
-                  </div>
-                  <div class="nextBack">
-                    <Button
-                      v-if="step.value !== 4"
-                      class="next"
-                      @click="activateCallback(step.value + 1)"
-                    >
-                      <Icon name="mingcute:arrow-right-line" />
-                    </Button>
-                    <Button v-else type="submit" class="submit">
-                      <Icon name="mingcute:arrow-right-line" />
-                    </Button>
-                  </div>
-                  <div class="nextBackMobile mt-3">
-                    <div
-                      v-if="step.value === 1"
-                      class="w-full flex justify-content-end"
-                    >
-                      <Button
-                        class="next"
-                        @click="activateCallback(step.value + 1)"
-                      >
-                        <Icon name="mingcute:arrow-right-line" />
-                      </Button>
-                    </div>
-                    <div v-if="step.value !== 1" class="w-full rowSpaceBetween">
+                  {{ step.title }}
+                </Step>
+              </StepList>
+              <StepPanels>
+                <form @submit.prevent="handleSubmit">
+                  <StepPanel
+                    v-for="step in steps"
+                    :key="step.value"
+                    :value="step.value"
+                    :class="step.panelClass"
+                    v-slot="{ activateCallback }"
+                  >
+                    <div v-if="step.value !== 1" class="nextBack">
                       <Button
                         class="back"
                         @click="activateCallback(step.value - 1)"
                       >
                         <Icon name="mingcute:arrow-left-line" />
                       </Button>
+                    </div>
+                    <div class="stepContent column">
+                      <div>
+                        <label :for="step.id" v-html="step.label"></label>
+                        <component
+                          :is="step.id === 'idea' ? 'textarea' : 'input'"
+                          v-model="formData[step.id]"
+                          :id="step.id"
+                          :type="step.type"
+                          :placeholder="step.placeholder"
+                          autocomplete="off"
+                        />
+                      </div>
+                    </div>
+                    <div class="nextBack">
                       <Button
                         v-if="step.value !== 4"
                         class="next"
@@ -85,25 +61,59 @@
                         <Icon name="mingcute:arrow-right-line" />
                       </Button>
                     </div>
-                  </div>
-                </StepPanel>
-              </form>
-            </StepPanels>
-          </Stepper>
+                    <div class="nextBackMobile mt-3">
+                      <div
+                        v-if="step.value === 1"
+                        class="w-full flex justify-content-end"
+                      >
+                        <Button
+                          class="next"
+                          @click="activateCallback(step.value + 1)"
+                        >
+                          <Icon name="mingcute:arrow-right-line" />
+                        </Button>
+                      </div>
+                      <div
+                        v-if="step.value !== 1"
+                        class="w-full rowSpaceBetween"
+                      >
+                        <Button
+                          class="back"
+                          @click="activateCallback(step.value - 1)"
+                        >
+                          <Icon name="mingcute:arrow-left-line" />
+                        </Button>
+                        <Button
+                          v-if="step.value !== 4"
+                          class="next"
+                          @click="activateCallback(step.value + 1)"
+                        >
+                          <Icon name="mingcute:arrow-right-line" />
+                        </Button>
+                        <Button v-else type="submit" class="submit">
+                          <Icon name="mingcute:arrow-right-line" />
+                        </Button>
+                      </div>
+                    </div>
+                  </StepPanel>
+                </form>
+              </StepPanels>
+            </Stepper>
+          </div>
         </div>
-      </div>
-      <div class="socialMedia column">
-        <p>Or contact us at:</p>
-        <ul class="column">
-          <li
-            v-for="(social, index) in socialMedia"
-            :key="index"
-            class="rowCenter"
-          >
-            <div class="bgCover" :class="social.img"></div>
-            <p>{{ social.text }}</p>
-          </li>
-        </ul>
+        <div class="socialMedia column">
+          <p>Or contact us at:</p>
+          <ul class="column">
+            <li
+              v-for="(social, index) in socialMedia"
+              :key="index"
+              class="rowCenter"
+            >
+              <div class="bgCover" :class="social.img"></div>
+              <p>{{ social.text }}</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
     <div class="rightsReserved bg-dark-violet">
@@ -126,6 +136,7 @@ export default {
           label: "Enter your <span class='labelBold'>name</span>",
           type: "text",
           placeholder: "Your name",
+          panelClass: "panelName",
         },
         {
           value: 2,
@@ -353,9 +364,51 @@ export default {
     font-weight: 400;
   }
 
+  .stepperFooter .stepContent label {
+    font-size: 0.875rem;
+  }
+
   .stepperFooter input,
   .stepperFooter textarea {
     margin-top: 0.75rem;
+  }
+}
+
+@media (width >= 1080px) {
+
+  .stepperFooter .p-step {
+    padding: 0 !important;
+  }
+
+  .stepperFooter .p-steppanel {
+    gap: 1.563rem;
+  }
+
+  .stepperFooter .panelName {
+    gap: 5.5rem;
+  }
+
+  .stepperFooter .p-step-header {
+    gap: 0.5rem;
+    padding: 0.25rem 1.25rem 0.25rem 0;
+  }
+
+  .stepperFooter .p-step-number {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.25rem;
+  }
+
+  .stepperFooter .p-step-title {
+    font-size: 1.25rem;
+  }
+
+  .stepperFooter .stepContent {
+    width: 100%;
+  }
+
+  .stepperFooter .stepContent label {
+    font-size: 1.125rem;
   }
 }
 </style>
@@ -461,6 +514,50 @@ footer > section > img:first-of-type {
 
   .rightsReserved p {
     font-size: 0.875rem;
+  }
+}
+
+@media (width >= 1080px) {
+  footer > section {
+    padding: 3.75rem 5.625rem;
+  }
+
+  footer > section > img:first-of-type {
+    width: 6.25rem;
+  }
+
+  footer section .stepperSocialMedia {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5rem !important;
+  }
+
+  .stepperSocialMedia > div:first-of-type {
+    width: 100%;
+  }
+
+  .socialMedia p {
+    font-size: 1.25rem;
+  }
+
+  .socialMedia p:first-child {
+    text-align: end;
+  }
+
+  .socialMedia ul {
+    flex-direction: column;
+  }
+
+  .socialMedia ul li {
+    flex-direction: row-reverse;
+  }
+
+  .rightsReserved {
+    padding: 1.25rem
+  }
+
+  .rightsReserved p {
+    font-size: 1rem;
   }
 }
 </style>
