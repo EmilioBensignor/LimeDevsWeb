@@ -38,4 +38,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ['aatjs']
   },
+  plugins: [
+    '~/plugins/vanilla-tilt.js'
+  ]
 })
