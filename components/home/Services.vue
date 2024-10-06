@@ -1,6 +1,6 @@
 <template>
   <section class="w-full services columnAlignCenter">
-    <div class="column">
+    <div class="w-full column">
       <div class="headerServices">
         <h2>
           Solutions that drive your
@@ -10,6 +10,7 @@
       </div>
       <client-only>
         <HomeScrollServicesCards :services="services" />
+        <!-- <HomeScrollTestCards :services="services" /> -->
       </client-only>
     </div>
     <NuxtLink to="#" class="primaryButton btnMobile">Get started</NuxtLink>
