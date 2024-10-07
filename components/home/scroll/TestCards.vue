@@ -1,216 +1,252 @@
 <template>
   <div class="servicesWrapper">
-    <div class="sidebarNav">
+    <div class="sidebarNav" v-if="isTabletOrLarger" ref="sidebarNav">
       <button
         v-for="(service, index) in services"
-        :key="index"
+        :key="`nav-${index}`"
         :class="['navButton', { active: activeIndex === index }]"
-        @click="scrollToService(index)">
+        @click="scrollToService(index)"
+      >
         {{ service.title }}
       </button>
     </div>
-    <div class="containerCards">
-      <ul id="servicesCards" class="servicesCards">
-        <li
-          v-for="(service, index) in services"
-          :key="index"
-          :class="`service${index}`"
-          class="service"
-          :style="`z-index: ${index}`"
-          :id="`service${index}`">
-          <div class="cardBody bg-gradient-violet">
-            <div class="serviceImageContainer columnAlignCenter">
-              <img
-                class="serviceImage"
-                :src="`/images/home/${service.img}.png`"
-                :alt="service.alt" />
-            </div>
-            <div class="serviceContent column">
-              <h3 class="serviceTitle text-white">{{ service.title }}</h3>
-              <p class="serviceDescription text-white">{{ service.text }}</p>
-            </div>
+    <div class="servicesContainer" ref="servicesContainer">
+      <div
+        v-for="(service, index) in services"
+        :key="index"
+        class="service"
+        :data-index="index"
+        :ref="setServiceRef"
+      >
+        <div class="serviceInner column bg-gradient-violet">
+          <div class="serviceImageContainer columnAlignCenter">
+            <img
+              class="serviceImage"
+              :src="`/images/home/${service.img}.png`"
+              :alt="service.alt"
+            />
           </div>
-        </li>
-      </ul>
+          <div class="serviceContent column">
+            <h3 class="serviceTitle">{{ service.title }}</h3>
+            <p class="serviceDescription">{{ service.text }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      services: {
-        type: Array,
-        required: true,
-      },
+import { ref, onMounted, nextTick, computed } from "vue";
+import { useWindowSize } from "@vueuse/core";
+
+export default {
+  name: "ScrollingServices",
+  props: {
+    services: {
+      type: Array,
+      required: true,
     },
-    data() {
-      return {
-        activeIndex: null, // Índice activo para los botones de la barra lateral
-        observer: null, // Observador de intersección para detectar las secciones visibles
-      };
-    },
-    mounted() {
-      // Configuramos el IntersectionObserver cuando el componente se monta
-      this.setupObserver();
-    },
-    beforeDestroy() {
-      // Desconectar el observer para evitar fugas de memoria
-      if (this.observer) {
-        this.observer.disconnect();
+  },
+  setup(props) {
+    const servicesContainer = ref(null);
+    const serviceRefs = ref([]);
+    const activeIndex = ref(0);
+    const { width } = useWindowSize();
+
+    const isTabletOrLarger = computed(() => width.value >= 700);
+
+    const setServiceRef = (el) => {
+      if (el) {
+        serviceRefs.value.push(el);
       }
-    },
-    methods: {
-      // Función para realizar scroll suave a una sección específica
-      scrollToService(index) {
-        const section = document.getElementById(`service${index}`);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
-      },
-      // Configuramos el IntersectionObserver para observar las secciones
-      setupObserver() {
-        const options = {
-          root: null, // Vista actual (viewport)
-          rootMargin: "0px",
-          threshold: 0.5, // Cambia el índice activo cuando el 50% de la sección esté visible
-        };
+    };
 
-        this.observer = new IntersectionObserver(this.handleIntersect, options);
+    const scrollToService = async (index) => {
+      const currentIndex = activeIndex.value;
 
-        // Observar cada sección de servicio
-        const sections = document.querySelectorAll(".service");
-        sections.forEach((section) => {
-          this.observer.observe(section);
+      // Si el índice es el mismo, no hacemos nada
+      if (index === currentIndex) return;
+
+      const servicesContainerEl = servicesContainer.value;
+      const targetService = serviceRefs.value[index];
+
+      // Verificar si la referencia al servicio está definida
+      if (!targetService) return;
+
+      // Esperar el siguiente ciclo de renderizado para asegurar que los refs están listos
+      await nextTick();
+
+      // Calcular la posición de desplazamiento hacia el servicio objetivo
+      const targetTop = targetService.offsetTop;
+      const currentTop = serviceRefs.value[currentIndex]?.offsetTop || 0;
+
+      // Desplazarse suavemente solo si el servicio está en un índice mayor o menor
+      if (index > currentIndex) {
+        servicesContainerEl.scrollTo({
+          top: targetTop,
+          behavior: "smooth",
         });
-      },
-      // Manejador para cuando una sección es visible
-      handleIntersect(entries) {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.id.replace("service", ""));
-            this.activeIndex = index; // Actualizamos el botón activo en la barra lateral
+      } else if (index < currentIndex) {
+        servicesContainerEl.scrollTo({
+          top: targetTop,
+          behavior: "smooth",
+        });
+      }
+
+      // Actualizar el índice activo después del scroll
+      activeIndex.value = index;
+    };
+
+    onMounted(async () => {
+      await nextTick();
+
+      const handleScroll = () => {
+        serviceRefs.value.forEach((service, index) => {
+          const rect = service.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+            activeIndex.value = index;
           }
         });
-      },
-    },
-  };
+      };
+
+      window.addEventListener("scroll", handleScroll);
+
+      onUnmounted(() => {
+        window.removeEventListener("scroll", handleScroll);
+      });
+    });
+
+    return {
+      servicesContainer,
+      setServiceRef,
+      activeIndex,
+      isTabletOrLarger,
+      scrollToService,
+    };
+  },
+};
 </script>
 
 <style scoped>
-  .servicesWrapper {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.75rem;
-    width: 100%;
-  }
+.servicesWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+}
 
-  .sidebarNav {
-    display: none;
-    flex-direction: column;
-    position: sticky;
-    top: 7.687rem;
-    height: fit-content;
-    gap: 0.5rem;
-    padding-top: 4.125rem;
-  }
+.sidebarNav {
+  display: none;
+  flex-direction: column;
+  position: sticky;
+  top: 7.687rem;
+  height: fit-content;
+  gap: 0.5rem;
+  padding-top: 4.125rem;
+}
 
-  .navButton {
-    background: linear-gradient(
-      90deg,
-      var(--color-60-violet),
-      var(--color-60-violet)
-    );
-    border: none;
-    border-radius: 9999px;
-    text-align: center;
-    color: var(--color-white);
-    font-size: 0.875rem;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0.875rem 1.5rem;
-  }
+.navButton {
+  background: linear-gradient(
+    90deg,
+    var(--color-60-violet),
+    var(--color-60-violet)
+  );
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.875rem 1.5rem;
+  color: var(--color-white);
+  font-size: 0.875rem;
+}
 
-  .navButton.active {
-    background: linear-gradient(
-      90deg,
-      var(--color-violet),
-      var(--color-light-violet)
-    );
-    color: var(--color-black);
-  }
+.navButton.active {
+  font-weight: bold;
+  background: var(--gradient-violet-light);
+  color: var(--color-white);
+}
 
-  .containerCards {
-    width: 100%;
-    margin: 0 auto;
-  }
+.servicesContainer {
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(var(--services-count), var(--service-height));
+}
 
-  .servicesCards {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
-    gap: 1rem;
-    list-style: none;
-    padding-left: 0;
-    padding-bottom: 1.25rem;
-  }
+.service {
+  height: 100%;
+  position: sticky;
+  top: 7.687rem;
+}
 
-  .service {
-    position: sticky;
-    top: 7.5rem;
-    padding-top: 1.5rem;
-  }
+.serviceInner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 18px;
+  overflow: hidden;
+  will-change: transform;
+  transform-origin: center top;
 
-  .service .cardBody {
-    width: 100%;
-    height: 18.75rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
-    border-radius: 18px;
-    box-sizing: border-box;
-    padding: 1.25rem;
-  }
+  padding: 1.25rem;
+}
 
+.serviceImageContainer {
+  width: 11.75rem;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+
+.serviceImage {
+  width: 100%;
+  object-fit: contain;
+  aspect-ratio: 1;
+}
+
+.serviceContent {
+  gap: 0.75rem;
+}
+
+.serviceTitle {
+  font-size: 1.125rem;
+}
+
+.serviceDescription {
+  line-height: 1.4;
+  font-size: 0.75rem;
+}
+
+@media (width >= 480px) {
   .serviceImageContainer {
-    width: 11.75rem;
-    flex-shrink: 0;
-    margin: 0 auto;
-  }
-
-  .serviceImage {
-    width: 100%;
-    object-fit: contain;
-    aspect-ratio: 1;
-  }
-
-  .serviceContent {
-    gap: 0.75rem;
+    width: 13.75rem;
+    align-self: flex-end;
+    margin: 0;
   }
 
   .serviceTitle {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
   }
 
   .serviceDescription {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (width >= 700px) {
+  .service {
+    top: 11rem;
   }
 
-  @media (width >= 700px) {
-    .service {
-      top: 11rem;
-    }
-
-    .sidebarNav {
-      display: flex;
-      width: 14rem;
-    }
-
-    .containerCards {
-      width: 59%;
-    }
+  .sidebarNav {
+    display: flex;
+    width: 14rem;
   }
+
+  .servicesContainer {
+    width: 59%;
+  }
+}
 </style>
