@@ -8,95 +8,112 @@
         </h2>
         <NuxtLink to="#" class="primaryButton btnHeader">Get started</NuxtLink>
       </div>
-      <client-only>
-        <HomeScrollServicesCards :services="services" />
-        <!-- <HomeScrollTestCards :services="services" /> -->
-      </client-only>
+      <div class="servicesMobile">
+        <client-only>
+          <HomeServicesScrollingCards :services="services" />
+          <!-- <HomeScrollTestCards :services="services" /> -->
+        </client-only>
+      </div>
+      <div class="servicesDesktop">
+        <HomeServicesStackingCards :services="services" />
+      </div>
     </div>
     <NuxtLink to="#" class="primaryButton btnMobile">Get started</NuxtLink>
   </section>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      services: [
-        {
-          img: "animacionHero",
-          alt: "",
-          title: "Technology Consulting",
-          text: "We help you validate your business idea through a product discovery process and determine the right scope for your MVP.",
-        },
-        {
-          img: "animacionHero",
-          alt: "",
-          title: "Software Development",
-          text: "We design and build custom software tailored to your business needs. Whether it's a mobile app, web platform, or enterprise solution, we turn your vision into reality with scalable and efficient technology.",
-        },
-        {
-          img: "animacionHero",
-          alt: "",
-          title: "Hardware Development",
-          text: "From concept to prototype, we develop physical hardware solutions to enhance your products and operations. Our team specializes in creating reliable, innovative hardware that integrates seamlessly with your existing systems.",
-        },
-        {
-          img: "animacionHero",
-          alt: "",
-          title: "Support & Maintenance",
-          text: "We offer continuous support and maintenance to ensure your technology solutions run smoothly and efficiently. From troubleshooting to system updates, our team is here to help you minimize downtime and keep your business operations on track.",
-        },
-      ],
-    };
-  },
-};
+  export default {
+    data() {
+      return {
+        services: [
+          {
+            img: "animacionHero",
+            alt: "",
+            title: "Technology Consulting",
+            text: "We help you validate your business idea through a product discovery process and determine the right scope for your MVP.",
+          },
+          {
+            img: "animacionHero",
+            alt: "",
+            title: "Software Development",
+            text: "We design and build custom software tailored to your business needs. Whether it's a mobile app, web platform, or enterprise solution, we turn your vision into reality with scalable and efficient technology.",
+          },
+          {
+            img: "animacionHero",
+            alt: "",
+            title: "Hardware Development",
+            text: "From concept to prototype, we develop physical hardware solutions to enhance your products and operations. Our team specializes in creating reliable, innovative hardware that integrates seamlessly with your existing systems.",
+          },
+          {
+            img: "animacionHero",
+            alt: "",
+            title: "Support & Maintenance",
+            text: "We offer continuous support and maintenance to ensure your technology solutions run smoothly and efficiently. From troubleshooting to system updates, our team is here to help you minimize downtime and keep your business operations on track.",
+          },
+        ],
+      };
+    },
+  };
 </script>
 
 <style scoped>
-.services {
-  padding: 2rem 1.5rem;
-}
-
-.headerServices {
-  position: sticky;
-  top: 4.5rem;
-}
-
-.btnHeader {
-  display: none;
-}
-
-.btnMobile {
-  margin-top: 1.25rem;
-}
-
-@media (width >= 700px) {
   .services {
-    padding: 2.75rem 3.75rem;
-  }
-
-  .services > div {
-    gap: 2rem;
+    padding: 2rem 1.5rem;
   }
 
   .headerServices {
-    width: 100%;
-    top: 6.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  h2 {
-    display: block;
-  }
-
-  .btnMobile {
-    display: none;
+    position: sticky;
+    top: 4.5rem;
   }
 
   .btnHeader {
-    display: inline;
+    display: none;
   }
-}
+
+  .btnMobile {
+    margin-top: 1.25rem;
+  }
+
+  .servicesDesktop {
+    display: none;
+  }
+
+  @media (width >= 700px) {
+    .services {
+      padding: 2.75rem 3.75rem;
+    }
+
+    .servicesMobile {
+      display: none;
+    }
+
+    .servicesDesktop {
+      display: block;
+    }
+
+    .services > div {
+      gap: 4rem;
+    }
+
+    .headerServices {
+      width: 100%;
+      position: static;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    h2 {
+      display: block;
+    }
+
+    .btnMobile {
+      display: none;
+    }
+
+    .btnHeader {
+      display: inline;
+    }
+  }
 </style>
