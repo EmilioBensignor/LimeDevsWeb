@@ -11,7 +11,6 @@
       <div class="servicesMobile">
         <client-only>
           <HomeServicesScrollingCards :services="services" />
-          <!-- <HomeScrollTestCards :services="services" /> -->
         </client-only>
       </div>
       <div class="servicesDesktop">

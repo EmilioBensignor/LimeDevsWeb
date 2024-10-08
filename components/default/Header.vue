@@ -25,9 +25,7 @@
       <nav>
         <ul class="menuList rowSpaceBetweenCenter">
           <li v-for="(item, index) in menu" :key="index">
-            <NuxtLink
-              :to="item.link"
-              class="text-white no-underline">
+            <NuxtLink :to="item.link" class="text-white no-underline">
               {{ item.title }}
             </NuxtLink>
           </li>
@@ -147,7 +145,7 @@
     width: 0;
     height: 4px;
     background-color: var(--color-dark-violet);
-    transition: width 0.4s ease-in-out;
+    transition: width 0.3s ease, background-color 0.3s ease;
   }
 
   .menuList li:hover::before {
@@ -202,8 +200,9 @@
       width: 5.75rem;
     }
 
-    .menuSidebar, .hamburger {
-      display: none
+    .menuSidebar,
+    .hamburger {
+      display: none;
     }
 
     .menuDesktop {

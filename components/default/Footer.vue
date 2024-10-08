@@ -107,7 +107,7 @@
             <li
               v-for="(social, index) in socialMedia"
               :key="index"
-              class="rowCenter"
+              class="rowCenter no-underline"
             >
               <div class="bgCover" :class="social.img"></div>
               <p class="no-underline">{{ social.text }}</p>
