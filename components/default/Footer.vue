@@ -110,7 +110,7 @@
               class="rowCenter"
             >
               <div class="bgCover" :class="social.img"></div>
-              <p>{{ social.text }}</p>
+              <p class="no-underline">{{ social.text }}</p>
             </li>
           </ul>
         </div>
