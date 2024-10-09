@@ -9,7 +9,7 @@
             <span class="text-lime underline">transform your business</span>?
           </h2>
           <div class="stepperFooter">
-            <Stepper :value="1">
+            <Stepper v-if="form" :value="1">
               <StepList>
                 <Step
                   v-for="step in steps"
@@ -104,14 +104,20 @@
                         </div>
                       </div>
                       <div>
-                        <div class="error gap-1 mt-1" v-if="errors.name && step.id === 'name'">
+                        <div
+                          class="error gap-1 mt-1"
+                          v-if="errors.name && step.id === 'name'"
+                        >
                           <Icon
                             name="mingcute:alert-octagon-line"
                             style="color: var(--color-red)"
                           />
                           <p>{{ errors.name }}</p>
                         </div>
-                        <div class="error errorMail gap-1 mt-1" v-if="errors.email && step.id === 'email'">
+                        <div
+                          class="error errorMail gap-1 mt-1"
+                          v-if="errors.email && step.id === 'email'"
+                        >
                           <Icon
                             name="mingcute:alert-octagon-line"
                             style="color: var(--color-red)"
@@ -165,6 +171,18 @@
                 </form>
               </StepPanels>
             </Stepper>
+            <div v-else class="newMessage columnAlignCenter gap-3">
+              <p class="text-center">
+                We've received your message and will get back to you soon.
+                Thanks for choosing Lime Devs to help
+                <span class="text-lime font-bold"
+                  >bring your ideas to life.</span
+                >
+              </p>
+              <Button class="btnNewMessage" @click="form = true">
+                Send a new message
+              </Button>
+            </div>
           </div>
         </div>
         <div class="socialMedia column">
@@ -196,6 +214,7 @@
 export default {
   data() {
     return {
+      form: true,
       currentStep: 0,
       steps: [
         {
@@ -235,12 +254,11 @@ export default {
       ],
       socialMedia: [
         {
-          link: "#",
+          link: "https://wa.me/5491156362938",
           img: "whatsAppIcon",
           text: "+54 9 11 5636 2938",
         },
         {
-          link: "#",
           img: "emailIcon",
           text: "hello@limedevs.com",
         },
@@ -270,9 +288,9 @@ export default {
   methods: {
     validateName(activateCallback, value) {
       if (!this.formData.name) {
-        this.errors.name = "Debes ingresar un nombre";
-      } else if (this.formData.name.length < 3) {
-        this.errors.name = "Nombre corto";
+        this.errors.name = "You must enter a name";
+      } else if (this.formData.name.length <= 2) {
+        this.errors.name = "The name must be at least 2 characters long";
       } else {
         this.errors.name = "";
         activateCallback(value + 1);
@@ -280,10 +298,10 @@ export default {
     },
     validateEmail(activateCallback, value) {
       if (!this.formData.email) {
-        this.errors.email = "Debes ingresar un correo electrónico";
+        this.errors.email = "You must enter an email address";
       } else if (!/.+@.+\..+/.test(this.formData.email)) {
         this.errors.email =
-          "El correo electrónico debe incluír un @ y un . (punto)";
+          "The email address must include an @ and a . (dot)";
       } else {
         this.errors.email = "";
         activateCallback(value + 1);
@@ -295,6 +313,7 @@ export default {
       if (this.isValid) {
         this.errors = [];
         console.log(this.formData);
+        this.form = false;
       }
     },
   },
@@ -624,6 +643,23 @@ footer > section > img:first-of-type {
   width: 3.75rem;
 }
 
+.newMessage p {
+  max-width: 395px;
+  font-size: 0.875rem;
+}
+
+.btnNewMessage {
+  background: var(--color-light-violet);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.688rem 1.25rem;
+}
+
+.btnNewMessage:hover {
+  background: var(--color-light-violet) !important;
+}
+
 .socialMedia {
   gap: 0.75rem;
 }
@@ -711,6 +747,20 @@ footer > section > img:first-of-type {
     gap: 2rem !important;
   }
 
+  .newMessage {
+    align-items: flex-start;
+  }
+
+  .newMessage p {
+    max-width: 500px;
+    text-align: start !important;
+    font-size: 1.125rem;
+  }
+
+  .btnNewMessage {
+    padding: 0.938rem 2.5rem;
+  }
+
   .socialMedia {
     gap: 1.25rem;
     margin-top: 1.75rem;
@@ -764,6 +814,20 @@ footer > section > img:first-of-type {
     max-width: 700px;
   }
 
+  .newMessage {
+    gap: 1.25rem !important;
+  }
+
+  .newMessage p {
+    max-width: 560px;
+    font-size: 1.25rem;
+  }
+
+  .btnNewMessage {
+    font-size: 1.25rem;
+    padding: 0.75rem 2.5rem;
+  }
+
   .socialMedia p {
     font-size: 1.25rem;
   }
@@ -796,6 +860,11 @@ footer > section > img:first-of-type {
 
   .stepperFooter .stepContent {
     margin-top: 2.5rem;
+  }
+
+  .newMessage p {
+    max-width: 700px;
+    font-size: 1.5rem;
   }
 }
 

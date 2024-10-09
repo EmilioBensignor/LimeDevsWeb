@@ -6,7 +6,7 @@
           Solutions that drive your
           <span class="text-lime underline">growth.</span>
         </h2>
-        <NuxtLink to="#" class="primaryButton btnHeader">Get started</NuxtLink>
+        <NuxtLink to="#contactUs" class="primaryButton btnHeader">Get started</NuxtLink>
       </div>
       <div class="servicesMobile">
         <client-only>
@@ -17,7 +17,7 @@
         <HomeServicesStackingCards :services="services" />
       </div>
     </div>
-    <NuxtLink to="#" class="primaryButton btnMobile">Get started</NuxtLink>
+    <NuxtLink to="#contactUs" class="primaryButton btnMobile">Get started</NuxtLink>
   </section>
 </template>
 
