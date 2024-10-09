@@ -653,11 +653,13 @@ footer > section > img:first-of-type {
   border-radius: 999px;
   font-size: 0.875rem;
   font-weight: 700;
+  transition: all 0.3s;
   padding: 0.688rem 1.25rem;
 }
 
 .btnNewMessage:hover {
   background: var(--color-light-violet) !important;
+  box-shadow: -6px -2px 10px 0px #C3C3D5 inset;
 }
 
 .socialMedia {
