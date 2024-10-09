@@ -28,71 +28,137 @@
                     :class="step.panelClass"
                     v-slot="{ activateCallback }"
                   >
-                    <div v-if="step.value !== 1" class="nextBack">
-                      <Button
-                        class="back"
-                        @click="activateCallback(step.value - 1)"
-                      >
-                        <Icon name="mingcute:arrow-left-line" />
-                      </Button>
-                    </div>
-                    <div class="stepContent column">
+                    <div>
+                      <div class="inputsNextBack">
+                        <div v-if="step.value !== 1" class="nextBack">
+                          <Button
+                            class="back"
+                            @click="activateCallback(step.value - 1)"
+                          >
+                            <Icon name="mingcute:arrow-left-line" />
+                          </Button>
+                        </div>
+                        <div class="stepContent column">
+                          <div>
+                            <label :for="step.id" v-html="step.label"></label>
+                            <input
+                              v-if="step.id === 'name'"
+                              :type="step.type"
+                              v-model="formData.name"
+                              :id="step.id"
+                              :name="step.id"
+                              :placeholder="step.placeholder"
+                              autocomplete="off"
+                            />
+                            <input
+                              v-else-if="step.id === 'email'"
+                              :type="step.type"
+                              v-model="formData.email"
+                              :id="step.id"
+                              :name="step.id"
+                              :placeholder="step.placeholder"
+                              autocomplete="off"
+                            />
+                            <input
+                              v-else-if="step.id === 'companyName'"
+                              :type="step.type"
+                              v-model="formData.companyName"
+                              :id="step.id"
+                              :name="step.id"
+                              :placeholder="step.placeholder"
+                              autocomplete="off"
+                            />
+                            <textarea
+                              v-else
+                              v-model="formData.idea"
+                              :id="step.id"
+                              :placeholder="step.placeholder"
+                            ></textarea>
+                          </div>
+                        </div>
+                        <div class="nextBack">
+                          <Button
+                            v-if="step.value === 1"
+                            class="next"
+                            @click="validateName(activateCallback, step.value)"
+                          >
+                            <Icon name="mingcute:arrow-right-line" />
+                          </Button>
+                          <Button
+                            v-else-if="step.value === 2"
+                            class="next"
+                            @click="validateEmail(activateCallback, step.value)"
+                          >
+                            <Icon name="mingcute:arrow-right-line" />
+                          </Button>
+                          <Button
+                            v-else-if="step.value === 3"
+                            class="next"
+                            @click="activateCallback(step.value + 1)"
+                          >
+                            <Icon name="mingcute:arrow-right-line" />
+                          </Button>
+                          <Button v-else type="submit" class="submit">
+                            <Icon name="mingcute:arrow-right-line" />
+                          </Button>
+                        </div>
+                      </div>
                       <div>
-                        <label :for="step.id" v-html="step.label"></label>
-                        <component
-                          :is="step.id === 'idea' ? 'textarea' : 'input'"
-                          v-model="formData[step.id]"
-                          :id="step.id"
-                          :type="step.type"
-                          :placeholder="step.placeholder"
-                          autocomplete="off"
-                        />
+                        <div class="error gap-1 mt-1" v-if="errors.name && step.id === 'name'">
+                          <Icon
+                            name="mingcute:alert-octagon-line"
+                            style="color: var(--color-red)"
+                          />
+                          <p>{{ errors.name }}</p>
+                        </div>
+                        <div class="error errorMail gap-1 mt-1" v-if="errors.email && step.id === 'email'">
+                          <Icon
+                            name="mingcute:alert-octagon-line"
+                            style="color: var(--color-red)"
+                          />
+                          <p>{{ errors.email }}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div class="nextBack">
-                      <Button
-                        v-if="step.value !== 4"
-                        class="next"
-                        @click="activateCallback(step.value + 1)"
-                      >
-                        <Icon name="mingcute:arrow-right-line" />
-                      </Button>
-                      <Button v-else type="submit" class="submit">
-                        <Icon name="mingcute:arrow-right-line" />
-                      </Button>
-                    </div>
-                    <div class="nextBackMobile mt-3">
-                      <div
-                        v-if="step.value === 1"
-                        class="w-full flex justify-content-end"
-                      >
-                        <Button
-                          class="next"
-                          @click="activateCallback(step.value + 1)"
+                      <div class="nextBackMobile mt-3">
+                        <div
+                          v-if="step.value === 1"
+                          class="w-full flex justify-content-end"
                         >
-                          <Icon name="mingcute:arrow-right-line" />
-                        </Button>
-                      </div>
-                      <div
-                        v-if="step.value !== 1"
-                        class="w-full rowSpaceBetween"
-                      >
-                        <Button
-                          class="back"
-                          @click="activateCallback(step.value - 1)"
+                          <Button
+                            class="next"
+                            @click="validateName(activateCallback, step.value)"
+                          >
+                            <Icon name="mingcute:arrow-right-line" />
+                          </Button>
+                        </div>
+                        <div
+                          v-if="step.value !== 1"
+                          class="w-full rowSpaceBetween"
                         >
-                          <Icon name="mingcute:arrow-left-line" />
-                        </Button>
-                        <Button
-                          v-if="step.value !== 4"
-                          class="next"
-                          @click="activateCallback(step.value + 1)"
-                        >
-                          <Icon name="mingcute:arrow-right-line" />
-                        </Button>
-                        <Button v-else type="submit" class="submit">
-                          <Icon name="mingcute:arrow-right-line" />
-                        </Button>
+                          <Button
+                            class="back"
+                            @click="activateCallback(step.value - 1)"
+                          >
+                            <Icon name="mingcute:arrow-left-line" />
+                          </Button>
+                          <Button
+                            v-if="step.value === 2"
+                            class="next"
+                            @click="validateEmail(activateCallback, step.value)"
+                          >
+                            <Icon name="mingcute:arrow-right-line" />
+                          </Button>
+                          <Button
+                            v-else-if="step.value === 3"
+                            class="next"
+                            @click="activateCallback(step.value + 1)"
+                          >
+                            <Icon name="mingcute:arrow-right-line" />
+                          </Button>
+                          <Button v-else type="submit" class="submit">
+                            <Icon name="mingcute:arrow-right-line" />
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </StepPanel>
@@ -131,7 +197,6 @@ export default {
   data() {
     return {
       currentStep: 0,
-      formData: {},
       steps: [
         {
           value: 1,
@@ -188,14 +253,49 @@ export default {
       formData: {
         name: "",
         email: "",
-        company: "",
+        companyName: "",
         idea: "",
+      },
+      errors: {
+        name: "",
+        email: "",
       },
     };
   },
+  computed: {
+    isValid() {
+      return !this.errors.name && !this.errors.email;
+    },
+  },
   methods: {
+    validateName(activateCallback, value) {
+      if (!this.formData.name) {
+        this.errors.name = "Debes ingresar un nombre";
+      } else if (this.formData.name.length < 3) {
+        this.errors.name = "Nombre corto";
+      } else {
+        this.errors.name = "";
+        activateCallback(value + 1);
+      }
+    },
+    validateEmail(activateCallback, value) {
+      if (!this.formData.email) {
+        this.errors.email = "Debes ingresar un correo electrónico";
+      } else if (!/.+@.+\..+/.test(this.formData.email)) {
+        this.errors.email =
+          "El correo electrónico debe incluír un @ y un . (punto)";
+      } else {
+        this.errors.email = "";
+        activateCallback(value + 1);
+      }
+    },
     handleSubmit() {
-      console.log(this.formData);
+      this.validateName(() => {}, 1);
+      this.validateEmail(() => {}, 2);
+      if (this.isValid) {
+        this.errors = [];
+        console.log(this.formData);
+      }
     },
   },
 };
@@ -217,6 +317,7 @@ export default {
   border: 2px solid var(--color-lime);
   border-radius: 999px;
   color: var(--color-lime);
+  pointer-events: none;
 }
 
 .stepperFooter .p-steplist {
@@ -326,7 +427,6 @@ export default {
     border-radius: 50px;
     color: var(--color-lime);
     opacity: 0.6;
-    pointer-events: none;
     padding-right: 1rem;
   }
 
@@ -366,6 +466,15 @@ export default {
 
   .nextBackMobile {
     display: none;
+  }
+
+  .stepperFooter .inputsNextBack {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .errorMail {
+    margin-left: 5rem;
   }
 
   .nextBack {
