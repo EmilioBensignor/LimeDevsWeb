@@ -28,6 +28,7 @@ h1 > span > span {
 @media (width >= 700px) {
   .hero {
     flex-direction: row;
+    justify-content: space-between;
     padding: 2.75rem 3.75rem;
   }
 
@@ -38,7 +39,6 @@ h1 > span > span {
 
 @media (width >= 1080px) {
   .hero {
-    justify-content: space-between;
     gap: 4.375rem !important;
     padding: 5.625rem;
   }

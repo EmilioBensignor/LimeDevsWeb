@@ -355,7 +355,7 @@ export default {
 
   .stepperFooter .p-steppanel {
     display: flex;
-    justify-content: space-between;
+    gap: 3rem;
   }
 
   .stepContent {
@@ -406,7 +406,7 @@ export default {
 
   .stepperFooter .p-step-header {
     gap: 0.5rem;
-    padding: 0.25rem 1.25rem 0.25rem 0;
+    padding: 0 1.25rem 0 0;
   }
 
   .stepperFooter .p-step-number {
@@ -437,8 +437,18 @@ export default {
 }
 
 @media (width >= 1440px) {
+  .stepperFooter .p-steppanels {
+    width: 85%;
+  }
+
   .stepperFooter .panelName {
+    width: 70%;
     gap: 5rem;
+  }
+
+  .stepperFooter .p-steppanel {
+    gap: 3rem;
+    margin: 0;
   }
 
   .stepperFooter .p-step-header {
@@ -597,7 +607,7 @@ footer > section > img:first-of-type {
 
   .stepperSocialMedia > div:first-of-type {
     width: 100%;
-    max-width: 620px;
+    max-width: 700px;
   }
 
   .socialMedia p {
@@ -632,6 +642,12 @@ footer > section > img:first-of-type {
 
   .stepperFooter .stepContent {
     margin-top: 2.5rem;
+  }
+}
+
+@media (width >= 1920px) {
+  .stepperSocialMedia > div:first-of-type {
+    max-width: 1000px;
   }
 }
 </style>

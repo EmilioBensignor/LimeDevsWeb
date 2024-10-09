@@ -189,13 +189,35 @@ export default {
   font-size: 0.875rem;
 }
 
+@media (width >= 850px) {
+  .navServices {
+    max-width: 240px;
+  }
+
+  .navButton {
+    font-size: 1rem;
+  }
+
+  .service {
+    width: 24rem;
+  }
+
+  .serviceTitle {
+    font-size: 1.5rem;
+  }
+
+  .serviceDescription {
+    font-size: 1rem;
+  }
+}
+
 @media (width >= 1080px) {
   .servicesWrapper {
     height: 22.5rem;
   }
 
   .navServices {
-    max-width: 260px;
+    max-width: 290px;
   }
 
   .navButton {
@@ -226,13 +248,19 @@ export default {
   }
 }
 
+@media (width >= 1280px) {
+  .navServices {
+    max-width: 340px;
+  }
+}
+
 @media (width >=1440px) {
   .servicesWrapper {
     height: 25rem;
   }
 
   .navServices {
-    max-width: 372px;
+    max-width: 390px;
   }
 
   .navButton {
@@ -260,6 +288,30 @@ export default {
 
   .serviceDescription {
     font-size: 1.25rem;
+  }
+}
+
+@media (width >=1600px) {
+  .navServices {
+    max-width: 420px;
+  }
+
+  .service {
+    width: 55rem
+  }
+}
+
+@media (width >=1920px) {
+  .navServices {
+    max-width: 500px;
+  }
+
+  .navButton {
+    font-size: 1.375rem;
+  }
+
+  .service {
+    width: 55rem
   }
 }
 </style>

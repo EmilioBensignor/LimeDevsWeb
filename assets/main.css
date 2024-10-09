@@ -27,6 +27,11 @@ body {
   scroll-behavior: smooth;
 }
 
+header, main, footer {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
 /* Flex */
 
 .center {
@@ -165,6 +170,16 @@ h2 span {
 
   h2 {
     font-size: 1.5rem;
+  }
+}
+
+@media (width >=850px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.875rem;
   }
 }
 

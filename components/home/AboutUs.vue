@@ -282,7 +282,11 @@ h3 {
   }
 
   .desktopContentPanel {
-    width: 14.875rem;
+    width: 100%;
+  }
+
+  .desktopContentPanel p {
+    max-width: 293px;
   }
 
   .aboutContainer > div:last-child {
@@ -321,6 +325,16 @@ h3 {
 
   .desktopContentPanel p {
     font-size: 0.875rem;
+  }
+}
+
+@media (width >= 850px) {
+  .atLime p {
+    font-size: 1.25rem;
+  }
+
+  .desktopContentPanel p {
+    font-size: 1rem;
   }
 }
 
@@ -398,6 +412,20 @@ h3 {
   }
 }
 
+@media (width >= 1280px) {
+  .atLimeDesktop {
+    width: 26rem;
+    display: flex;
+    align-items: center;
+    padding: 2.25rem;
+  }
+
+  .valueBtn {
+    width: 18rem;
+    padding: 1rem 1.25rem 1rem 5rem;
+  }
+}
+
 @media (width >= 1440px) {
   .atLimeDesktop {
     width: 33.75rem;
@@ -420,6 +448,33 @@ h3 {
   .desktopContentPanel p {
     max-width: 300px;
     font-size: 1.25rem;
+  }
+}
+
+@media (width >= 1600px) {
+  .valueBtn {
+    width: 24rem;
+    padding: 1rem 5rem 1rem 7rem;
+    margin-left: -3rem;
+  }
+
+  .valueBtnActive {
+    margin-left: 0;
+  }
+}
+
+@media (width >= 1920px) {
+  .atLimeDesktop {
+    width: 40rem;
+  }
+
+  .desktopContentPanel > div {
+    gap: 2.5rem;
+  }
+
+  .desktopContentPanel p {
+    max-width: 100%;
+    font-size: 1.375rem;
   }
 }
 </style>
