@@ -107,10 +107,14 @@
             <li
               v-for="(social, index) in socialMedia"
               :key="index"
-              class="rowCenter no-underline"
+              class="rowCenter"
             >
-              <div class="bgCover" :class="social.img"></div>
-              <p class="no-underline">{{ social.text }}</p>
+              <NuxtLink :to="social.link" class="linkSocial" target="_blank">
+                <div class="bgContain" :class="social.img"></div>
+                <div class="w-full decorationLime">
+                  <p class="text-white">{{ social.text }}</p>
+                </div>
+              </NuxtLink>
             </li>
           </ul>
         </div>
@@ -168,19 +172,25 @@ export default {
         {
           link: "#",
           img: "whatsAppIcon",
-          text: "+54 9 11 1111 1111",
+          text: "+54 9 11 5636 2938",
         },
         {
           link: "#",
           img: "emailIcon",
-          text: "hola@limedevs.com",
+          text: "hello@limedevs.com",
         },
         {
-          link: "#",
+          link: "https://www.linkedin.com/company/lime-devs/",
           img: "linkedInIcon",
           text: "limedevs",
         },
       ],
+      formData: {
+        name: "",
+        email: "",
+        company: "",
+        idea: "",
+      },
     };
   },
   methods: {
@@ -276,6 +286,7 @@ export default {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 999px !important;
+  transition: all 0.3s;
   cursor: pointer;
   padding: 1.25rem;
 }
@@ -291,9 +302,18 @@ export default {
   border: 2px solid #7372b5 !important;
 }
 
+.next:hover {
+  box-shadow: -2px -2px 10px 0px #c3c3d5 inset;
+}
+
 .submit {
   background: var(--color-lime) !important;
-  color: var(--color-dark-violet) !important ;
+  color: var(--color-dark-violet) !important;
+  transition: all 0.3s;
+}
+
+.submit:hover {
+  box-shadow: -6px -2px 10px 0px #c3c3d5 inset;
 }
 
 @media (width >= 600px) {
@@ -511,9 +531,13 @@ footer > section > img:first-of-type {
   gap: 0.75rem;
 }
 
-.socialMedia ul li div {
+.socialMedia ul li div:first-of-type {
   width: 1.125rem;
   height: 1.125rem;
+}
+
+.socialMedia p:first-of-type {
+  font-weight: 700;
 }
 
 .whatsAppIcon {
@@ -528,15 +552,37 @@ footer > section > img:first-of-type {
   background-image: url("/images/footer/LinkedIn-Icon.svg");
 }
 
+.linkSocial {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  padding-bottom: 0.25rem;
+}
+
+.decorationLime {
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid #2d2c48;
+  transition: all 0.3s;
+}
+
+.decorationLime:hover {
+  border-color: var(--color-lime);
+}
+
+.decorationLime p {
+  width: max-content;
+  font-weight: 400 !important;
+}
+
 .rightsReserved {
   padding: 1.5rem;
 }
 
 .rightsReserved p {
   font-size: 0.75rem;
-}
-
-@media (width >= 480px) {
 }
 
 @media (width >= 700px) {
@@ -561,9 +607,8 @@ footer > section > img:first-of-type {
     margin-top: 1.75rem;
   }
 
-  .socialMedia p:first-child {
+  .socialMedia p:first-of-type {
     font-size: 1.25rem;
-    font-weight: 700;
   }
 
   .socialMedia ul {
@@ -572,7 +617,7 @@ footer > section > img:first-of-type {
     justify-content: space-between;
   }
 
-  .socialMedia ul li div {
+  .socialMedia ul li div:first-of-type {
     width: 1.5rem;
     height: 1.5rem;
   }
