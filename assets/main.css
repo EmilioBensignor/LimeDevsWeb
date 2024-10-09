@@ -10,6 +10,7 @@
   --gradient-light-violet: linear-gradient(90deg, var(--color-light-violet), var(--color-violet));
   --color-lime: #ACCD00;
   --color-light-lime: #F2FFBB;
+  --color-red: #DE5E5E;
 }
 
 * {
@@ -27,7 +28,9 @@ body {
   scroll-behavior: smooth;
 }
 
-header, main, footer {
+header,
+main,
+footer {
   max-width: 1920px;
   margin: 0 auto;
 }
@@ -134,10 +137,9 @@ h2 span {
 /* Buttons */
 
 .primaryButton {
-  background-image: linear-gradient(to right, 
-    var(--color-lime) 0%, var(--color-lime) 50%, 
-    var(--color-lime) 50%, var(--color-light-lime) 100%
-  );
+  background-image: linear-gradient(to right,
+      var(--color-lime) 0%, var(--color-lime) 50%,
+      var(--color-lime) 50%, var(--color-light-lime) 100%);
   background-size: 200% 100%;
   background-position: left bottom;
   border-radius: 300px;
@@ -151,6 +153,18 @@ h2 span {
 
 .primaryButton:hover {
   background-position: right bottom;
+}
+
+/* Errors */
+.error {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.error p {
+  font-size: 0.875rem;
+  color: var(--color-red);
 }
 
 @media (width >=480px) {

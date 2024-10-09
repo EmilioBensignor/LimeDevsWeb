@@ -122,11 +122,15 @@ export default {
   );
   border: none;
   border-radius: 9999px;
+  color: var(--color-white);
+  font-size: 0.875rem;
   cursor: pointer;
   transition: all 0.3s ease;
   padding: 0.875rem 1.5rem;
-  color: var(--color-white);
-  font-size: 0.875rem;
+}
+
+.navButton:hover {
+  box-shadow: -4px -2px 6px 0px #7372B5 inset;
 }
 
 .navButton.active {
