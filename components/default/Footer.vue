@@ -231,7 +231,9 @@ export default {
   margin-top: 1.25rem;
 }
 
-.stepperFooter .stepContent label {
+.stepperFooter .stepContent label,
+.stepperFooter input,
+.stepperFooter textarea {
   font-size: 0.75rem;
 }
 
@@ -364,7 +366,9 @@ export default {
     font-weight: 400;
   }
 
-  .stepperFooter .stepContent label {
+  .stepperFooter .stepContent label,
+  .stepperFooter input,
+  .stepperFooter textarea {
     font-size: 0.875rem;
   }
 
@@ -372,10 +376,22 @@ export default {
   .stepperFooter textarea {
     margin-top: 0.75rem;
   }
+
+  .next,
+  .back,
+  .submit {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .next .iconify,
+  .back .iconify,
+  .submit .iconify {
+    font-size: 1.25rem !important;
+  }
 }
 
 @media (width >= 1080px) {
-
   .stepperFooter .p-step {
     padding: 0 !important;
   }
@@ -407,8 +423,55 @@ export default {
     width: 100%;
   }
 
-  .stepperFooter .stepContent label {
+  .stepperFooter .stepContent label,
+  .stepperFooter input,
+  .stepperFooter textarea {
     font-size: 1.125rem;
+  }
+
+  .next .iconify,
+  .back .iconify,
+  .submit .iconify {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (width >= 1440px) {
+  .stepperFooter .panelName {
+    gap: 5rem;
+  }
+
+  .stepperFooter .p-step-header {
+    gap: 0.75rem;
+  }
+
+  .stepperFooter .p-step-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+  }
+
+  .stepperFooter .p-step-title {
+    font-size: 1.5rem;
+  }
+
+  .stepperFooter .stepContent label,
+  .stepperFooter input,
+  .stepperFooter textarea {
+    font-size: 1.25rem;
+  }
+
+  .next,
+  .back,
+  .submit {
+    width: 3.125em;
+    height: 3.125em;
+  }
+
+  .next .iconify,
+  .back .iconify,
+  .submit .iconify {
+    font-size: 2rem !important;
   }
 }
 </style>
@@ -534,6 +597,7 @@ footer > section > img:first-of-type {
 
   .stepperSocialMedia > div:first-of-type {
     width: 100%;
+    max-width: 620px;
   }
 
   .socialMedia p {
@@ -553,11 +617,21 @@ footer > section > img:first-of-type {
   }
 
   .rightsReserved {
-    padding: 1.25rem
+    padding: 1.25rem;
   }
 
   .rightsReserved p {
     font-size: 1rem;
+  }
+}
+
+@media (width >= 1440px) {
+  .stepperSocialMedia > div:first-of-type {
+    max-width: 850px;
+  }
+
+  .stepperFooter .stepContent {
+    margin-top: 2.5rem;
   }
 }
 </style>

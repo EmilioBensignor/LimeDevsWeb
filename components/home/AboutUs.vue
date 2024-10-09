@@ -330,7 +330,20 @@ h3 {
   }
 
   .aboutUs > div:first-of-type {
+    width: 100%;
     padding: 0 0 2rem 0;
+  }
+
+  .aboutDesktop {
+    gap: 3.5rem;
+  }
+
+  .aboutDesktop > div:first-of-type {
+    width: 70%;
+  }
+
+  .aboutDesktop > div:last-of-type {
+    width: 50%;
   }
 
   .atLime {
@@ -377,6 +390,36 @@ h3 {
 
   .valueBtnActive {
     margin-left: 0;
+  }
+
+  .desktopContentPanel p {
+    max-width: 272px;
+    font-size: 1.125rem;
+  }
+}
+
+@media (width >= 1440px) {
+  .atLimeDesktop {
+    width: 33.75rem;
+    padding: 2.5rem;
+  }
+
+  .atLimeDesktop p {
+    font-size: 1.75rem;
+  }
+
+  .valueBtn {
+    width: 19rem;
+    padding: 1rem 5rem 1rem 5rem;
+  }
+
+  h3 {
+    font-size: 1.625rem;
+  }
+
+  .desktopContentPanel p {
+    max-width: 300px;
+    font-size: 1.25rem;
   }
 }
 </style>
