@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     "@": "/<srcDir>"
   },
   css: ["~/assets/main.css"],
-  modules: ["@primevue/nuxt-module", "@nuxt/image", "@nuxt/icon", "nuxt-swiper"],
+  modules: ["@primevue/nuxt-module", "@nuxt/image", "@nuxt/icon", "nuxt-swiper", '@nuxtjs/seo'],
   icon: {
     size: '1rem',
     serverBundle: {
@@ -40,5 +40,11 @@ export default defineNuxtConfig({
   },
   plugins: [
     '~/plugins/vanilla-tilt.js'
-  ]
+  ],
+  site: {
+    url: 'https://limedevs.com',
+    name: 'Lime Devs',
+    description: 'When your ideas find the perfect shape.',
+    defaultLocale: 'en',
+  }
 })
