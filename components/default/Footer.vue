@@ -12,10 +12,8 @@
             <Stepper
               v-if="form"
               :value="1"
-              role="tablist"
-              aria-label="Contact us steps"
             >
-              <StepList>
+              <StepList role="tablist">
                 <Step
                   v-for="step in steps"
                   :key="step.value"
@@ -24,6 +22,7 @@
                   :aria-controls="`step-panel-${step.value}`"
                   :aria-selected="currentStep === step.value"
                   :id="`step-tab-${step.value}`"
+                  :aria-label="`Step ${step.value}: ${step.title}`"
                 >
                   {{ step.title }}
                 </Step>
