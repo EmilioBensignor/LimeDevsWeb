@@ -112,7 +112,7 @@
 
 <style scoped>
   header {
-    z-index: 5;
+    z-index: 10;
     padding: 1rem 1.5rem;
   }
 

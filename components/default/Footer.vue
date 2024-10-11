@@ -20,7 +20,7 @@
                 </Step>
               </StepList>
               <StepPanels>
-                <form @submit.prevent="handleSubmit">
+                <form @submit.prevent="handleFormSubmission">
                   <StepPanel
                     v-for="step in steps"
                     :key="step.value"
@@ -42,59 +42,37 @@
                           <div>
                             <label :for="step.id" v-html="step.label"></label>
                             <input
-                              v-if="step.id === 'name'"
+                              v-if="
+                                ['name', 'email', 'companyName'].includes(
+                                  step.id
+                                )
+                              "
                               :type="step.type"
-                              v-model="formData.name"
+                              v-model="formData[step.id]"
                               :id="step.id"
                               :name="step.id"
                               :placeholder="step.placeholder"
                               autocomplete="off"
-                            />
-                            <input
-                              v-else-if="step.id === 'email'"
-                              :type="step.type"
-                              v-model="formData.email"
-                              :id="step.id"
-                              :name="step.id"
-                              :placeholder="step.placeholder"
-                              autocomplete="off"
-                            />
-                            <input
-                              v-else-if="step.id === 'companyName'"
-                              :type="step.type"
-                              v-model="formData.companyName"
-                              :id="step.id"
-                              :name="step.id"
-                              :placeholder="step.placeholder"
-                              autocomplete="off"
+                              @keydown.enter.prevent="
+                                handleEnterKey($event, step, activateCallback)
+                              "
                             />
                             <textarea
                               v-else
                               v-model="formData.idea"
                               :id="step.id"
                               :placeholder="step.placeholder"
+                              @keydown.enter.prevent="
+                                handleEnterKey($event, step, activateCallback)
+                              "
                             ></textarea>
                           </div>
                         </div>
                         <div class="nextBack">
                           <Button
-                            v-if="step.value === 1"
+                            v-if="step.value < steps.length"
                             class="next"
-                            @click="validateName(activateCallback, step.value)"
-                          >
-                            <Icon name="mingcute:arrow-right-line" />
-                          </Button>
-                          <Button
-                            v-else-if="step.value === 2"
-                            class="next"
-                            @click="validateEmail(activateCallback, step.value)"
-                          >
-                            <Icon name="mingcute:arrow-right-line" />
-                          </Button>
-                          <Button
-                            v-else-if="step.value === 3"
-                            class="next"
-                            @click="activateCallback(step.value + 1)"
+                            @click="validateAndProceed(step, activateCallback)"
                           >
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
@@ -132,7 +110,7 @@
                         >
                           <Button
                             class="next"
-                            @click="validateName(activateCallback, step.value)"
+                            @click="validateAndProceed(step, activateCallback)"
                           >
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
@@ -148,16 +126,9 @@
                             <Icon name="mingcute:arrow-left-line" />
                           </Button>
                           <Button
-                            v-if="step.value === 2"
+                            v-if="step.value < steps.length"
                             class="next"
-                            @click="validateEmail(activateCallback, step.value)"
-                          >
-                            <Icon name="mingcute:arrow-right-line" />
-                          </Button>
-                          <Button
-                            v-else-if="step.value === 3"
-                            class="next"
-                            @click="activateCallback(step.value + 1)"
+                            @click="validateAndProceed(step, activateCallback)"
                           >
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
@@ -286,35 +257,58 @@ export default {
     },
   },
   methods: {
-    validateName(activateCallback, value) {
+    validateAndProceed(step, activateCallback) {
+      if (step.id === "name") {
+        this.validateName(() => this.proceedToNextStep(step, activateCallback));
+      } else if (step.id === "email") {
+        this.validateEmail(() =>
+          this.proceedToNextStep(step, activateCallback)
+        );
+      } else {
+        this.proceedToNextStep(step, activateCallback);
+      }
+    },
+    proceedToNextStep(step, activateCallback) {
+      if (step.value < this.steps.length) {
+        activateCallback(step.value + 1);
+      }
+    },
+    handleEnterKey(event, step, activateCallback) {
+      if (step.value === this.steps.length) {
+        this.handleFormSubmission();
+      } else {
+        this.validateAndProceed(step, activateCallback);
+      }
+    },
+    validateName(callback) {
       if (!this.formData.name) {
         this.errors.name = "You must enter a name";
       } else if (this.formData.name.length <= 2) {
         this.errors.name = "The name must be at least 2 characters long";
       } else {
         this.errors.name = "";
-        activateCallback(value + 1);
+        callback();
       }
     },
-    validateEmail(activateCallback, value) {
+    validateEmail(callback) {
       if (!this.formData.email) {
         this.errors.email = "You must enter an email address";
       } else if (!/.+@.+\..+/.test(this.formData.email)) {
-        this.errors.email =
-          "The email address must include an @ and a . (dot)";
+        this.errors.email = "The email address must include an @ and a . (dot)";
       } else {
         this.errors.email = "";
-        activateCallback(value + 1);
+        callback();
       }
     },
-    handleSubmit() {
-      this.validateName(() => {}, 1);
-      this.validateEmail(() => {}, 2);
-      if (this.isValid) {
-        this.errors = [];
-        console.log(this.formData);
-        this.form = false;
-      }
+    handleFormSubmission() {
+      this.validateName(() => {
+        this.validateEmail(() => {
+          if (this.isValid) {
+            console.log(this.formData);
+            this.form = false;
+          }
+        });
+      });
     },
   },
 };
@@ -659,7 +653,7 @@ footer > section > img:first-of-type {
 
 .btnNewMessage:hover {
   background: var(--color-light-violet) !important;
-  box-shadow: -6px -2px 10px 0px #C3C3D5 inset;
+  box-shadow: -6px -2px 10px 0px #c3c3d5 inset;
 }
 
 .socialMedia {
