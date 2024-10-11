@@ -13,7 +13,7 @@
               v-if="form"
               :value="1"
               role="tablist"
-              aria-labelledby="stepper"
+              aria-label="Contact us steps"
             >
               <StepList>
                 <Step
@@ -21,7 +21,9 @@
                   :key="step.value"
                   :value="step.value"
                   role="tab"
-                  :aria-controls="step"
+                  :aria-controls="`step-panel-${step.value}`"
+                  :aria-selected="currentStep === step.value"
+                  :id="`step-tab-${step.value}`"
                 >
                   {{ step.title }}
                 </Step>
@@ -34,15 +36,15 @@
                     :value="step.value"
                     :class="step.panelClass"
                     role="tabpanel"
-                    :id="step"
-                    :aria-labelledby="step"
+                    :id="`step-panel-${step.value}`"
+                    :aria-labelledby="`step-tab-${step.value}`"
                     v-slot="{ activateCallback }"
                   >
                     <div>
                       <div class="inputsNextBack">
                         <div v-if="step.value !== 1" class="nextBack">
                           <Button
-                            aria-label="Back"
+                            :aria-label="`Back to step ${step.value - 1}`"
                             class="back"
                             @click="activateCallback(step.value - 1)"
                           >
@@ -67,6 +69,10 @@
                               @keydown.enter.prevent="
                                 handleEnterKey($event, step, activateCallback)
                               "
+                              :aria-invalid="errors[step.id] ? 'true' : 'false'"
+                              :aria-describedby="
+                                errors[step.id] ? `${step.id}-error` : null
+                              "
                             />
                             <textarea
                               v-else
@@ -76,43 +82,45 @@
                               @keydown.enter.prevent="
                                 handleEnterKey($event, step, activateCallback)
                               "
+                              :aria-invalid="errors.idea ? 'true' : 'false'"
+                              :aria-describedby="
+                                errors.idea ? 'idea-error' : null
+                              "
                             ></textarea>
                           </div>
                         </div>
                         <div class="nextBack">
                           <Button
-                            aria-label="Next"
+                            :aria-label="`Go to step ${step.value + 1}`"
                             v-if="step.value < steps.length"
                             class="next"
                             @click="validateAndProceed(step, activateCallback)"
                           >
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
-                          <Button v-else type="submit" class="submit" aria-label="Submit">
+                          <Button
+                            v-else
+                            type="submit"
+                            class="submit"
+                            aria-label="Submit form"
+                          >
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
                         </div>
                       </div>
                       <div>
                         <div
+                          v-if="errors[step.id]"
+                          :id="`${step.id}-error`"
                           class="error gap-1 mt-1"
-                          v-if="errors.name && step.id === 'name'"
+                          role="alert"
                         >
                           <Icon
                             name="mingcute:alert-octagon-line"
                             style="color: var(--color-red)"
+                            aria-hidden="true"
                           />
-                          <p>{{ errors.name }}</p>
-                        </div>
-                        <div
-                          class="error errorMail gap-1 mt-1"
-                          v-if="errors.email && step.id === 'email'"
-                        >
-                          <Icon
-                            name="mingcute:alert-octagon-line"
-                            style="color: var(--color-red)"
-                          />
-                          <p>{{ errors.email }}</p>
+                          <p>{{ errors[step.id] }}</p>
                         </div>
                       </div>
                       <div class="nextBackMobile mt-3">
@@ -121,8 +129,9 @@
                           class="w-full flex justify-content-end"
                         >
                           <Button
+                            :aria-label="`Go to step ${step.value + 1}`"
+                            v-if="step.value < steps.length"
                             class="next"
-                            aria-label="Next"
                             @click="validateAndProceed(step, activateCallback)"
                           >
                             <Icon name="mingcute:arrow-right-line" />
@@ -133,21 +142,26 @@
                           class="w-full rowSpaceBetween"
                         >
                           <Button
+                            :aria-label="`Back to step ${step.value - 1}`"
                             class="back"
-                            aria-label="Back"
                             @click="activateCallback(step.value - 1)"
                           >
                             <Icon name="mingcute:arrow-left-line" />
                           </Button>
                           <Button
+                            :aria-label="`Go to step ${step.value + 1}`"
                             v-if="step.value < steps.length"
                             class="next"
-                            aria-label="Next"
                             @click="validateAndProceed(step, activateCallback)"
                           >
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
-                          <Button v-else type="submit" class="submit" aria-label="Submit">
+                          <Button
+                            v-else
+                            type="submit"
+                            class="submit"
+                            aria-label="Submit form"
+                          >
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
                         </div>
