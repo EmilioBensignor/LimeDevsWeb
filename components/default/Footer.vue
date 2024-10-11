@@ -9,7 +9,12 @@
             <span class="text-lime underline">transform your business</span>?
           </h2>
           <div class="stepperFooter">
-            <Stepper v-if="form" :value="1" roles="tablist" aria-labelledby="stepper">
+            <Stepper
+              v-if="form"
+              :value="1"
+              role="tablist"
+              aria-labelledby="stepper"
+            >
               <StepList>
                 <Step
                   v-for="step in steps"
@@ -37,6 +42,7 @@
                       <div class="inputsNextBack">
                         <div v-if="step.value !== 1" class="nextBack">
                           <Button
+                            aria-label="Back"
                             class="back"
                             @click="activateCallback(step.value - 1)"
                           >
@@ -75,13 +81,14 @@
                         </div>
                         <div class="nextBack">
                           <Button
+                            aria-label="Next"
                             v-if="step.value < steps.length"
                             class="next"
                             @click="validateAndProceed(step, activateCallback)"
                           >
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
-                          <Button v-else type="submit" class="submit">
+                          <Button v-else type="submit" class="submit" aria-label="Submit">
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
                         </div>
@@ -115,6 +122,7 @@
                         >
                           <Button
                             class="next"
+                            aria-label="Next"
                             @click="validateAndProceed(step, activateCallback)"
                           >
                             <Icon name="mingcute:arrow-right-line" />
@@ -126,6 +134,7 @@
                         >
                           <Button
                             class="back"
+                            aria-label="Back"
                             @click="activateCallback(step.value - 1)"
                           >
                             <Icon name="mingcute:arrow-left-line" />
@@ -133,11 +142,12 @@
                           <Button
                             v-if="step.value < steps.length"
                             class="next"
+                            aria-label="Next"
                             @click="validateAndProceed(step, activateCallback)"
                           >
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
-                          <Button v-else type="submit" class="submit">
+                          <Button v-else type="submit" class="submit" aria-label="Submit">
                             <Icon name="mingcute:arrow-right-line" />
                           </Button>
                         </div>
@@ -235,6 +245,7 @@ export default {
           text: "+54 9 11 5636 2938",
         },
         {
+          link: "mailto:hello@limedevs.com",
           img: "emailIcon",
           text: "hello@limedevs.com",
         },

@@ -1,6 +1,6 @@
 <template>
   <header class="center sticky top-0 bg-dark-violet">
-    <button class="hamburger absolute" @click="toggleDrawer">
+    <button class="hamburger absolute" @click="toggleDrawer" aria-label="Open or close menu">
       <Icon class="text-white" size="2rem" name="mingcute:menu-fill" />
     </button>
     <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" />
