@@ -1,1 +1,3 @@
-
+User-agent: *
+Disallow:
+sitemap: https://limedevs.com/sitemap.xml
