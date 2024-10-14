@@ -14,8 +14,7 @@
                 <Step
                   v-for="step in steps"
                   :key="step.value"
-                  :value="step.value"
-                  :tabindex="step.value === 1 ? 0 : -1">
+                  :value="step.value">
                   {{ step.title }}
                 </Step>
               </StepList>
@@ -26,8 +25,6 @@
                     :key="step.value"
                     :value="step.value"
                     :class="step.panelClass"
-                    :id="`panel-${step.value}`"
-                    :aria-labelledby="`pv_id_1_step_${step.value}`"
                     v-slot="{ activateCallback }">
                     <div v-if="step.value !== 1" class="nextBack">
                       <Button

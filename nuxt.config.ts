@@ -17,6 +17,10 @@ export default defineNuxtConfig({
     head: {
       link: [
         {
+          rel: 'stylesheet',
+          href: 'https://unpkg.com/primeflex@latest/primeflex.css'
+        },
+        {
           rel: 'preconnect',
           href: 'https://fonts.googleapis.com'
         },
