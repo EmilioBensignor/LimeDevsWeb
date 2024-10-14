@@ -4,7 +4,7 @@
       <span>Where your <span class="text-lime">ideas</span></span>
       <span>find their <span class="text-lime">perfect shape.</span></span>
     </h1>
-    <NuxtImg src="/images/home/animacionHero.png" alt="Animacion" />
+    <NuxtImg src="/images/home/animacionHero.webp" alt="Animacion" />
   </section>
 </template>
 
@@ -23,6 +23,7 @@ h1 > span > span {
 
 .hero > img {
   width: 11.75rem;
+  height: 100%;
 }
 
 @media (width >= 700px) {

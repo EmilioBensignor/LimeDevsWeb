@@ -56,37 +56,37 @@
       return {
         projects: [
           {
-            img: "/images/home/projectExample.png",
+            img: "/images/home/projectExample.webp",
             alt: "Project Example",
             title: "Stock Go",
             service: "Hardware and Software Design",
           },
           {
-            img: "/images/home/projectExample.png",
+            img: "/images/home/projectExample.webp",
             alt: "Project Example",
             title: "Stock Go",
             service: "Hardware and Software Design",
           },
           {
-            img: "/images/home/projectExample.png",
+            img: "/images/home/projectExample.webp",
             alt: "Project Example",
             title: "Stock Go",
             service: "Hardware and Software Design",
           },
           {
-            img: "/images/home/projectExample.png",
+            img: "/images/home/projectExample.webp",
             alt: "Project Example",
             title: "Stock Go",
             service: "Hardware and Software Design",
           },
           {
-            img: "/images/home/projectExample.png",
+            img: "/images/home/projectExample.webp",
             alt: "Project Example",
             title: "Stock Go",
             service: "Hardware and Software Design",
           },
           {
-            img: "/images/home/projectExample.png",
+            img: "/images/home/projectExample.webp",
             alt: "Project Example",
             title: "Your next project",
             service: "Start your next project now",
@@ -119,6 +119,7 @@
   .swiperProjects {
     width: 100%;
     height: 18.625rem;
+    overflow: hidden;
     cursor: grab;
   }
 

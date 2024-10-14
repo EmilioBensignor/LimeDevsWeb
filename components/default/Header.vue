@@ -118,6 +118,7 @@
 
   header img {
     width: 2.5rem;
+    height: 100%;
   }
 
   .hamburger {

@@ -427,6 +427,7 @@
 
   footer > section > img:first-of-type {
     width: 3.75rem;
+    height: 100%;
   }
 
   .socialMedia {

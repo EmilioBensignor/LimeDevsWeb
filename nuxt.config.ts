@@ -6,7 +6,13 @@ export default defineNuxtConfig({
     "@": "/<srcDir>"
   },
   css: ["~/assets/main.css"],
-  modules: ["@primevue/nuxt-module", "@nuxt/image", "@nuxt/icon", "nuxt-swiper", '@nuxtjs/seo'],
+  modules: [
+    "@primevue/nuxt-module",
+    "@nuxt/image",
+    "@nuxt/icon",
+    "nuxt-swiper",
+    '@nuxtjs/seo',
+  ],
   icon: {
     size: '1rem',
     serverBundle: {
