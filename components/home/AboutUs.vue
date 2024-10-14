@@ -29,7 +29,7 @@
             <AccordionContent>
               <div class="columnAlignCenter">
                 <NuxtImg
-                  :src="`/images/home/${value.img}.png`"
+                  :src="`/images/home/${value.img}.webp`"
                   :alt="value.alt"
                 />
                 <p v-html="value.text" class="text-center"></p>
