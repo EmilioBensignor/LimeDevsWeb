@@ -9,89 +9,120 @@
             <span class="text-lime underline">transform your business</span>?
           </h2>
           <div class="stepperFooter">
-            <Stepper v-if="form" :value="currentStep">
+            <Stepper :value="1" role="region" aria-label="Contact form stepper">
               <StepList role="tablist">
                 <Step
                   v-for="step in steps"
                   :key="step.value"
                   :value="step.value"
                   role="tab"
-                  :aria-controls="`step-panel-${step.value}`"
-                  :aria-selected="currentStep === step.value ? 'true' : 'false'"
-                  :id="`step-tab-${step.value}`"
-                  :tabindex="currentStep === step.value ? '0' : '-1'"
-                  :aria-label="`Step ${step.value}: ${step.title}`"
-                  @click="activateCallback(step.value)">
+                  :aria-controls="`panel-${step.value}`"
+                  :aria-selected="step.value === 1 ? 'true' : 'false'">
                   {{ step.title }}
                 </Step>
               </StepList>
-
               <StepPanels>
-                <form @submit.prevent="handleFormSubmission">
+                <form @submit.prevent="handleSubmit">
                   <StepPanel
                     v-for="step in steps"
                     :key="step.value"
                     :value="step.value"
+                    :class="step.panelClass"
+                    v-slot="{ activateCallback }"
                     role="tabpanel"
-                    :id="`step-panel-${step.value}`"
-                    :aria-labelledby="`step-tab-${step.value}`"
-                    :aria-hidden="currentStep !== step.value"
-                    v-show="currentStep === step.value">
-                    <!-- Content of the step -->
-                    <div>
-                      <label :for="step.id" v-html="step.label"></label>
-                      <input
-                        v-if="
-                          ['name', 'email', 'companyName'].includes(step.id)
-                        "
-                        :type="step.type"
-                        v-model="formData[step.id]"
-                        :id="step.id"
-                        :name="step.id"
-                        :placeholder="step.placeholder"
-                        :aria-invalid="errors[step.id] ? 'true' : 'false'"
-                        :aria-describedby="
-                          errors[step.id] ? `${step.id}-error` : null
-                        "
-                        autocomplete="off" />
-                      <textarea
-                        v-else
-                        v-model="formData.idea"
-                        :id="step.id"
-                        :placeholder="step.placeholder"
-                        :aria-invalid="errors.idea ? 'true' : 'false'"
-                        :aria-describedby="
-                          errors.idea ? 'idea-error' : null
-                        "></textarea>
-
-                      <div
-                        v-if="errors[step.id]"
-                        :id="`${step.id}-error`"
-                        class="error"
-                        role="alert">
+                    :id="`panel-${step.value}`"
+                    :aria-labelledby="`step-${step.value}`">
+                    <div v-if="step.value !== 1" class="nextBack">
+                      <Button
+                        class="back"
+                        @click="activateCallback(step.value - 1)"
+                        aria-label="Go to previous step">
                         <Icon
-                          name="mingcute:alert-octagon-line"
+                          name="mingcute:arrow-left-line"
                           aria-hidden="true" />
-                        <p>{{ errors[step.id] }}</p>
+                      </Button>
+                    </div>
+                    <div class="stepContent column">
+                      <div>
+                        <label :for="step.id" v-html="step.label"></label>
+                        <component
+                          :is="step.id === 'idea' ? 'textarea' : 'input'"
+                          v-model="formData[step.id]"
+                          :id="step.id"
+                          :type="step.type"
+                          :placeholder="step.placeholder"
+                          autocomplete="off"
+                          :aria-required="true" />
+                      </div>
+                    </div>
+                    <div class="nextBack">
+                      <Button
+                        v-if="step.value !== 4"
+                        class="next"
+                        @click="activateCallback(step.value + 1)"
+                        aria-label="Go to next step">
+                        <Icon
+                          name="mingcute:arrow-right-line"
+                          aria-hidden="true" />
+                      </Button>
+                      <Button
+                        v-else
+                        type="submit"
+                        class="submit"
+                        aria-label="Submit form">
+                        <Icon
+                          name="mingcute:arrow-right-line"
+                          aria-hidden="true" />
+                      </Button>
+                    </div>
+                    <div class="nextBackMobile mt-3">
+                      <div
+                        v-if="step.value === 1"
+                        class="w-full flex justify-content-end">
+                        <Button
+                          class="next"
+                          @click="activateCallback(step.value + 1)"
+                          aria-label="Go to next step">
+                          <Icon
+                            name="mingcute:arrow-right-line"
+                            aria-hidden="true" />
+                        </Button>
+                      </div>
+                      <div
+                        v-if="step.value !== 1"
+                        class="w-full rowSpaceBetween">
+                        <Button
+                          class="back"
+                          @click="activateCallback(step.value - 1)"
+                          aria-label="Go to previous step">
+                          <Icon
+                            name="mingcute:arrow-left-line"
+                            aria-hidden="true" />
+                        </Button>
+                        <Button
+                          v-if="step.value !== 4"
+                          class="next"
+                          @click="activateCallback(step.value + 1)"
+                          aria-label="Go to next step">
+                          <Icon
+                            name="mingcute:arrow-right-line"
+                            aria-hidden="true" />
+                        </Button>
+                        <Button
+                          v-else
+                          type="submit"
+                          class="submit"
+                          aria-label="Submit form">
+                          <Icon
+                            name="mingcute:arrow-right-line"
+                            aria-hidden="true" />
+                        </Button>
                       </div>
                     </div>
                   </StepPanel>
                 </form>
               </StepPanels>
             </Stepper>
-
-            <div v-else class="newMessage columnAlignCenter gap-3">
-              <p class="text-center">
-                We've received your message and will get back to you soon.
-                Thanks for choosing Lime Devs to help
-                <span class="text-lime font-bold"
-                  >bring your ideas to life.</span
-                >
-              </p>
-              <Button class="btnNewMessage" @click="form = true">
-                Send a new message
-              </Button>
-            </div>
           </div>
         </div>
         <div class="socialMedia column">
@@ -100,13 +131,13 @@
             <li
               v-for="(social, index) in socialMedia"
               :key="index"
-              class="rowCenter">
-              <NuxtLink :to="social.link" class="linkSocial" target="_blank">
-                <div class="bgContain" :class="social.img"></div>
-                <div class="w-full decorationLime">
-                  <p class="text-white">{{ social.text }}</p>
-                </div>
-              </NuxtLink>
+              class="rowCenter no-underline">
+              <div
+                class="bgCover"
+                :class="social.img"
+                role="img"
+                :aria-label="social.text"></div>
+              <p class="no-underline">{{ social.text }}</p>
             </li>
           </ul>
         </div>
@@ -122,8 +153,8 @@
   export default {
     data() {
       return {
-        form: true,
         currentStep: 0,
+        formData: {},
         steps: [
           {
             value: 1,
@@ -162,94 +193,26 @@
         ],
         socialMedia: [
           {
-            link: "https://wa.me/5491156362938",
+            link: "#",
             img: "whatsAppIcon",
-            text: "+54 9 11 5636 2938",
+            text: "+54 9 11 1111 1111",
           },
           {
-            link: "mailto:hello@limedevs.com",
+            link: "#",
             img: "emailIcon",
-            text: "hello@limedevs.com",
+            text: "hola@limedevs.com",
           },
           {
-            link: "https://www.linkedin.com/company/lime-devs/",
+            link: "#",
             img: "linkedInIcon",
             text: "limedevs",
           },
         ],
-        formData: {
-          name: "",
-          email: "",
-          companyName: "",
-          idea: "",
-        },
-        errors: {
-          name: "",
-          email: "",
-        },
       };
     },
-    computed: {
-      isValid() {
-        return !this.errors.name && !this.errors.email;
-      },
-    },
     methods: {
-      validateAndProceed(step, activateCallback) {
-        if (step.id === "name") {
-          this.validateName(() =>
-            this.proceedToNextStep(step, activateCallback)
-          );
-        } else if (step.id === "email") {
-          this.validateEmail(() =>
-            this.proceedToNextStep(step, activateCallback)
-          );
-        } else {
-          this.proceedToNextStep(step, activateCallback);
-        }
-      },
-      proceedToNextStep(step, activateCallback) {
-        if (step.value < this.steps.length) {
-          activateCallback(step.value + 1);
-        }
-      },
-      handleEnterKey(event, step, activateCallback) {
-        if (step.value === this.steps.length) {
-          this.handleFormSubmission();
-        } else {
-          this.validateAndProceed(step, activateCallback);
-        }
-      },
-      validateName(callback) {
-        if (!this.formData.name) {
-          this.errors.name = "You must enter a name";
-        } else if (this.formData.name.length <= 2) {
-          this.errors.name = "The name must be at least 2 characters long";
-        } else {
-          this.errors.name = "";
-          callback();
-        }
-      },
-      validateEmail(callback) {
-        if (!this.formData.email) {
-          this.errors.email = "You must enter an email address";
-        } else if (!/.+@.+\..+/.test(this.formData.email)) {
-          this.errors.email =
-            "The email address must include an @ and a . (dot)";
-        } else {
-          this.errors.email = "";
-          callback();
-        }
-      },
-      handleFormSubmission() {
-        this.validateName(() => {
-          this.validateEmail(() => {
-            if (this.isValid) {
-              console.log(this.formData);
-              this.form = false;
-            }
-          });
-        });
+      handleSubmit() {
+        console.log(this.formData);
       },
     },
   };
@@ -271,7 +234,6 @@
     border: 2px solid var(--color-lime);
     border-radius: 999px;
     color: var(--color-lime);
-    pointer-events: none;
   }
 
   .stepperFooter .p-steplist {
@@ -296,9 +258,7 @@
     margin-top: 1.25rem;
   }
 
-  .stepperFooter .stepContent label,
-  .stepperFooter input,
-  .stepperFooter textarea {
+  .stepperFooter .stepContent label {
     font-size: 0.75rem;
   }
 
@@ -341,7 +301,6 @@
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 999px !important;
-    transition: all 0.3s;
     cursor: pointer;
     padding: 1.25rem;
   }
@@ -357,18 +316,9 @@
     border: 2px solid #7372b5 !important;
   }
 
-  .next:hover {
-    box-shadow: -2px -2px 10px 0px #c3c3d5 inset;
-  }
-
   .submit {
     background: var(--color-lime) !important;
-    color: var(--color-dark-violet) !important;
-    transition: all 0.3s;
-  }
-
-  .submit:hover {
-    box-shadow: -6px -2px 10px 0px #c3c3d5 inset;
+    color: var(--color-dark-violet) !important ;
   }
 
   @media (width >= 600px) {
@@ -381,6 +331,7 @@
       border-radius: 50px;
       color: var(--color-lime);
       opacity: 0.6;
+      pointer-events: none;
       padding-right: 1rem;
     }
 
@@ -422,15 +373,6 @@
       display: none;
     }
 
-    .stepperFooter .inputsNextBack {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .errorMail {
-      margin-left: 5rem;
-    }
-
     .nextBack {
       display: flex;
       align-items: flex-end;
@@ -438,7 +380,7 @@
 
     .stepperFooter .p-steppanel {
       display: flex;
-      gap: 3rem;
+      justify-content: space-between;
     }
 
     .stepContent {
@@ -449,28 +391,13 @@
       font-weight: 400;
     }
 
-    .stepperFooter .stepContent label,
-    .stepperFooter input,
-    .stepperFooter textarea {
+    .stepperFooter .stepContent label {
       font-size: 0.875rem;
     }
 
     .stepperFooter input,
     .stepperFooter textarea {
       margin-top: 0.75rem;
-    }
-
-    .next,
-    .back,
-    .submit {
-      width: 2.75rem;
-      height: 2.75rem;
-    }
-
-    .next .iconify,
-    .back .iconify,
-    .submit .iconify {
-      font-size: 1.25rem !important;
     }
   }
 
@@ -489,7 +416,7 @@
 
     .stepperFooter .p-step-header {
       gap: 0.5rem;
-      padding: 0 1.25rem 0 0;
+      padding: 0.25rem 1.25rem 0.25rem 0;
     }
 
     .stepperFooter .p-step-number {
@@ -506,65 +433,8 @@
       width: 100%;
     }
 
-    .stepperFooter .stepContent label,
-    .stepperFooter input,
-    .stepperFooter textarea {
+    .stepperFooter .stepContent label {
       font-size: 1.125rem;
-    }
-
-    .next .iconify,
-    .back .iconify,
-    .submit .iconify {
-      font-size: 1.5rem !important;
-    }
-  }
-
-  @media (width >= 1440px) {
-    .stepperFooter .p-steppanels {
-      width: 85%;
-    }
-
-    .stepperFooter .panelName {
-      width: 70%;
-      gap: 5rem;
-    }
-
-    .stepperFooter .p-steppanel {
-      gap: 3rem;
-      margin: 0;
-    }
-
-    .stepperFooter .p-step-header {
-      gap: 0.75rem;
-    }
-
-    .stepperFooter .p-step-number {
-      width: 2.5rem;
-      height: 2.5rem;
-      font-size: 1.5rem;
-    }
-
-    .stepperFooter .p-step-title {
-      font-size: 1.5rem;
-    }
-
-    .stepperFooter .stepContent label,
-    .stepperFooter input,
-    .stepperFooter textarea {
-      font-size: 1.25rem;
-    }
-
-    .next,
-    .back,
-    .submit {
-      width: 3.125em;
-      height: 3.125em;
-    }
-
-    .next .iconify,
-    .back .iconify,
-    .submit .iconify {
-      font-size: 2rem !important;
     }
   }
 </style>
@@ -576,25 +446,6 @@
 
   footer > section > img:first-of-type {
     width: 3.75rem;
-  }
-
-  .newMessage p {
-    max-width: 395px;
-    font-size: 0.875rem;
-  }
-
-  .btnNewMessage {
-    background: var(--color-light-violet);
-    border-radius: 999px;
-    font-size: 0.875rem;
-    font-weight: 700;
-    transition: all 0.3s;
-    padding: 0.688rem 1.25rem;
-  }
-
-  .btnNewMessage:hover {
-    background: var(--color-light-violet) !important;
-    box-shadow: -6px -2px 10px 0px #c3c3d5 inset;
   }
 
   .socialMedia {
@@ -613,13 +464,9 @@
     gap: 0.75rem;
   }
 
-  .socialMedia ul li div:first-of-type {
+  .socialMedia ul li div {
     width: 1.125rem;
     height: 1.125rem;
-  }
-
-  .socialMedia p:first-of-type {
-    font-weight: 700;
   }
 
   .whatsAppIcon {
@@ -634,37 +481,15 @@
     background-image: url("/images/footer/LinkedIn-Icon.svg");
   }
 
-  .linkSocial {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
-    padding-bottom: 0.25rem;
-  }
-
-  .decorationLime {
-    display: flex;
-    justify-content: center;
-    border-bottom: 2px solid #2d2c48;
-    transition: all 0.3s;
-  }
-
-  .decorationLime:hover {
-    border-color: var(--color-lime);
-  }
-
-  .decorationLime p {
-    width: max-content;
-    font-weight: 400 !important;
-  }
-
   .rightsReserved {
     padding: 1.5rem;
   }
 
   .rightsReserved p {
     font-size: 0.75rem;
+  }
+
+  @media (width >= 480px) {
   }
 
   @media (width >= 700px) {
@@ -684,27 +509,14 @@
       gap: 2rem !important;
     }
 
-    .newMessage {
-      align-items: flex-start;
-    }
-
-    .newMessage p {
-      max-width: 500px;
-      text-align: start !important;
-      font-size: 1.125rem;
-    }
-
-    .btnNewMessage {
-      padding: 0.938rem 2.5rem;
-    }
-
     .socialMedia {
       gap: 1.25rem;
       margin-top: 1.75rem;
     }
 
-    .socialMedia p:first-of-type {
+    .socialMedia p:first-child {
       font-size: 1.25rem;
+      font-weight: 700;
     }
 
     .socialMedia ul {
@@ -713,7 +525,7 @@
       justify-content: space-between;
     }
 
-    .socialMedia ul li div:first-of-type {
+    .socialMedia ul li div {
       width: 1.5rem;
       height: 1.5rem;
     }
@@ -748,21 +560,6 @@
 
     .stepperSocialMedia > div:first-of-type {
       width: 100%;
-      max-width: 700px;
-    }
-
-    .newMessage {
-      gap: 1.25rem !important;
-    }
-
-    .newMessage p {
-      max-width: 560px;
-      font-size: 1.25rem;
-    }
-
-    .btnNewMessage {
-      font-size: 1.25rem;
-      padding: 0.75rem 2.5rem;
     }
 
     .socialMedia p {
@@ -787,27 +584,6 @@
 
     .rightsReserved p {
       font-size: 1rem;
-    }
-  }
-
-  @media (width >= 1440px) {
-    .stepperSocialMedia > div:first-of-type {
-      max-width: 850px;
-    }
-
-    .stepperFooter .stepContent {
-      margin-top: 2.5rem;
-    }
-
-    .newMessage p {
-      max-width: 700px;
-      font-size: 1.5rem;
-    }
-  }
-
-  @media (width >= 1920px) {
-    .stepperSocialMedia > div:first-of-type {
-      max-width: 1000px;
     }
   }
 </style>
