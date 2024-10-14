@@ -69,7 +69,7 @@
         <div class="desktopContentPanel column">
           <div class="columnAlignCenter">
             <NuxtImg
-              :src="`/images/home/${values[selectedValue].img}.png`"
+              :src="`/images/home/${values[selectedValue].img}.webp`"
               :alt="values[selectedValue].alt"
             />
             <p v-html="values[selectedValue].text" class="text-center"></p>
