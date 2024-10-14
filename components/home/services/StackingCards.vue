@@ -19,7 +19,7 @@
         :style="getCardStyle(index)"
       >
         <div>
-          <NuxtImg :src="`/images/home/${service.img}.png`" />
+          <NuxtImg :src="`/images/home/${service.img}.png`" alt="service" />
         </div>
         <div>
           <h3 class="serviceTitle">{{ service.title }}</h3>
