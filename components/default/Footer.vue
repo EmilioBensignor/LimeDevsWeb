@@ -9,16 +9,24 @@
             <span class="text-lime underline">transform your business</span>?
           </h2>
           <div class="stepperFooter">
-            <Stepper :value="1" role="region" aria-label="Contact form stepper">
-              <StepList role="tablist">
+            <Stepper :value="1" role="tablist" aria-label="Contact form">
+              <StepList>
                 <Step
                   v-for="step in steps"
                   :key="step.value"
                   :value="step.value"
                   role="tab"
+                  :id="`step-${step.value}`"
                   :aria-controls="`panel-${step.value}`"
-                  :aria-selected="step.value === 1 ? 'true' : 'false'">
-                  {{ step.title }}
+                  :aria-selected="step.value === 1 ? 'true' : 'false'"
+                  :tabindex="step.value === 1 ? 0 : -1">
+                  <button
+                    :id="`button#pv_id_1_step_${step.value}.p-step-header`"
+                    class="p-step-header"
+                    type="button"
+                    :aria-label="`Step ${step.value}: ${step.title}`">
+                    {{ step.title }}
+                  </button>
                 </Step>
               </StepList>
               <StepPanels>
