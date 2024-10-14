@@ -9,24 +9,26 @@
             <span class="text-lime underline">transform your business</span>?
           </h2>
           <div class="stepperFooter">
-            <Stepper :value="1" role="tablist" aria-label="Contact form">
-              <StepList>
+            <Stepper :value="1" role="region" aria-label="Contact form">
+              <StepList role="tablist">
                 <Step
                   v-for="step in steps"
                   :key="step.value"
                   :value="step.value"
-                  role="tab"
-                  :id="`step-${step.value}`"
+                  as="li"
                   :aria-controls="`panel-${step.value}`"
-                  :aria-selected="step.value === 1 ? 'true' : 'false'"
-                  :tabindex="step.value === 1 ? 0 : -1">
-                  <button
-                    :id="`button#pv_id_1_step_${step.value}.p-step-header`"
-                    class="p-step-header"
-                    type="button"
-                    :aria-label="`Step ${step.value}: ${step.title}`">
-                    {{ step.title }}
-                  </button>
+                  :aria-selected="step.value === 1 ? 'true' : 'false'">
+                  <template #default="{ isActive }">
+                    <button
+                      :id="`button#pv_id_1_step_${step.value}.p-step-header`"
+                      class="p-step-header"
+                      type="button"
+                      role="tab"
+                      :aria-label="`Step ${step.value}: ${step.title}`"
+                      :tabindex="isActive ? 0 : -1">
+                      {{ step.title }}
+                    </button>
+                  </template>
                 </Step>
               </StepList>
               <StepPanels>
@@ -39,7 +41,7 @@
                     v-slot="{ activateCallback }"
                     role="tabpanel"
                     :id="`panel-${step.value}`"
-                    :aria-labelledby="`step-${step.value}`">
+                    :aria-labelledby="`button#pv_id_1_step_${step.value}.p-step-header`">
                     <div v-if="step.value !== 1" class="nextBack">
                       <Button
                         class="back"
