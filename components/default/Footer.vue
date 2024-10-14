@@ -9,7 +9,7 @@
             <span class="text-lime underline">transform your business</span>?
           </h2>
           <div class="stepperFooter">
-            <Stepper :value="1">
+            <Stepper :value="1" role="region">
               <StepList>
                 <Step
                   v-for="step in steps"
