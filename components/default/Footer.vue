@@ -9,13 +9,12 @@
             <span class="text-lime underline">transform your business</span>?
           </h2>
           <div class="stepperFooter">
-            <Stepper :value="1" role="region" aria-label="Contact form">
-              <StepList role="tablist">
+            <Stepper :value="1">
+              <StepList>
                 <Step
                   v-for="step in steps"
                   :key="step.value"
-                  :value="step.value"
-                  role="tab">
+                  :value="step.value">
                   {{ step.title }}
                 </Step>
               </StepList>
@@ -26,10 +25,7 @@
                     :key="step.value"
                     :value="step.value"
                     :class="step.panelClass"
-                    v-slot="{ activateCallback }"
-                    role="tabpanel"
-                    :id="`panel-${step.value}`"
-                    :aria-labelledby="`step-${step.value}`">
+                    v-slot="{ activateCallback }">
                     <div v-if="step.value !== 1" class="nextBack">
                       <Button
                         class="back"
