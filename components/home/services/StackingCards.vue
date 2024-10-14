@@ -183,6 +183,7 @@ export default {
 .service > div:first-of-type > img {
   width: 15.688rem;
   height: 55%;
+  object-fit: contain;
 }
 
 .serviceTitle {

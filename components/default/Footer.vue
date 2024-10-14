@@ -12,6 +12,7 @@
             <Stepper :value="1">
               <StepList>
                 <Step
+                  role="tab"
                   v-for="step in steps"
                   :key="step.value"
                   :value="step.value">
