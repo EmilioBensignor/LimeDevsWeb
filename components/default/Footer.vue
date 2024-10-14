@@ -9,7 +9,7 @@
             <span class="text-lime underline">transform your business</span>?
           </h2>
           <div class="stepperFooter">
-            <Stepper :value="1" role="region">
+            <Stepper :value="1">
               <StepList>
                 <Step
                   v-for="step in steps"
@@ -280,6 +280,12 @@
     padding: 1.25rem;
   }
 
+  .next:hover,
+  .back:hover,
+  .submit:hover {
+    box-shadow: -2px -2px 10px 0px #c3c3d5 inset;
+  }
+
   .next {
     align-self: flex-end;
     background: var(--color-light-violet) !important;
@@ -462,9 +468,6 @@
 
   .rightsReserved p {
     font-size: 0.75rem;
-  }
-
-  @media (width >= 480px) {
   }
 
   @media (width >= 700px) {
