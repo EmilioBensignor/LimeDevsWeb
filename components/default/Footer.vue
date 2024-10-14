@@ -15,8 +15,6 @@
                   v-for="step in steps"
                   :key="step.value"
                   :value="step.value"
-                  :aria-controls="`panel-${step.value}`"
-                  :aria-selected="step.value === 1 ? 'true' : 'false'"
                   :tabindex="step.value === 1 ? 0 : -1">
                   {{ step.title }}
                 </Step>
