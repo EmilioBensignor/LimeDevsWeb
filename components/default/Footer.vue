@@ -15,20 +15,10 @@
                   v-for="step in steps"
                   :key="step.value"
                   :value="step.value"
-                  as="li"
+                  role="tab"
                   :aria-controls="`panel-${step.value}`"
                   :aria-selected="step.value === 1 ? 'true' : 'false'">
-                  <template #default="{ isActive }">
-                    <button
-                      :id="`button#pv_id_1_step_${step.value}.p-step-header`"
-                      class="p-step-header"
-                      type="button"
-                      role="tab"
-                      :aria-label="`Step ${step.value}: ${step.title}`"
-                      :tabindex="isActive ? 0 : -1">
-                      {{ step.title }}
-                    </button>
-                  </template>
+                  {{ step.title }}
                 </Step>
               </StepList>
               <StepPanels>
@@ -41,7 +31,7 @@
                     v-slot="{ activateCallback }"
                     role="tabpanel"
                     :id="`panel-${step.value}`"
-                    :aria-labelledby="`button#pv_id_1_step_${step.value}.p-step-header`">
+                    :aria-labelledby="`step-${step.value}`">
                     <div v-if="step.value !== 1" class="nextBack">
                       <Button
                         class="back"
