@@ -3,7 +3,9 @@
     <button class="hamburger absolute" @click="toggleDrawer" aria-label="Open or close menu">
       <Icon class="text-white" size="2rem" name="mingcute:menu-fill" />
     </button>
-    <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" />
+    <NuxtLink :to="'/'">
+      <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" />
+    </NuxtLink>
     <div class="menuSidebar">
       <Drawer
         :visible="drawerMenu"
