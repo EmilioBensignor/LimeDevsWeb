@@ -124,7 +124,6 @@
                 v-if="social.type !== 'email'"
                 :to="social.link"
                 target="_blank"
-                rel="noopener noreferrer"
                 class="rowCenter no-underline"
               >
                 <div class="bgCover" :class="social.img"></div>
@@ -216,27 +215,22 @@ export default {
   },
   methods: {
     handleEmailClick(social) {
-      console.log("Attempting to open email client...");
-      const mailtoLink = `mailto:${social.text}`;
+      const mailtoLink = `mailto:${social.text}?subject=Contact%20Lime%20Devs
+      &body=Reaching%20out%20for%20more%20information%20about%20the%20products.`;
 
-      // Intenta abrir el cliente de correo
       window.location.href = mailtoLink;
 
-      // Fallback: Si no se abre el cliente de correo, ofrece copiar la dirección
       setTimeout(() => {
         if (document.hasFocus()) {
-          console.log(
-            "Email client might not have opened. Offering to copy email."
-          );
           if (
             confirm(
-              "¿No se abrió tu cliente de correo? Haz clic en OK para copiar la dirección de correo al portapapeles."
+              "Your email client didn't open? Click OK to copy the email address to clipboard."
             )
           ) {
             navigator.clipboard
               .writeText(social.text)
-              .then(() => alert("Dirección de correo copiada al portapapeles."))
-              .catch((err) => console.error("Error al copiar: ", err));
+              .then(() => alert("Email address copied to clipboard."))
+              .catch((err) => console.error("Error copying: ", err));
           }
         }
       }, 1000);
