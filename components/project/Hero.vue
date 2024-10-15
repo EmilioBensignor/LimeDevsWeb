@@ -1,7 +1,7 @@
 <template>
   <section class="hero columnAlignCenter">
-    <div class="columnAlignCenter bg-violet">
-      <div>
+    <div class="columnAlignCenter ">
+      <div class="bg-violet">
         <h2 class="text-center">{{ project.phrase }}</h2>
       </div>
       <NuxtImg
@@ -41,11 +41,8 @@ export default {
   padding: 0 1rem;
 }
 
-.hero > div:first-of-type {
-  border-radius: 18px;
-}
-
 .hero > div:first-of-type > div {
+  border-radius: 18px 18px 0 0;
   padding: 0.75rem;
 }
 
