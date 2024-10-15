@@ -1,12 +1,18 @@
 <template>
-  <div>
-    <h1>{{ project.title }}</h1>
-    <p>{{ project.service }}</p>
-    <NuxtLink to="/">Volver a la Home</NuxtLink>
-  </div>
+  <main>
+    <ProjectMenu :project="project" />
+    <div>
+      <ProjectHero :project="project" />
+      <ProjectDescription :project="project" />
+      <ProjectOutcome :project="project" />
+    </div>
+  </main>
 </template>
 
 <script setup>
+definePageMeta({
+  layout: 'views'
+})
 import { projects } from "~/constants/projects";
 import { useRoute } from "vue-router";
 

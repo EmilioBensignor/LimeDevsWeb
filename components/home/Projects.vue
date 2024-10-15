@@ -28,7 +28,7 @@
       >
         <NuxtLink :to="`/projects/${project.slug}`">
           <img
-            :src="project.img"
+            :src="`/images/projects/${project.img}`"
             :alt="project.alt"
             class="w-full h-full projectImg"
           />
@@ -47,7 +47,7 @@
         class="slideProject"
       >
         <NuxtLink class="w-full h-full flex":to="`/projects/${project.slug}`">
-          <img :src="project.img" :alt="project.alt" class="w-full h-full" />
+          <img :src="`/images/projects/${project.img}`" :alt="project.alt" class="w-full h-full" />
           <div class="projectInfo">
             <h3 class="text-center text-white">{{ project.title }}</h3>
             <p class="text-center text-white">{{ project.service }}</p>

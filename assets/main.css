@@ -5,6 +5,7 @@
   --color-dark-violet: #1A1926;
   --color-violet: #39385E;
   --color-60-violet: #39385E99;
+  --color-mid-violet: #494874;
   --color-light-violet: #7372B5;
   --gradient-violet-light: linear-gradient(90deg, var(--color-violet), var(--color-light-violet));
   --gradient-light-violet: linear-gradient(90deg, var(--color-light-violet), var(--color-violet));
@@ -128,6 +129,14 @@ h2 span {
 
 .bg-violet-60 {
   background-color: var(--color-60-violet);
+}
+
+.bg-violet {
+  background-color: var(--color-violet);
+}
+
+.bg-mid-violet {
+  background-color: var(--color-mid-violet);
 }
 
 .text-lime {
