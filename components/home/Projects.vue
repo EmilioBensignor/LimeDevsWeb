@@ -26,7 +26,7 @@
         :key="index"
         class="slideProject"
       >
-        <NuxtLink :to="`/projects/${project.slug}`">
+        <NuxtLink :to="`/projects/${project.slug}`" :aria-label="`See more about ${project.title}`">
           <img
             :src="`/images/projects/${project.img}`"
             :alt="project.alt"
@@ -46,7 +46,7 @@
         :ref="'tiltProjectDesktop' + index"
         class="slideProject"
       >
-        <NuxtLink class="w-full h-full flex":to="`/projects/${project.slug}`">
+        <NuxtLink :to="`/projects/${project.slug}`" :aria-label="`See more about ${project.title}`" class="w-full h-full flex">
           <img :src="`/images/projects/${project.img}`" :alt="project.alt" class="w-full h-full" />
           <div class="projectInfo">
             <h3 class="text-center text-white">{{ project.title }}</h3>

@@ -298,13 +298,6 @@
           activateCallback(step.value + 1);
         }
       },
-      handleEnterKey(event, step, activateCallback) {
-        if (step.value === this.steps.length) {
-          this.handleFormSubmission();
-        } else {
-          this.validateAndProceed(step, activateCallback);
-        }
-      },
       validateName(callback) {
         if (!this.formData.name) {
           this.errors.name = "You must enter a name";
