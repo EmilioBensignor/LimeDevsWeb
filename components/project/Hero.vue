@@ -1,5 +1,5 @@
 <template>
-  <section class="hero columnAlignCenter">
+  <section id="mainCharacteristics" class="hero columnAlignCenter">
     <div class="columnAlignCenter ">
       <div class="bg-violet">
         <h2 class="text-center">{{ project.phrase }}</h2>
