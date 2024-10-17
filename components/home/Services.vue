@@ -27,26 +27,26 @@ export default {
     return {
       services: [
         {
-          img: "animacionHero",
-          alt: "",
+          img: "Technology-Consulting",
+          alt: "Technology Consulting Lime Devs",
           title: "Technology Consulting",
           text: "We help you validate your business idea through a product discovery process and determine the right scope for your MVP.",
         },
         {
-          img: "animacionHero",
-          alt: "",
+          img: "Software-Development",
+          alt: "Software Development Lime Devs",
           title: "Software Development",
           text: "We design and build custom software tailored to your business needs. Whether it's a mobile app, web platform, or enterprise solution, we turn your vision into reality with scalable and efficient technology.",
         },
         {
-          img: "animacionHero",
-          alt: "",
+          img: "Hardware-Development",
+          alt: "Hardware Development Lime Devs",
           title: "Hardware Development",
           text: "From concept to prototype, we develop physical hardware solutions to enhance your products and operations. Our team specializes in creating reliable, innovative hardware that integrates seamlessly with your existing systems.",
         },
         {
-          img: "animacionHero",
-          alt: "",
+          img: "Support-Maintenance",
+          alt: "Support & Maintenance Lime Devs",
           title: "Support & Maintenance",
           text: "We offer continuous support and maintenance to ensure your technology solutions run smoothly and efficiently. From troubleshooting to system updates, our team is here to help you minimize downtime and keep your business operations on track.",
         },

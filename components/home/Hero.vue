@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full hero columnAlignCenter gap-2">
+  <section class="w-full hero columnAlignCenter gap-4">
     <h1 class="column">
       <span>Where your <span class="text-lime">ideas</span></span>
       <span>find their <span class="text-lime">perfect shape.</span></span>
@@ -10,13 +10,12 @@
       loop
       playsinline
       preload="auto"
-      poster="/images/home/animacionHero.webp"
+      poster="/images/home/Product-Delivery-Software-Development-Frame-0.webp"
       width="50%"
       height="auto">
       <source src="/videos/Product-Delivery-Software-Development.mp4" type="video/mp4" />
       Tu navegador no soporta el video.
     </video>
-    <!-- <NuxtImg src="/images/home/animacionHero.webp" alt="Animacion" /> -->
   </section>
 </template>
 

@@ -10,7 +10,7 @@
         <div class="serviceImageContainer columnAlignCenter">
           <img
             class="serviceImage"
-            :src="`/images/home/${service.img}.webp`"
+            :src="`/images/home/${service.img}-Lime-Devs.webp`"
             :alt="service.alt" />
         </div>
         <div class="serviceContent column">

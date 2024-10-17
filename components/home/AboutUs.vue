@@ -33,20 +33,13 @@
                   muted
                   playsinline
                   preload="auto"
-                  poster="/images/home/animacionHero.webp"
+                  poster="/images/home/Lime-Devs-Values.webp"
                   width="50%"
                   height="auto"
                 >
-                  <source
-                    :src="`/videos/${value.video}`"
-                    type="video/mp4"
-                  />
+                  <source :src="`/videos/${value.video}`" type="video/mp4" />
                   Tu navegador no soporta el video.
                 </video>
-                <!-- <NuxtImg
-                  :src="`/images/home/${value.img}.webp`"
-                  :alt="value.alt"
-                /> -->
                 <p v-html="value.text" class="text-center"></p>
               </div>
             </AccordionContent>
@@ -83,10 +76,18 @@
       <ClientOnly>
         <div class="desktopContentPanel column">
           <div class="columnAlignCenter">
-            <NuxtImg
-              :src="`/images/home/${values[selectedValue].img}.webp`"
-              :alt="values[selectedValue].alt"
-            />
+            <video
+              autoplay
+              muted
+              playsinline
+              preload="none"
+              poster="/images/home/Lime-Devs-Values.webp"
+              width="50%"
+              height="auto"
+            >
+              <source :src="`/videos/${values[selectedValue].video}`" type="video/mp4" />
+              Tu navegador no soporta el video.
+            </video>
             <p v-html="values[selectedValue].text" class="text-center"></p>
           </div>
         </div>
@@ -103,8 +104,6 @@ export default {
       values: [
         {
           value: 0,
-          img: "animacionHero",
-          alt: "Innovation",
           video: "Innovation-RFID-Inventory-Control.mp4",
           title: "Innovation",
           text: "<p>We constantly explore <span class='font-bold text-lime'>new technologies</span> to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
@@ -112,8 +111,6 @@ export default {
         },
         {
           value: 1,
-          img: "animacionHero",
-          alt: "Collaboration",
           video: "Collaboration-Software-Development.mp4",
           title: "Collaboration",
           text: "We believe in working closely with our clients, understanding their challenges, and <span class='font-bold text-lime'>building solutions together.</span>",
@@ -121,16 +118,12 @@ export default {
         },
         {
           value: 2,
-          img: "animacionHero",
-          alt: "Adaptability",
           video: "Adaptability-Hardware-Development.mp4",
           title: "Adaptability",
           text: "<p>We quickly adapt to the <span class='font-bold text-lime'>fast-changing technological landscape</span>, ensuring that our clients stay ahead.</p>",
         },
         {
           value: 3,
-          img: "animacionHero",
-          alt: "Excellence",
           video: "Excellence-Product-Delivery.mp4",
           title: "Excellence",
           text: "<p>We strive for the <span class='font-bold text-lime'>highest standards</span> in every project, ensuring <span class='font-bold text-lime'>quality</span> and <span class='font-bold text-lime'>scalability</span> in our solutions. to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
