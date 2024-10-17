@@ -28,10 +28,25 @@
             </AccordionHeader>
             <AccordionContent>
               <div class="columnAlignCenter">
-                <NuxtImg
+                <video
+                  autoplay
+                  muted
+                  playsinline
+                  preload="auto"
+                  poster="/images/home/animacionHero.webp"
+                  width="50%"
+                  height="auto"
+                >
+                  <source
+                    :src="`/videos/${value.video}`"
+                    type="video/mp4"
+                  />
+                  Tu navegador no soporta el video.
+                </video>
+                <!-- <NuxtImg
                   :src="`/images/home/${value.img}.webp`"
                   :alt="value.alt"
-                />
+                /> -->
                 <p v-html="value.text" class="text-center"></p>
               </div>
             </AccordionContent>
@@ -90,6 +105,7 @@ export default {
           value: 0,
           img: "animacionHero",
           alt: "Innovation",
+          video: "Innovation-RFID-Inventory-Control.mp4",
           title: "Innovation",
           text: "<p>We constantly explore <span class='font-bold text-lime'>new technologies</span> to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
           border: "borderInnovation",
@@ -98,6 +114,7 @@ export default {
           value: 1,
           img: "animacionHero",
           alt: "Collaboration",
+          video: "Collaboration-Software-Development.mp4",
           title: "Collaboration",
           text: "We believe in working closely with our clients, understanding their challenges, and <span class='font-bold text-lime'>building solutions together.</span>",
           class: "rightHeader",
@@ -106,6 +123,7 @@ export default {
           value: 2,
           img: "animacionHero",
           alt: "Adaptability",
+          video: "Adaptability-Hardware-Development.mp4",
           title: "Adaptability",
           text: "<p>We quickly adapt to the <span class='font-bold text-lime'>fast-changing technological landscape</span>, ensuring that our clients stay ahead.</p>",
         },
@@ -113,6 +131,7 @@ export default {
           value: 3,
           img: "animacionHero",
           alt: "Excellence",
+          video: "Excellence-Product-Delivery.mp4",
           title: "Excellence",
           text: "<p>We strive for the <span class='font-bold text-lime'>highest standards</span> in every project, ensuring <span class='font-bold text-lime'>quality</span> and <span class='font-bold text-lime'>scalability</span> in our solutions. to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
           class: "rightHeader",
