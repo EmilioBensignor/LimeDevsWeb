@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     'nuxt-vitalizer',
     'nuxt-booster',
-    '@nuxtjs/fontaine'
+    '@nuxtjs/fontaine',
   ],
   icon: {
     size: '1rem',
@@ -56,7 +56,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://limedevs.com',
     name: 'Lime Devs',
-    description: 'When your ideas find the perfect shape.',
+    description: 'Innovating with custom software and hardware solutions to drive growth for startups and established businesses',
     defaultLocale: 'en',
   },
   booster: {

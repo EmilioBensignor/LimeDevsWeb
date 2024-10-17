@@ -323,6 +323,11 @@
         this.validateName(() => {
           this.validateEmail(() => {
             if (this.isValid) {
+              // this.$mail.send({
+              //   from: "Lime Devs Web",
+              //   subject: "New Contact us form filled",
+              //   text: JSON.stringify(this.formData),
+              // });
               console.log(this.formData);
               this.form = false;
               this.formData = {};
