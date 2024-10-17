@@ -323,11 +323,7 @@
         this.validateName(() => {
           this.validateEmail(() => {
             if (this.isValid) {
-              // this.$mail.send({
-              //   from: "Lime Devs Web",
-              //   subject: "New Contact us form filled",
-              //   text: JSON.stringify(this.formData),
-              // });
+              this.sendEmail("New Contact us form filled", JSON.stringify(this.formData))
               console.log(this.formData);
               this.form = false;
               this.formData = {};
@@ -335,6 +331,32 @@
           });
         });
       },
+      async sendEmail(subject, body) {
+  try {
+    // Use the native `fetch` API to send the email directly to Firebase Cloud Function
+    const response = await fetch('https://sendemail-hqtj3w7u2q-uc.a.run.app', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        subject,
+        body,
+      }),
+    });
+    console.log(response);
+    
+    if (!response.ok) {
+      const error = await response.json();
+      console.error('Error sending email:', error.message);
+    } else {
+      const result = await response.json();
+      console.log('Email sent successfully:', result);
+    }
+  } catch (err) {
+    console.error('Unexpected error:', err);
+  }
+}
     },
   };
 </script>
