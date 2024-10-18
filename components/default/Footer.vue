@@ -459,6 +459,7 @@ export default {
 .next,
 .back,
 .submit {
+  display: flex !important;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 999px !important;
@@ -479,7 +480,7 @@ export default {
 }
 
 .back {
-  color: var(--color-lime);
+  color: var(--color-light-violet) !important;
   border: 2px solid #7372b5 !important;
 }
 
@@ -528,6 +529,10 @@ export default {
     font-weight: 700;
     color: var(--color-white);
   }
+
+  .stepperFooter .p-step-active .p-step-header .p-step-title {
+  color: var(--color-violet) !important;
+}
 }
 
 @media (width >= 700px) {
