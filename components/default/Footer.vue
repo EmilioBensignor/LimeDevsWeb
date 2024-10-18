@@ -459,12 +459,13 @@ export default {
 .next,
 .back,
 .submit {
-  display: flex !important;
   width: 2.5rem;
   height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 999px !important;
   cursor: pointer;
-  padding: 1.25rem;
 }
 
 .next:hover,
@@ -477,11 +478,13 @@ export default {
   align-self: flex-end;
   background: var(--color-light-violet) !important;
   border: 2px solid #7372b5 !important;
+  color: var(--color-white) !important;
 }
 
 .back {
-  color: var(--color-light-violet) !important;
+  background: none;
   border: 2px solid #7372b5 !important;
+  color: var(--color-light-violet) !important;
 }
 
 .submit {
@@ -531,8 +534,8 @@ export default {
   }
 
   .stepperFooter .p-step-active .p-step-header .p-step-title {
-  color: var(--color-violet) !important;
-}
+    color: var(--color-violet) !important;
+  }
 }
 
 @media (width >= 700px) {
@@ -649,14 +652,19 @@ footer > section > img:first-of-type {
   max-width: 395px;
   font-size: 0.875rem;
 }
+
 .btnNewMessage {
   background: var(--color-light-violet);
   border-radius: 999px;
+  border: none;
+  color: var(--color-white);
   font-size: 0.875rem;
   font-weight: 700;
   transition: all 0.3s;
+  cursor: pointer;
   padding: 0.688rem 1.25rem;
 }
+
 .btnNewMessage:hover {
   background: var(--color-light-violet) !important;
   box-shadow: -6px -2px 10px 0px #c3c3d5 inset;

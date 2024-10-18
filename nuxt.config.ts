@@ -2,7 +2,6 @@
 import { projects } from './constants/projects'
 
 export default defineNuxtConfig({
-  target: 'static',
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   alias: {
@@ -99,7 +98,7 @@ export default defineNuxtConfig({
     disablePrefetchLinks: true
   },
   generate: {
-    routes: projects.map(project => `/projects/${project.slug}`)
+    routes: projects.map(project => `/projects/${project.slug}`),
   },
   linkChecker: {
     runOnBuild: false,
