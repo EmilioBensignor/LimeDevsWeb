@@ -22,6 +22,7 @@
             :value="value.value"
             v-for="(value, index) in values"
             :key="index"
+            @click="handleAccordionClick(index)"
           >
             <AccordionHeader :class="value.class">
               <h3>{{ value.title }}</h3>
@@ -29,6 +30,7 @@
             <AccordionContent>
               <div class="columnAlignCenter">
                 <video
+                  ref="mobileVideo"
                   autoplay
                   muted
                   playsinline
@@ -77,6 +79,7 @@
         <div class="desktopContentPanel column">
           <div class="columnAlignCenter">
             <video
+              ref="desktopVideo"
               autoplay
               muted
               playsinline
@@ -85,7 +88,10 @@
               width="50%"
               height="auto"
             >
-              <source :src="`/videos/${values[selectedValue].video}`" type="video/mp4" />
+              <source
+                :src="`/videos/${values[selectedValue].video}`"
+                type="video/mp4"
+              />
               Tu navegador no soporta el video.
             </video>
             <p v-html="values[selectedValue].text" class="text-center"></p>
@@ -136,6 +142,25 @@ export default {
   methods: {
     setSelectedStep(index) {
       this.selectedValue = index;
+      this.updateVideo("desktop");
+    },
+    handleAccordionClick(index) {
+      this.selectedValue = index;
+      this.updateVideo("mobile");
+    },
+    updateVideo(version) {
+      this.$nextTick(() => {
+        const videoEl =
+          version === "mobile"
+            ? this.$refs.mobileVideo[this.selectedValue]
+            : this.$refs.desktopVideo;
+
+        if (videoEl) {
+          videoEl.pause();
+          videoEl.load();
+          videoEl.play();
+        }
+      });
     },
   },
 };
@@ -329,10 +354,6 @@ h3 {
 
   .desktopContentPanel > div {
     gap: 1.25rem;
-  }
-
-  .desktopContentPanel img {
-    width: 12.875rem;
   }
 
   .desktopContentPanel p {

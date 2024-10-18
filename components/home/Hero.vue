@@ -12,51 +12,61 @@
       preload="auto"
       poster="/images/home/Product-Delivery-Software-Development-Frame-0.webp"
       width="50%"
-      height="auto">
-      <source src="/videos/Product-Delivery-Software-Development.mp4" type="video/mp4" />
+      height="auto"
+    >
+      <source
+        src="/videos/Product-Delivery-Software-Development.mp4"
+        type="video/mp4"
+      />
       Tu navegador no soporta el video.
     </video>
   </section>
 </template>
 
 <style scoped>
+.hero {
+  padding: 2rem 1.5rem;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+h1 > span > span {
+  font-weight: 800;
+}
+
+.hero > video {
+  width: 75%;
+  height: 100%;
+}
+
+@media (width >= 700px) {
   .hero {
-    padding: 2rem 1.5rem;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2.75rem 3.75rem;
   }
 
   h1 {
-    font-weight: 500;
-  }
-
-  h1 > span > span {
-    font-weight: 800;
+    text-align: start;
   }
 
   .hero > video {
-    width: 75%;
-    height: 100%;
+    width: 35%;
   }
+}
 
-  @media (width >= 700px) {
-    .hero {
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 2.75rem 3.75rem;
-    }
-
-    h1 {
-      text-align: start;
-    }
-
-    .hero > video {
-      width: 35%;
-    }
+@media (width >= 1080px) {
+  .hero {
+    gap: 4.375rem !important;
+    padding: 5.625rem;
   }
+}
 
-  @media (width >= 1080px) {
-    .hero {
-      gap: 4.375rem !important;
-      padding: 5.625rem;
-    }
+@media (width >= 1600px) {
+  .hero > video {
+    width: 40%;
   }
+}
 </style>
