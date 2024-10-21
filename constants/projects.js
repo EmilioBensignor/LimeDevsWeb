@@ -70,7 +70,21 @@ export const projects = [
         title: "Back-end development team"
       },
     ],
-    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world."
+    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world.",
+    outcomeImages: [
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+    ]
   },
   {
     slug: "unity-box-first",
@@ -143,7 +157,21 @@ export const projects = [
         title: "Back-end development team"
       },
     ],
-    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world."
+    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world.",
+    outcomeImages: [
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+    ]
   },
   {
     slug: "unity-box-second",
@@ -216,7 +244,21 @@ export const projects = [
         title: "Back-end development team"
       },
     ],
-    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world."
+    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world.",
+    outcomeImages: [
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+    ]
   },
   {
     slug: "unity-box-third",
@@ -289,7 +331,21 @@ export const projects = [
         title: "Back-end development team"
       },
     ],
-    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world."
+    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world.",
+    outcomeImages: [
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+    ]
   },
   {
     slug: "your-project",
@@ -361,7 +417,21 @@ export const projects = [
         title: "Back-end development team"
       },
     ],
-    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world."
+    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world.",
+    outcomeImages: [
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+    ]
   },
   {
     slug: "unity-box-fourth",
@@ -434,6 +504,20 @@ export const projects = [
         title: "Back-end development team"
       },
     ],
-    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world."
+    outcome: "The Unitybox project successfully modernized charitable giving by making it digital, simple, and accessible. Users can now donate effortlessly through the platform with just one tap, making small acts of kindness a daily habit. The outcome is a growing global community of givers, each contributing to a collective impact through tiny, consistent actions. Unitybox has redefined what it means to give in today's digital world.",
+    outcomeImages: [
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+    ]
   },
 ]
