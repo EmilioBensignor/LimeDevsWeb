@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { projects } from './constants/projects'
+import { projects } from './constants/projects';
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
