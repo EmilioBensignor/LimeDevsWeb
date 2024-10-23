@@ -1,5 +1,5 @@
 <template>
-  <section id="mainCharacteristics" class="hero columnAlignCenter">
+  <section id="mainCharacteristics" class="hero projectSection columnAlignCenter">
     <div class="columnAlignCenter ">
       <div class="bg-violet">
         <h2 class="text-center">{{ project.phrase }}</h2>
@@ -38,7 +38,7 @@ export default {
 <style scoped>
 .hero {
   gap: 0.75rem;
-  padding: 0 1rem;
+  padding: 2rem 1rem 0 1rem;
 }
 
 .hero > div:first-of-type > div {

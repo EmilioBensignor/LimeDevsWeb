@@ -1,10 +1,10 @@
 <template>
   <section class="description columnAlignCenter">
-    <div id="#theCompany" class="company column">
+    <div id="theCompany" class="projectSection company column">
       <h2>The Company</h2>
       <p class="text-center">{{ project.company }}</p>
     </div>
-    <div id="theChallenge" class="column">
+    <div id="theChallenge" class="projectSection column">
       <h2>The Challenge</h2>
       <div class="w-full challenges columnAlignCenter">
         <div
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div id="technologiesResources" class="column">
+    <div id="technologiesResources" class="projectSection column">
       <h2>Technologies and Resources</h2>
       <div class="technologiesResources column">
         <div class="w-full technologies">

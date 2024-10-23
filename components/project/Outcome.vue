@@ -1,5 +1,5 @@
 <template>
-  <section id="outcome" class="outcome columnAlignCenter">
+  <section id="outcome" class="outcome projectSection columnAlignCenter">
     <h2>Project Outcome</h2>
     <p class="text-center">{{ project.outcome }}</p>
     <Swiper
