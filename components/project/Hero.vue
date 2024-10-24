@@ -65,4 +65,11 @@ export default {
   border-radius: 5px;
   padding: 0.25rem 0.5rem;
 }
+
+
+@media (width >= 700px) {
+  .hero {
+    padding: 0 1rem;
+  }
+}
 </style>

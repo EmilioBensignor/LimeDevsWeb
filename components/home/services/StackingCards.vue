@@ -168,9 +168,11 @@ export default {
 }
 
 .service > div {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  z-index: 2;
 }
 
 .service > div:first-of-type {
