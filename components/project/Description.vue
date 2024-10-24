@@ -1,10 +1,10 @@
 <template>
-  <section class="description columnAlignCenter">
+  <section class="w-full description columnAlignCenter">
     <div id="theCompany" class="projectSection company column">
       <h2>The Company</h2>
       <p class="text-center">{{ project.company }}</p>
     </div>
-    <div id="theChallenge" class="projectSection column">
+    <div id="theChallenge" class="w-full projectSection column">
       <h2>The Challenge</h2>
       <div class="w-full challenges columnAlignCenter">
         <div
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div id="technologiesResources" class="projectSection column">
+    <div id="technologiesResources" class="w-full projectSection column">
       <h2>Technologies and Resources</h2>
       <div class="technologiesResources column">
         <div class="w-full technologies">
@@ -135,5 +135,53 @@ export default {
 .technology p,
 .resource p {
   font-size: 0.75rem;
+}
+
+@media (width >= 700px) {
+  .description {
+    gap: 0;
+    padding: 0 3.75rem;
+  }
+
+  .description h2 {
+    text-align: start;
+  }
+
+  .description > div {
+    gap: 1.25rem;
+    padding-bottom: 3rem;
+  }
+
+  .company p {
+    text-align: start !important;
+    font-size: 1rem;
+  }
+
+  .challenge {
+    gap: 1.25rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .challenge p {
+    font-size: 1.375rem;
+  }
+
+  .challenge div {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+
+  .challenge div span {
+    font-size: 1.5rem !important;
+  }
+
+  .technologies, .resources {
+    justify-content: flex-start;
+  }
+
+  .technology, .resource {
+    gap: 1rem;
+    padding: 0.75rem 1.25rem;
+  }
 }
 </style>

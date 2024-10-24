@@ -1,7 +1,7 @@
 <template>
   <section id="mainCharacteristics" class="hero projectSection columnAlignCenter">
-    <div class="columnAlignCenter ">
-      <div class="bg-violet">
+    <div class="w-full columnAlignCenter">
+      <div class="w-full bg-violet">
         <h2 class="text-center">{{ project.phrase }}</h2>
       </div>
       <NuxtImg
@@ -10,7 +10,7 @@
         class="w-full h-full"
       />
     </div>
-    <div class="categories">
+    <div class="w-full categories">
       <div class="bg-violet">
         <p class="text-lime font-bold">{{ project.service }}</p>
       </div>
@@ -69,7 +69,38 @@ export default {
 
 @media (width >= 700px) {
   .hero {
-    padding: 0 1rem;
+    gap: 1.25rem;
+    padding: 0 3.75rem 3rem 3.75rem;
+  }
+
+  .hero > div:first-of-type {
+    gap: 1.25rem;
+  }
+
+  .hero > div:first-of-type > div {
+    background: none;
+    padding: 0;
+  }
+
+  .hero > div:first-of-type > div h2 {
+    text-align: start !important;
+  }
+
+  .hero img {
+    border-radius: 26px;
+  }
+
+  .categories {
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .categories div {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .categories div p {
+    font-size: 1.25rem;
   }
 }
 </style>

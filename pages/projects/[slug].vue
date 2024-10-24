@@ -151,6 +151,7 @@ nav ul {
   overflow-x: auto;
   scrollbar-width: none;
   cursor: grab;
+  padding-right: 1rem;
 }
 
 nav ul::-webkit-scrollbar {
@@ -189,6 +190,10 @@ nav ul li a.active {
   nav {
     top: 7.5rem;
     padding: 3rem 0 3rem 3.75rem;
+  }
+
+  nav ul {
+    padding-right: 3.75rem;
   }
 
   nav ul li a {

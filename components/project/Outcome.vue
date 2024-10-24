@@ -1,6 +1,6 @@
 <template>
   <section id="outcome" class="outcome projectSection columnAlignCenter">
-    <h2>Project Outcome</h2>
+    <h2 class="w-full">Project Outcome</h2>
     <p class="text-center">{{ project.outcome }}</p>
     <Swiper
       :slides-per-view="1.3"
@@ -95,5 +95,21 @@ export default {
 
 :deep(.swiper-slide) {
   height: auto;
+}
+
+@media (width >= 700px) {
+  .outcome {
+    gap: 1.25rem;
+    padding: 0 3.75rem 3rem 3.75rem;
+  }
+
+  .outcome h2 {
+    text-align: start !important;
+  }
+
+  .outcome > p:first-of-type {
+    text-align: start !important;
+    font-size: 1rem;
+  }
 }
 </style>
