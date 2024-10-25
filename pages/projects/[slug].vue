@@ -25,9 +25,7 @@
         <div class="column">
           <h1 class="text-lime">{{ project.title }}</h1>
           <p>{{ project.service }}</p>
-          <a :href="project.web" class="text-lime">{{
-            project.web
-          }}</a>
+          <a :href="project.web" class="text-lime">{{ project.web }}</a>
         </div>
         <nav class="menuProjectDesktop">
           <ul>
@@ -107,22 +105,31 @@ export default {
           top: element.offsetTop - offset,
           behavior: "smooth",
         });
+      } else {
+        console.warn(`Elemento con id ${sectionId} no encontrado`);
       }
     },
     handleScroll() {
       const scrollPosition = window.scrollY + this.getOffsetAdjustment();
       this.sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 10;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          this.activeSection = section.id;
+        if (section) {
+          const sectionTop = section.offsetTop - 10;
+          const sectionBottom = sectionTop + section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            this.activeSection = section.id;
+          }
         }
       });
     },
     getOffsetAdjustment() {
-      const headerHeight = document.querySelector("header").offsetHeight;
-      const titleHeight = document.querySelector(".title").offsetHeight;
-      const menuHeight = document.querySelector(".menuProject").offsetHeight;
+      const header = document.querySelector("header");
+      const title = document.querySelector(".title");
+      const menu = document.querySelector(".menuProject");
+
+      const headerHeight = header ? header.offsetHeight : 0;
+      const titleHeight = title ? title.offsetHeight : 0;
+      const menuHeight = menu ? menu.offsetHeight : 0;
+
       return headerHeight + menuHeight + titleHeight;
     },
   },
