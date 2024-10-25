@@ -331,4 +331,10 @@ nav ul li a.active {
     font-size: 1.25rem;
   }
 }
+
+@media (width >= 1920px) {
+  .projectContainer {
+    gap: 6rem;
+  }
+}
 </style>

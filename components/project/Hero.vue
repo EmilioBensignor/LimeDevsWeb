@@ -139,8 +139,18 @@ export default {
     padding: 4rem 5.625rem 5rem 0;
   }
 
+  .hero img {
+    max-height: 25rem;
+  }
+
   .categories div p {
     font-size: 1.5rem;
+  }
+}
+
+@media (width >= 1920px) {
+  .hero img {
+    max-height: 30rem;
   }
 }
 </style>

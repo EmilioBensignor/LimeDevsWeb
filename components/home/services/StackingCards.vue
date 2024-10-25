@@ -186,6 +186,7 @@ export default {
   width: 15.688rem;
   height: 55%;
   object-fit: contain;
+  filter: brightness(0.9);
 }
 
 .serviceTitle {
