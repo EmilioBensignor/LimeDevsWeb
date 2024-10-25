@@ -16,38 +16,33 @@
       </div>
     </div>
     <div class="w-full accordionMobile pb-5">
-      <ClientOnly>
-        <Accordion :value="0" class="w-full">
-          <AccordionPanel
-            :value="value.value"
-            v-for="(value, index) in values"
-            :key="index"
-            @click="handleAccordionClick(index)"
-          >
-            <AccordionHeader :class="value.class">
-              <h3>{{ value.title }}</h3>
-            </AccordionHeader>
-            <AccordionContent>
-              <div class="columnAlignCenter">
-                <video
-                  ref="mobileVideo"
-                  autoplay
-                  muted
-                  playsinline
-                  preload="auto"
-                  poster="/images/home/Lime-Devs-Values.webp"
-                  width="50%"
-                  height="auto"
-                >
-                  <source :src="`/videos/${value.video}`" type="video/mp4" />
-                  Tu navegador no soporta el video.
-                </video>
-                <p v-html="value.text" class="text-center"></p>
+      <Accordion :value="0" class="w-full">
+        <AccordionPanel
+          :value="value.value"
+          v-for="(value, index) in values"
+          :key="index"
+          @click="handleAccordionClick(index)"
+        >
+          <AccordionHeader :class="value.class">
+            <h3>{{ value.title }}</h3>
+          </AccordionHeader>
+          <AccordionContent>
+            <div class="columnAlignCenter">
+              <div class="lottieAnimation">
+                <ClientOnly>
+                  <lottie-player
+                    :src="value.animation"
+                    background="transparent"
+                    speed="1"
+                    autoplay
+                  ></lottie-player>
+                </ClientOnly>
               </div>
-            </AccordionContent>
-          </AccordionPanel>
-        </Accordion>
-      </ClientOnly>
+              <p v-html="value.text" class="text-center"></p>
+            </div>
+          </AccordionContent>
+        </AccordionPanel>
+      </Accordion>
     </div>
     <div class="aboutDesktop">
       <div class="aboutContainer column">
@@ -75,34 +70,53 @@
           </div>
         </div>
       </div>
-      <ClientOnly>
-        <div class="desktopContentPanel column">
-          <div class="columnAlignCenter">
-            <video
-              ref="desktopVideo"
-              autoplay
-              muted
-              playsinline
-              preload="none"
-              poster="/images/home/Lime-Devs-Values.webp"
-              width="50%"
-              height="auto"
-            >
-              <source
-                :src="`/videos/${values[selectedValue].video}`"
-                type="video/mp4"
-              />
-              Tu navegador no soporta el video.
-            </video>
-            <p v-html="values[selectedValue].text" class="text-center"></p>
+      <div class="desktopContentPanel column">
+        <div class="columnAlignCenter">
+          <div class="lottieAnimation">
+            <ClientOnly>
+              <lottie-player
+                v-if="values[selectedValue].value === 0"
+                src="/animations/Innovation-RFID-Inventory-Control.json"
+                background="transparent"
+                speed="1"
+                autoplay
+              ></lottie-player>
+              <lottie-player
+                v-else-if="values[selectedValue].value === 1"
+                src="/animations/Collaboration-Software-Development.json"
+                background="transparent"
+                speed="1"
+                autoplay
+              ></lottie-player>
+              <lottie-player
+                v-else-if="values[selectedValue].value === 2"
+                src="/animations/Adaptability-Hardware-Development.json"
+                background="transparent"
+                speed="1"
+                autoplay
+              ></lottie-player>
+              <lottie-player
+                v-else-if="values[selectedValue].value === 3"
+                src="/animations/Excellence-Product-Delivery.json"
+                background="transparent"
+                speed="1"
+                autoplay
+              ></lottie-player>
+            </ClientOnly>
           </div>
+          <p v-html="values[selectedValue].text" class="text-center"></p>
         </div>
-      </ClientOnly>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import animationInnovation from "~/public/animations/Innovation-RFID-Inventory-Control.json";
+import animationCollaboration from "~/public/animations/Collaboration-Software-Development.json";
+import animationAdaptability from "~/public/animations/Adaptability-Hardware-Development.json";
+import animationExcellence from "~/public/animations/Excellence-Product-Delivery.json";
+
 export default {
   data() {
     return {
@@ -110,27 +124,27 @@ export default {
       values: [
         {
           value: 0,
-          video: "Innovation-RFID-Inventory-Control.mp4",
+          animation: animationInnovation,
           title: "Innovation",
           text: "<p>We constantly explore <span class='font-bold text-lime'>new technologies</span> to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
           border: "borderInnovation",
         },
         {
           value: 1,
-          video: "Collaboration-Software-Development.mp4",
+          animation: animationCollaboration,
           title: "Collaboration",
           text: "We believe in working closely with our clients, understanding their challenges, and <span class='font-bold text-lime'>building solutions together.</span>",
           class: "rightHeader",
         },
         {
           value: 2,
-          video: "Adaptability-Hardware-Development.mp4",
+          animation: animationAdaptability,
           title: "Adaptability",
           text: "<p>We quickly adapt to the <span class='font-bold text-lime'>fast-changing technological landscape</span>, ensuring that our clients stay ahead.</p>",
         },
         {
           value: 3,
-          video: "Excellence-Product-Delivery.mp4",
+          animation: animationExcellence,
           title: "Excellence",
           text: "<p>We strive for the <span class='font-bold text-lime'>highest standards</span> in every project, ensuring <span class='font-bold text-lime'>quality</span> and <span class='font-bold text-lime'>scalability</span> in our solutions. to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
           class: "rightHeader",
@@ -142,25 +156,9 @@ export default {
   methods: {
     setSelectedStep(index) {
       this.selectedValue = index;
-      this.updateVideo("desktop");
     },
     handleAccordionClick(index) {
       this.selectedValue = index;
-      this.updateVideo("mobile");
-    },
-    updateVideo(version) {
-      this.$nextTick(() => {
-        const videoEl =
-          version === "mobile"
-            ? this.$refs.mobileVideo[this.selectedValue]
-            : this.$refs.desktopVideo;
-
-        if (videoEl) {
-          videoEl.pause();
-          videoEl.load();
-          videoEl.play();
-        }
-      });
     },
   },
 };
@@ -233,7 +231,6 @@ export default {
 }
 
 .accordionMobile .p-accordioncontent-content div {
-  gap: 1.25rem;
   padding: 0.75rem 0;
 }
 
@@ -286,9 +283,18 @@ h3 {
   display: none;
 }
 
+.lottieAnimation {
+  width: 12.813rem;
+  padding: 0 !important;
+}
+
 @media (width >= 480px) {
   h3 {
     font-size: 1.25rem;
+  }
+
+  .lottieAnimation {
+    width: 14rem;
   }
 }
 
@@ -323,7 +329,7 @@ h3 {
   }
 
   .desktopContentPanel p {
-    max-width: 293px;
+    max-width: 280px;
   }
 
   .aboutContainer > div:last-child {
@@ -352,10 +358,6 @@ h3 {
     transition: all 0.4s;
   }
 
-  .desktopContentPanel > div {
-    gap: 1.25rem;
-  }
-
   .desktopContentPanel p {
     font-size: 0.875rem;
   }
@@ -366,8 +368,22 @@ h3 {
     font-size: 1.25rem;
   }
 
+  .valueBtn {
+    width: 22rem;
+    padding-left: 7rem;
+  }
+
+  .valueBtnActive {
+    width: 25rem;
+  }
+
   .desktopContentPanel p {
+    max-width: 312px;
     font-size: 1rem;
+  }
+
+  .lottieAnimation {
+    width: 18rem;
   }
 }
 
@@ -382,7 +398,7 @@ h3 {
   }
 
   .aboutDesktop {
-    gap: 3.5rem;
+    gap: 2.5rem;
   }
 
   .aboutDesktop > div:first-of-type {
@@ -439,15 +455,19 @@ h3 {
     margin-left: 0;
   }
 
+  .lottieAnimation {
+    width: 14rem;
+  }
+
   .desktopContentPanel p {
-    max-width: 272px;
+    max-width: 293px;
     font-size: 1.125rem;
   }
 }
 
 @media (width >= 1280px) {
   .atLimeDesktop {
-    width: 26rem;
+    width: 25rem;
     display: flex;
     align-items: center;
     padding: 2.25rem;
@@ -457,11 +477,19 @@ h3 {
     width: 18rem;
     padding: 1rem 1.25rem 1rem 5rem;
   }
+
+  .lottieAnimation {
+    width: 16rem;
+  }
+
+  .desktopContentPanel p {
+    max-width: 350px;
+  }
 }
 
 @media (width >= 1440px) {
   .atLimeDesktop {
-    width: 33.75rem;
+    width: 28rem;
     padding: 2.5rem;
   }
 
@@ -479,7 +507,7 @@ h3 {
   }
 
   .desktopContentPanel p {
-    max-width: 300px;
+    max-width: 390px;
     font-size: 1.25rem;
   }
 }
@@ -494,15 +522,23 @@ h3 {
   .valueBtnActive {
     margin-left: 0;
   }
+
+  .lottieAnimation {
+    width: 18rem;
+  }
+
+  .desktopContentPanel p {
+    max-width: 520px;
+  }
 }
 
 @media (width >= 1920px) {
   .atLimeDesktop {
-    width: 40rem;
+    width: 38rem;
   }
 
-  .desktopContentPanel > div {
-    gap: 2.5rem;
+  .lottieAnimation {
+    width: 20rem;
   }
 
   .desktopContentPanel p {

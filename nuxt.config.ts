@@ -2,6 +2,11 @@
 import { projects } from './constants/projects';
 
 export default defineNuxtConfig({
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'lottie-player'
+    }
+  },
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   alias: {
@@ -44,6 +49,12 @@ export default defineNuxtConfig({
           href: 'https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap'
         },
       ],
+      script: [
+        {
+          src: 'https://unpkg.com/@lottiefiles/lottie-player@latest',
+          async: true
+        }
+      ]
     }
   },
   build: {
