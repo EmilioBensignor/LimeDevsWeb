@@ -5,7 +5,7 @@
     </div>
     <div class="subtitle columnAlignCenter">
       <p>{{ project.service }}</p>
-      <NuxtLink :to="project.web" class="text-lime">{{ project.web }}</NuxtLink>
+      <a :href="project.web" class="text-lime">{{ project.web }}</a>
     </div>
     <nav class="menuProject">
       <ul>
@@ -20,11 +20,35 @@
         </li>
       </ul>
     </nav>
-    <div>
-      <ProjectHero :project="project" />
-      <ProjectDescription :project="project" />
-      <ProjectOutcome :project="project" />
-    </div>
+    <section class="projectContainer">
+      <div class="menuDesktop">
+        <div class="column">
+          <h1 class="text-lime">{{ project.title }}</h1>
+          <p>{{ project.service }}</p>
+          <a :href="project.web" class="text-lime">{{
+            project.web
+          }}</a>
+        </div>
+        <nav class="menuProjectDesktop">
+          <ul>
+            <li v-for="(item, index) in menu" :key="index">
+              <a
+                :href="item.link"
+                @click.prevent="scrollToSection(item.link)"
+                :class="{ active: activeSection === item.link.substring(1) }"
+              >
+                {{ item.title }}
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <ProjectHero :project="project" />
+        <ProjectDescription :project="project" />
+        <ProjectOutcome :project="project" />
+      </div>
+    </section>
   </main>
 </template>
 
@@ -78,15 +102,15 @@ export default {
       const element = document.getElementById(sectionId);
 
       if (element) {
-        const offset = this.getOffsetAdjustment(); // Ajustamos el offset por el sticky
+        const offset = this.getOffsetAdjustment();
         window.scrollTo({
-          top: element.offsetTop - offset, // Ajustamos el scroll
+          top: element.offsetTop - offset,
           behavior: "smooth",
         });
       }
     },
     handleScroll() {
-      const scrollPosition = window.scrollY + this.getOffsetAdjustment(); // Sumamos el offset
+      const scrollPosition = window.scrollY + this.getOffsetAdjustment();
       this.sections.forEach((section) => {
         const sectionTop = section.offsetTop - 10;
         const sectionBottom = sectionTop + section.offsetHeight;
@@ -96,7 +120,6 @@ export default {
       });
     },
     getOffsetAdjustment() {
-      // Calculamos el tamaño del header sticky y del menú
       const headerHeight = document.querySelector("header").offsetHeight;
       const titleHeight = document.querySelector(".title").offsetHeight;
       const menuHeight = document.querySelector(".menuProject").offsetHeight;
@@ -178,6 +201,10 @@ nav ul li a.active {
   background: var(--gradient-violet-light);
 }
 
+.menuDesktop {
+  display: none;
+}
+
 @media (width >= 700px) {
   main {
     padding-top: 0;
@@ -199,6 +226,102 @@ nav ul li a.active {
   nav ul li a {
     height: 2.75rem;
     font-size: 1rem;
+  }
+}
+
+@media (width >= 1080px) {
+  .menuDesktop {
+    display: flex;
+  }
+
+  .menuProject,
+  .title,
+  .subtitle {
+    display: none;
+  }
+
+  main {
+    padding: 3.75rem 0 3.75rem 5.625rem;
+  }
+
+  .menuDesktop {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .menuDesktop div {
+    gap: 0.625rem;
+  }
+
+  h1 {
+    text-align: start;
+  }
+
+  .menuDesktop div p,
+  .menuDesktop div a {
+    font-size: 1.25rem;
+  }
+
+  .projectContainer {
+    display: flex;
+    gap: 1.75rem;
+    position: relative;
+  }
+
+  .menuDesktop {
+    height: max-content;
+    position: sticky;
+    top: 12rem;
+  }
+
+  .menuProjectDesktop {
+    position: relative;
+    top: auto;
+    padding: 0;
+  }
+
+  nav {
+    position: relative;
+    top: auto;
+  }
+
+  nav ul {
+    width: 100%;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    width: 100%;
+    height: auto;
+    border-radius: 999px;
+    text-align: center;
+    font-size: 1.125rem;
+    color: #e7e7f099;
+    padding: 1rem 2.5rem;
+  }
+
+  nav ul li a.active {
+    color: var(--color-white);
+  }
+}
+
+@media (width >= 1440px) {
+  main {
+    padding: 5rem 0 5rem 5.625rem;
+  }
+
+  .projectContainer {
+    gap: 2.5rem;
+  }
+
+  nav ul li a {
+    font-size: 1.25rem;
   }
 }
 </style>

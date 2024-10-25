@@ -175,13 +175,130 @@ export default {
     font-size: 1.5rem !important;
   }
 
-  .technologies, .resources {
-    justify-content: flex-start;
+  .technologiesResources {
+    gap: 0.75rem;
   }
 
-  .technology, .resource {
+  .technologies,
+  .resources {
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+
+  .technology,
+  .resource {
     gap: 1rem;
     padding: 0.75rem 1.25rem;
+  }
+
+  .technology p,
+  .resource p {
+    font-size: 1.25rem;
+  }
+
+  .technology div,
+  .resource div {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (width >= 1080px) {
+  .description {
+    padding: 0 5.625rem 0 0;
+  }
+
+  .description > div {
+    gap: 1.75rem;
+    padding-bottom: 3.75rem;
+  }
+
+  .company p {
+    font-size: 1.25rem;
+  }
+
+  .challenges {
+    gap: 1rem;
+  }
+
+  .challenge {
+    gap: 2rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .challenge p {
+    font-size: 1.5rem;
+  }
+
+  .challenge div {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .challenge div span {
+    font-size: 1.75rem !important;
+  }
+
+  .technologiesResources {
+    gap: 1rem;
+  }
+
+  .technologies,
+  .resources {
+    gap: 1rem;
+  }
+
+  .technology,
+  .resource {
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .technology p,
+  .resource p {
+    font-size: 1.25rem;
+  }
+
+  .technology div,
+  .resource div {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+@media (width >= 1440px) {
+  .description > div {
+    padding-bottom: 5rem;
+  }
+
+  .company p {
+    font-size: 1.5rem;
+  }
+
+  .challenge {
+    padding: 1.5rem;
+  }
+
+  .challenge div {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  .challenge div span {
+    font-size: 2rem !important;
+  }
+
+  .challenge p {
+    font-size: 1.625rem;
+  }
+
+  .technology div, .resource div {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .technology p, .resource p {
+    font-size: 1.5rem;
   }
 }
 </style>

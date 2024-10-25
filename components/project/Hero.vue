@@ -1,5 +1,8 @@
 <template>
-  <section id="mainCharacteristics" class="hero projectSection columnAlignCenter">
+  <section
+    id="mainCharacteristics"
+    class="hero projectSection columnAlignCenter"
+  >
     <div class="w-full columnAlignCenter">
       <div class="w-full bg-violet">
         <h2 class="text-center">{{ project.phrase }}</h2>
@@ -66,7 +69,6 @@ export default {
   padding: 0.25rem 0.5rem;
 }
 
-
 @media (width >= 700px) {
   .hero {
     gap: 1.25rem;
@@ -101,6 +103,44 @@ export default {
 
   .categories div p {
     font-size: 1.25rem;
+  }
+}
+
+@media (width >= 1080px) {
+  .hero {
+    padding: 3.625rem 5.625rem 3.75rem 0;
+  }
+
+  .hero > div:first-of-type {
+    gap: 1.75rem;
+  }
+
+  .hero img {
+    max-height: 22.188rem;
+    object-fit: cover;
+    border-radius: 50px;
+  }
+
+  .categories {
+    gap: 0.75rem;
+  }
+
+  .categories div {
+    padding: 0.75rem 1rem;
+  }
+
+  .categories div p {
+    font-size: 1.375rem;
+  }
+}
+
+@media (width >= 1440px) {
+  .hero {
+    padding: 4rem 5.625rem 5rem 0;
+  }
+
+  .categories div p {
+    font-size: 1.5rem;
   }
 }
 </style>

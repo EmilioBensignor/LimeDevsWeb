@@ -3,6 +3,7 @@
     <NuxtLink :to="'/'">
       <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" />
     </NuxtLink>
+    <NuxtLink to="#contactUs" class="headerBtn primaryButton">Contact Us</NuxtLink>
   </header>
 </template>
 
@@ -15,6 +16,10 @@ header {
 header img {
   width: 2.5rem;
   height: 100%;
+}
+
+.headerBtn {
+  display: none;
 }
 
 @media (width >= 480px) {
@@ -42,6 +47,10 @@ header img {
 
   header img {
     width: 5.75rem;
+  }
+
+  .headerBtn {
+    display: block;
   }
 }
 </style>

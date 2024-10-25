@@ -112,4 +112,21 @@ export default {
     font-size: 1rem;
   }
 }
+
+@media (width >= 1080px) {
+  .outcome {
+    gap: 1.75rem;
+    padding: 0 5.625rem 0 0;
+  }
+
+  .outcome > p:first-of-type {
+    font-size: 1.25rem;
+  }
+}
+
+@media (width >= 1440px) {
+  .outcome > p:first-of-type {
+    font-size: 1.5rem;
+  }
+}
 </style>
