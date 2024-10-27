@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     'nuxt-vitalizer',
     'nuxt-booster',
     '@nuxtjs/fontaine',
+    'nuxt-anchorscroll',
   ],
   icon: {
     size: '1rem',

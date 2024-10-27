@@ -29,6 +29,7 @@
     "vue-router": "latest"
   },
   "devDependencies": {
-    "@iconify-json/mingcute": "^1.2.0"
+    "@iconify-json/mingcute": "^1.2.0",
+    "nuxt-anchorscroll": "^1.0.3"
   }
 }
