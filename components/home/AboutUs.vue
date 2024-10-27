@@ -32,12 +32,9 @@
                 <ClientOnly>
                   <lottie-player
                     :src="value.animation"
-                    background="transparent" 
+                    background="transparent"
                     speed="1"
                     autoplay
-                    :renderer="isMobile ? 'canvas' : 'svg'"
-                    @play="handleAnimationPlay"
-                    @pause="handleAnimationPause"
                   ></lottie-player>
                 </ClientOnly>
               </div>
@@ -136,7 +133,6 @@ export default {
   data() {
     return {
       selectedValue: 0,
-      isMobile: false,
       values: [
         {
           value: 0,
@@ -169,22 +165,12 @@ export default {
       ],
     };
   },
-  mounted() {
-    this.isMobile = window.innerWidth < 768; // Definimos el umbral para dispositivos móviles
-    window.addEventListener("resize", this.handleResize);
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.handleResize);
-  },
   methods: {
     setSelectedStep(index) {
       this.selectedValue = index;
     },
     handleAccordionClick(index) {
       this.selectedValue = index;
-    },
-    handleResize() {
-      this.isMobile = window.innerWidth < 768;
     },
   },
 };
