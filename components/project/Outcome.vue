@@ -6,21 +6,6 @@
       :slides-per-view="1.3"
       :space-between="12"
       :scrollbar="true"
-      :breakpoints="{
-        380: {
-          slidesPerView: 1.5,
-        },
-        450: {
-          slidesPerView: 1.8,
-        },
-        550: {
-          slidesPerView: 2.2,
-        },
-        700: {
-          slidesPerView: 2.8,
-          spaceBetween: 16,
-        },
-      }"
       class="swiperOutcome"
     >
       <SwiperSlide
@@ -67,14 +52,13 @@ export default {
 
 .slideOutcome {
   width: 100% !important;
-  max-width: 200px;
+  max-width: 12.5rem;
   height: 100%;
   background-color: #39385ef2;
   border-radius: 9px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s;
-  cursor: pointer;
 }
 
 .slideOutcome img {
@@ -114,6 +98,14 @@ export default {
     text-align: start !important;
     font-size: 1rem;
   }
+
+  .swiperOutcome {
+    height: 21.625rem;
+  }
+
+  .slideOutcome {
+    max-width: 21.625rem;
+  }
 }
 
 @media (width >= 1080px) {
@@ -124,6 +116,14 @@ export default {
 
   .outcome > p:first-of-type {
     font-size: 1.25rem;
+  }
+
+  .swiperOutcome {
+    height: 31.25rem;
+  }
+
+  .slideOutcome {
+    max-width: 31.25rem;
   }
 }
 

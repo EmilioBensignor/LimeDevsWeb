@@ -1,6 +1,6 @@
 // useLottie.ts
 import lottie from 'lottie-web';
-import type { AnimationItem } from 'lottie-web';
+import type{ AnimationItem } from 'lottie-web';
 import { onMounted, onUnmounted, ref, nextTick } from 'vue';
 
 export function useLottie(animationData: any) {
@@ -14,12 +14,14 @@ export function useLottie(animationData: any) {
     // Destruir animación previa si existe
     if (animation) {
       animation.destroy();
+      animation = null;  // Resetear animación
     }
 
     // Limpiar el contenedor
     animationContainer.value.innerHTML = '';
 
     try {
+      // Solo inicializar si el contenedor existe
       animation = lottie.loadAnimation({
         container: animationContainer.value,
         renderer: 'svg',
@@ -28,7 +30,6 @@ export function useLottie(animationData: any) {
         animationData,
       });
 
-      // Forzar play después de cargar
       animation.addEventListener('DOMLoaded', () => {
         animation?.play();
       });
@@ -38,21 +39,19 @@ export function useLottie(animationData: any) {
   };
 
   onMounted(() => {
-    // Intentar inicializar múltiples veces
     initAnimation();
-    // Segundo intento después de un breve delay
     setTimeout(initAnimation, 100);
   });
 
   onUnmounted(() => {
     if (animation) {
       animation.destroy();
+      animation = null;
     }
   });
 
   return {
     animationContainer,
-    // Exponer método para reiniciar si es necesario
     reinitAnimation: initAnimation
   };
 }
