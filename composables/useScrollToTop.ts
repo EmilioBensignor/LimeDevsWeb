@@ -5,24 +5,16 @@ export function useScrollToTop() {
   const router = useRouter();
 
   const scrollToTop = () => {
-    const scrollMethods = [
-      () => document.scrollingElement?.scrollTo({ top: 0, behavior: 'smooth' }),
-      () => document.documentElement.scrollTo({ top: 0, behavior: 'smooth' }),
-      () => document.body.scrollTo({ top: 0, behavior: 'smooth' }),
-      () => window.scrollTo({ top: 0, behavior: 'smooth' })
-    ];
-
-    scrollMethods.forEach(method => {
-      try {
-        requestAnimationFrame(() => method());
-      } catch (e) {
-        console.error('Scroll method failed:', e);
-      }
+    // Usar requestAnimationFrame para forzar el scroll de manera fluida en móviles
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
     });
   };
 
   router.afterEach(() => {
     scrollToTop();
+    // Asegurar scroll después de siguiente tick y retraso adicional
     nextTick(() => {
       scrollToTop();
       setTimeout(scrollToTop, 100);
