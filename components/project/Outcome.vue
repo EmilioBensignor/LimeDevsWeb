@@ -5,6 +5,7 @@
     <Swiper
       :slides-per-view="1.3"
       :space-between="12"
+      :scrollbar="true"
       :breakpoints="{
         380: {
           slidesPerView: 1.5,
@@ -27,9 +28,10 @@
         :key="index"
         class="slideOutcome"
       >
-        <NuxtImg
+        <img
           :src="`/images/projects/${projectOutcome.img}`"
           :alt="projectOutcome.alt"
+          class="w-full h-full"
         />
       </SwiperSlide>
     </Swiper>
@@ -60,26 +62,22 @@ export default {
 .swiperOutcome {
   width: 100%;
   height: 17.5rem;
-  position: relative;
-  overflow: hidden;
   cursor: grab;
 }
 
 .slideOutcome {
   width: 100% !important;
+  max-width: 200px;
   height: 100%;
   background-color: #39385ef2;
   border-radius: 9px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s;
-  margin-right: 0.75rem;
   cursor: pointer;
 }
 
 .slideOutcome img {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
@@ -95,6 +93,11 @@ export default {
 
 :deep(.swiper-slide) {
   height: auto;
+}
+
+:deep(.swiper-scrollbar) {
+  bottom: -0.75rem;
+  background: var(--color-lime);
 }
 
 @media (width >= 700px) {

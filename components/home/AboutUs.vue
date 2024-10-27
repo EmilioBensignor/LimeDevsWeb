@@ -80,6 +80,9 @@
                 background="transparent"
                 speed="1"
                 autoplay
+                mode="normal"
+                renderer="svg"
+                :hover="false"
               ></lottie-player>
               <lottie-player
                 v-else-if="values[selectedValue].value === 1"
@@ -87,6 +90,9 @@
                 background="transparent"
                 speed="1"
                 autoplay
+                mode="normal"
+                renderer="svg"
+                :hover="false"
               ></lottie-player>
               <lottie-player
                 v-else-if="values[selectedValue].value === 2"
@@ -94,6 +100,9 @@
                 background="transparent"
                 speed="1"
                 autoplay
+                mode="normal"
+                renderer="svg"
+                :hover="false"
               ></lottie-player>
               <lottie-player
                 v-else-if="values[selectedValue].value === 3"
@@ -101,6 +110,9 @@
                 background="transparent"
                 speed="1"
                 autoplay
+                mode="normal"
+                renderer="svg"
+                :hover="false"
               ></lottie-player>
             </ClientOnly>
           </div>
