@@ -1,35 +1,33 @@
-// useScrollToTop.ts
 import { useRouter } from 'vue-router';
 
 export function useScrollToTop() {
   const router = useRouter();
 
   const scrollToTop = () => {
-    try {
-      // Intenta primero con smooth scroll
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    } catch (e) {
-      // Fallback para navegadores que no soportan smooth scroll
+    // Detectar si estamos en iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+    if (isIOS) {
+      // Solución específica para iOS
+      window.scrollTo(0, 0);
+    } else {
       try {
-        // Intenta con requestAnimationFrame para una animación suave manual
-        const scrollStep = () => {
-          const currentPosition = window.pageYOffset;
-          if (currentPosition > 0) {
-            window.requestAnimationFrame(scrollStep);
-            window.scrollTo(0, currentPosition - currentPosition / 8);
-          }
-        };
-        window.requestAnimationFrame(scrollStep);
-      } catch (e2) {
-        // Último recurso: scroll instantáneo
+        const element = document.scrollingElement || document.documentElement;
+        element.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } catch (e) {
+        // Fallback
         window.scrollTo(0, 0);
       }
     }
   };
 
   router.afterEach(() => {
-    // Pequeño delay para asegurar que la navegación se ha completado
-    setTimeout(scrollToTop, 100);
+    nextTick(() => {
+      scrollToTop();
+    });
   });
 
   return {
