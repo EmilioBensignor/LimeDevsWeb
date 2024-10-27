@@ -3,9 +3,11 @@
     <h2 class="w-full">Project Outcome</h2>
     <p class="text-center">{{ project.outcome }}</p>
     <Swiper
-      :slides-per-view="1.3"
+      :modules="[SwiperScrollbar]"
+      :slides-per-view="'auto'"
+      :free-mode="true"
       :space-between="12"
-      :scrollbar="true"
+      :scrollbar="{ draggable: true }"
       class="swiperOutcome"
     >
       <SwiperSlide
@@ -34,6 +36,17 @@ export default {
 };
 </script>
 
+<style>
+  .swiperOutcome .swiper-scrollbar {
+    bottom: 0;
+    background: var(--color-white);
+  }
+  
+  .swiperOutcome .swiper-scrollbar-drag {
+    background: var(--color-lime,);
+  }
+</style>
+
 <style scoped>
 .outcome {
   gap: 0.75rem;
@@ -46,15 +59,14 @@ export default {
 
 .swiperOutcome {
   width: 100%;
-  height: 17.5rem;
+  height: 18.5rem;
   cursor: grab;
+  padding-bottom: 1rem;
 }
 
 .slideOutcome {
-  width: 100% !important;
-  max-width: 12.5rem;
+  width: auto;
   height: 100%;
-  background-color: #39385ef2;
   border-radius: 9px;
   position: relative;
   overflow: hidden;
@@ -79,11 +91,6 @@ export default {
   height: auto;
 }
 
-:deep(.swiper-scrollbar) {
-  bottom: -0.75rem;
-  background: var(--color-lime);
-}
-
 @media (width >= 700px) {
   .outcome {
     gap: 1.25rem;
@@ -104,7 +111,7 @@ export default {
   }
 
   .slideOutcome {
-    max-width: 21.625rem;
+    border-radius: 24px;
   }
 }
 
@@ -119,11 +126,11 @@ export default {
   }
 
   .swiperOutcome {
-    height: 31.25rem;
+    height: 26rem;
   }
 
   .slideOutcome {
-    max-width: 31.25rem;
+    border-radius: 50px;
   }
 }
 

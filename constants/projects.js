@@ -77,6 +77,18 @@ export const projects = [
         alt: ""
       },
       {
+        img: "project-image.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
+        img: "project-vertical.png",
+        alt: ""
+      },
+      {
         img: "project-vertical.png",
         alt: ""
       },
