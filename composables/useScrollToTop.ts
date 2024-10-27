@@ -4,41 +4,33 @@ import { useRouter } from 'vue-router'
 export function useScrollToTop() {
   const router = useRouter()
 
+  const isMobile = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    )
+  }
+
   const scrollToTop = () => {
-    // Verificar si smooth scroll es soportado
-    if ('scrollBehavior' in document.documentElement.style) {
-      try {
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: 'smooth'
-        })
-      } catch (error) {
-        // Fallback para navegadores que no soportan scroll suave
-        window.scrollTo(0, 0)
-      }
+    if (isMobile()) {
+      // Solución específica para móviles
+      document.body.scrollTop = 0 // Para Safari móvil
+      document.documentElement.scrollTop = 0 // Para otros navegadores móviles
     } else {
-      // Implementación manual de scroll suave
-      const scrollStep = -window.scrollY / 15
-      const scrollInterval = setInterval(() => {
-        if (window.scrollY !== 0) {
-          window.scrollBy(0, scrollStep)
-        } else {
-          clearInterval(scrollInterval)
-        }
-      }, 15)
+      // Mantener el comportamiento suave para desktop
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     }
   }
 
-  // Usar onMounted para asegurarse que el DOM está listo
   onMounted(() => {
-    router.afterEach(() => {
-      // Pequeño timeout para asegurar que el DOM se ha actualizado
-      setTimeout(scrollToTop, 0)
+    router.afterEach((to, from) => {
+      if (to.path !== from.path) {
+        nextTick(() => {
+          scrollToTop()
+        })
+      }
     })
   })
 
-  // Exponer el método para uso manual
   return {
     scrollToTop
   }
