@@ -23,6 +23,8 @@ export default defineNuxtConfig({
     'nuxt-booster',
     '@nuxtjs/fontaine',
     'nuxt-anchorscroll',
+    '@nuxt/scripts',
+    '@vueuse/nuxt',
   ],
   icon: {
     size: '1rem',
