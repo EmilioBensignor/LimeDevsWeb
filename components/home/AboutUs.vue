@@ -15,7 +15,7 @@
         </p>
       </div>
     </div>
-    <div v-if="isMobile" class="w-full accordionMobile pb-5">
+    <div class="w-full accordionMobile pb-5">
       <Accordion :value="0" class="w-full">
         <AccordionPanel
           :value="value.value"
@@ -28,7 +28,20 @@
           <AccordionContent>
             <div class="columnAlignCenter">
               <div class="lottieAnimation">
-                <ClientOnly>
+                <video
+                  autoplay
+                  muted
+                  playsinline
+                  preload="auto"
+                  poster="/images/home/Lime-Devs-Values.webp"
+                  width="100%"
+                  height="auto">
+                  <source
+                    src="/videos/Product-Delivery-Software-Development.mp4"
+                    type="video/mp4" />
+                  Tu navegador no soporta el video.
+                </video>
+                <!-- <ClientOnly>
                   <lottie-player
                     :ref="
                       (el) => setLottieRef(el, `lottieMobile${value.value}`)
@@ -38,7 +51,7 @@
                     speed="1"
                     :playsinline="true"
                     :autoplay="isVisible"></lottie-player>
-                </ClientOnly>
+                </ClientOnly> -->
               </div>
               <p v-html="value.text" class="text-center"></p>
             </div>
@@ -46,7 +59,7 @@
         </AccordionPanel>
       </Accordion>
     </div>
-    <div v-else class="aboutDesktop">
+    <div class="aboutDesktop">
       <div class="aboutContainer column">
         <div
           class="atLimeDesktop bg-gradient-light-violet"
@@ -73,7 +86,7 @@
       <div class="desktopContentPanel column">
         <div class="columnAlignCenter">
           <div ref="animationContainer" class="lottieAnimation">
-            <ClientOnly>
+            <!-- <ClientOnly>
               <lottie-player
                 :ref="(el) => setLottieRef(el, `lottieDesktop${0}`)"
                 v-if="values[selectedValue].value === 0"
@@ -122,7 +135,20 @@
                 mode="normal"
                 renderer="svg"
                 :hover="false"></lottie-player>
-            </ClientOnly>
+            </ClientOnly> -->
+            <video
+              autoplay
+              muted
+              playsinline
+              preload="auto"
+              poster="/images/home/Lime-Devs-Values.webp"
+              width="100%"
+              height="auto">
+              <source
+                src="/videos/About.mp4"
+                type="video/mp4" />
+              Tu navegador no soporta el video.
+            </video>
           </div>
           <p v-html="values[selectedValue].text" class="text-center"></p>
         </div>
@@ -132,15 +158,9 @@
 </template>
 
 <script>
-  import animationInnovation from "~/public/animations/Innovation-RFID-Inventory-Control.json";
-  import animationCollaboration from "~/public/animations/Collaboration-Software-Development.json";
-  import animationAdaptability from "~/public/animations/Adaptability-Hardware-Development.json";
-  import animationExcellence from "~/public/animations/Excellence-Product-Delivery.json";
-
   export default {
     data() {
       return {
-        lottieRefs: {},
         selectedValue: 0,
         observer: null,
         isVisible: false,
@@ -148,27 +168,23 @@
         values: [
           {
             value: 0,
-            animation: animationInnovation,
             title: "Innovation",
             text: "<p>We constantly explore <span class='font-bold text-lime'>new technologies</span> to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
             border: "borderInnovation",
           },
           {
             value: 1,
-            animation: animationCollaboration,
             title: "Collaboration",
             text: "We believe in working closely with our clients, understanding their challenges, and <span class='font-bold text-lime'>building solutions together.</span>",
             class: "rightHeader",
           },
           {
             value: 2,
-            animation: animationAdaptability,
             title: "Adaptability",
             text: "<p>We quickly adapt to the <span class='font-bold text-lime'>fast-changing technological landscape</span>, ensuring that our clients stay ahead.</p>",
           },
           {
             value: 3,
-            animation: animationExcellence,
             title: "Excellence",
             text: "<p>We strive for the <span class='font-bold text-lime'>highest standards</span> in every project, ensuring <span class='font-bold text-lime'>quality</span> and <span class='font-bold text-lime'>scalability</span> in our solutions. to develop <span class='font-bold text-lime'>creative solutions</span> that meet our clients' evolving needs.</p>",
             class: "rightHeader",
@@ -178,49 +194,26 @@
       };
     },
     methods: {
-      setLottieRef(el, key) {
-        if (el) {
-          this.lottieRefs[key] = el;
-        }
-      },
-      handleLottieVisibility(isVisible) {
-        this.isVisible = isVisible;
-        if (isVisible) {
-          this.$nextTick(() => {
-            this.playCurrentLottieAnimations();
-          });
-        } else {
-          this.pauseCurrentLottieAnimations();
-        }
-      },
-      playCurrentLottieAnimations() {
-        const key = this.isMobile
-          ? `lottieMobile${this.selectedValue}`
-          : `lottieDesktop${this.selectedValue}`;
-        const ref = this.lottieRefs[key];
-        if (ref?.getLottie) {
-          ref.getLottie().stop();
-          ref.getLottie().play();
-        }
-      },
-      pauseCurrentLottieAnimations() {
-        const key = this.isMobile
-          ? `lottieMobile${this.selectedValue}`
-          : `lottieDesktop${this.selectedValue}`;
-        const ref = this.lottieRefs[key];
-        if (ref?.getLottie) ref.getLottie().pause();
-      },
+      // setLottieRef(el, key) {
+      //   if (el) {
+      //     this.lottieRefs[key] = el;
+      //   }
+      // },
+      // handleLottieVisibility(isVisible) {
+      //   this.isVisible = isVisible;
+      //   if (isVisible) {
+      //     this.$nextTick(() => {
+      //       this.playCurrentLottieAnimations();
+      //     });
+      //   } else {
+      //     this.pauseCurrentLottieAnimations();
+      //   }
+      // },
       setSelectedStep(index) {
         this.selectedValue = index;
-        if (this.isVisible) {
-          this.$nextTick(() => this.playCurrentLottieAnimations());
-        }
       },
       handleAccordionClick(index) {
         this.setSelectedStep(index);
-      },
-      checkIfMobile() {
-        this.isMobile = window.innerWidth < 768;
       },
       setupIntersectionObserver() {
         if (
@@ -237,7 +230,6 @@
         this.observer = new IntersectionObserver(
           (entries) => {
             const [entry] = entries;
-            this.handleLottieVisibility(entry.isIntersecting);
           },
           {
             threshold: 0.1,
@@ -245,30 +237,24 @@
           }
         );
 
-        this.$nextTick(() => {
-          const section = this.isMobile
-            ? this.$el.querySelector(".accordionMobile")
-            : this.$el.querySelector(".aboutDesktop");
+        // this.$nextTick(() => {
+        //   const section = this.isMobile
+        //     ? this.$el.querySelector(".accordionMobile")
+        //     : this.$el.querySelector(".aboutDesktop");
 
-          if (section) {
-            this.observer.observe(section);
-          }
-        });
+        //   if (section) {
+        //     this.observer.observe(section);
+        //   }
+        // });
       },
     },
     mounted() {
-      this.checkIfMobile();
       this.setupIntersectionObserver();
-      this.handleLottieVisibility();
 
       this.$nextTick(() => {
         const section = this.isMobile
           ? this.$el.querySelector(".accordionMobile")
           : this.$el.querySelector(".aboutDesktop");
-
-        if (section) {
-          this.handleLottieVisibility(true);
-        }
       });
     },
     beforeDestroy() {
