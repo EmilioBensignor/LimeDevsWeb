@@ -4,7 +4,7 @@ import { projects } from './constants/projects';
 export default defineNuxtConfig({
   vue: {
     compilerOptions: {
-      isCustomElement: (tag) => tag === 'lottie-player'
+      isCustomElement: (tag: any) => tag === 'lottie-player'
     }
   },
   compatibilityDate: '2024-04-03',
