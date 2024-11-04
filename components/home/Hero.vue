@@ -15,8 +15,8 @@
       height="auto"
     >
       <source
-        src="/videos/Product-Delivery-Software-Development.mp4"
-        type="video/mp4"
+        src="/videos/Product-Delivery-Software-Development.webm"
+        type="video/webm"
       />
       Tu navegador no soporta el video.
     </video>
