@@ -372,7 +372,7 @@ h3 {
 }
 
 video {
-  background-color: var(--color-dark-violet);
+  background-color: transparent;
 }
 
 @media (width >= 480px) {
