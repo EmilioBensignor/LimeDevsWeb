@@ -102,6 +102,10 @@
                 :src="`/videos/Lime-Devs-${values[selectedValue].title}-Product.webm`"
                 type="video/webm"
               />
+              <source
+                :src="`/videos/Lime-Devs-${values[selectedValue].title}-Product.mov`"
+                type="video/mov"
+              />
               Tu navegador no soporta el video.
             </video>
           </div>
