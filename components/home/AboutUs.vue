@@ -371,6 +371,10 @@ h3 {
   padding: 0 !important;
 }
 
+video {
+  background-color: var(--color-dark-violet);
+}
+
 @media (width >= 480px) {
   h3 {
     font-size: 1.25rem;
