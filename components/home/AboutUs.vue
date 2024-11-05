@@ -436,6 +436,9 @@ h3 {
 
 .animationAbout {
   width: 12.813rem;
+  height: 15rem;
+  position: relative;
+  background-color: var(--color-dark-violet);
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   overflow: hidden;
@@ -443,6 +446,12 @@ h3 {
 }
 
 video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: contain;
   background: none;
 }
 
