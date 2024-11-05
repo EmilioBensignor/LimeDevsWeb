@@ -18,10 +18,6 @@
         src="/videos/Product-Delivery-Software-Development.webm"
         type="video/webm"
       />
-      <source
-        src="/videos/Product-Delivery-Software-Development.mov"
-        type="video/mov"
-      />
       Tu navegador no soporta el video.
     </video>
   </section>
