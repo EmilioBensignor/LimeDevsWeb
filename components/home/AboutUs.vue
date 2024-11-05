@@ -15,97 +15,95 @@
         </p>
       </div>
     </div>
-    <div class="background-overlay">
-      <div
-        v-if="isMobile"
-        class="w-full accordionMobile pb-5"
-        ref="mobileSection"
-      >
-        <Accordion :value="0" class="w-full">
-          <AccordionPanel
-            :value="value.value"
-            v-for="(value, index) in values"
-            :key="index"
-            @click="handleAccordionClick(index)"
-          >
-            <AccordionHeader :class="value.class">
-              <h3>{{ value.title }}</h3>
-            </AccordionHeader>
-            <AccordionContent>
-              <div class="columnAlignCenter">
-                <div class="animationAbout">
-                  <video
-                    ref="mobileVideos"
-                    autoplay
-                    muted
-                    playsinline
-                    preload="auto"
-                    poster="/images/home/Lime-Devs-Values.webp"
-                    width="100%"
-                    height="auto"
-                  >
-                    <source
-                      :src="`/videos/Lime-Devs-${value.title}-Product.webm`"
-                      type="video/webm"
-                    />
-                    Tu navegador no soporta el video.
-                  </video>
-                </div>
-                <p v-html="value.text" class="text-center"></p>
+    <div
+      v-if="isMobile"
+      class="w-full accordionMobile pb-5"
+      ref="mobileSection"
+    >
+      <Accordion :value="0" class="w-full">
+        <AccordionPanel
+          :value="value.value"
+          v-for="(value, index) in values"
+          :key="index"
+          @click="handleAccordionClick(index)"
+        >
+          <AccordionHeader :class="value.class">
+            <h3>{{ value.title }}</h3>
+          </AccordionHeader>
+          <AccordionContent>
+            <div class="columnAlignCenter">
+              <div class="animationAbout">
+                <video
+                  ref="mobileVideos"
+                  autoplay
+                  muted
+                  playsinline
+                  preload="auto"
+                  poster="/images/home/Lime-Devs-Values.webp"
+                  width="100%"
+                  height="auto"
+                >
+                  <source
+                    :src="`/videos/Lime-Devs-${value.title}-Product.webm`"
+                    type="video/webm"
+                  />
+                  Tu navegador no soporta el video.
+                </video>
               </div>
-            </AccordionContent>
-          </AccordionPanel>
-        </Accordion>
-      </div>
-      <div v-else class="aboutDesktop">
-        <div class="aboutContainer column">
-          <div
-            class="atLimeDesktop bg-gradient-light-violet"
-            :class="values[selectedValue].border"
-          >
-            <p>
-              At Lime, we are a team with
-              <span class="text-lime font-bold"
-                >expertise in both digital and physical products</span
-              >, focused on solving the concrete, day-to-day challenges of your
-              business.
-            </p>
-          </div>
-          <div class="column">
-            <div
-              v-for="(item, index) in values"
-              :key="index"
-              @click="setSelectedStep(index)"
-              :class="{ valueBtnActive: selectedValue === index }"
-              class="valueBtn relative bg-blue-light-gradient"
-            >
-              <h3>{{ item.title }}</h3>
+              <p v-html="value.text" class="text-center"></p>
             </div>
+          </AccordionContent>
+        </AccordionPanel>
+      </Accordion>
+    </div>
+    <div v-else class="aboutDesktop">
+      <div class="aboutContainer column">
+        <div
+          class="atLimeDesktop bg-gradient-light-violet"
+          :class="values[selectedValue].border"
+        >
+          <p>
+            At Lime, we are a team with
+            <span class="text-lime font-bold"
+              >expertise in both digital and physical products</span
+            >, focused on solving the concrete, day-to-day challenges of your
+            business.
+          </p>
+        </div>
+        <div class="column">
+          <div
+            v-for="(item, index) in values"
+            :key="index"
+            @click="setSelectedStep(index)"
+            :class="{ valueBtnActive: selectedValue === index }"
+            class="valueBtn relative bg-blue-light-gradient"
+          >
+            <h3>{{ item.title }}</h3>
           </div>
         </div>
-        <div class="desktopContentPanel column">
-          <div class="columnAlignCenter">
-            <div ref="animationContainer" class="animationAbout">
-              <video
-                :key="`desktop-video-${selectedValue}`"
-                ref="desktopVideo"
-                autoplay
-                muted
-                playsinline
-                preload="auto"
-                poster="/images/home/Lime-Devs-Values.webp"
-                width="100%"
-                height="auto"
-              >
-                <source
-                  :src="`/videos/Lime-Devs-${values[selectedValue].title}-Product.webm`"
-                  type="video/webm"
-                />
-                Tu navegador no soporta el video.
-              </video>
-            </div>
-            <p v-html="values[selectedValue].text" class="text-center"></p>
+      </div>
+      <div class="desktopContentPanel column">
+        <div class="columnAlignCenter">
+          <div ref="animationContainer" class="animationAbout">
+            <video
+              :key="`desktop-video-${selectedValue}`"
+              ref="desktopVideo"
+              autoplay
+              muted
+              playsinline
+              preload="auto"
+              poster="/images/home/Lime-Devs-Values.webp"
+              width="100%"
+              height="auto"
+            >
+              <source
+                :src="`/videos/Lime-Devs-${values[selectedValue].title}-Product.webm`"
+                type="video/webm"
+              />
+              Tu navegador no soporta el video.
+            </video>
           </div>
+          <p v-html="values[selectedValue].text" class="text-center"></p>
         </div>
       </div>
     </div>
@@ -202,18 +200,15 @@ export default {
         if (this.isMobile) {
           const videos = this.$refs.mobileVideos;
           if (Array.isArray(videos)) {
-            // Pausar todos los videos primero
             videos.forEach((video) => {
               if (video) video.pause();
             });
 
-            // Reproducir solo el video seleccionado
             if (videos[index]) {
               videos[index].currentTime = 0;
               videos[index].play().catch(() => {});
             }
           } else if (videos) {
-            // Si solo hay un video
             videos.currentTime = 0;
             videos.play().catch(() => {});
           }
@@ -222,12 +217,11 @@ export default {
     },
 
     handleResize() {
-      this.isMobile = window.matchMedia("(max-width: 767px)").matches;
+      this.isMobile = window.matchMedia("(max-width: 700px)").matches;
       this.setupObservers();
     },
 
     setupObservers() {
-      // Limpiar observers existentes
       if (this.mobileObserver) this.mobileObserver.disconnect();
       if (this.desktopObserver) this.desktopObserver.disconnect();
 
@@ -417,12 +411,9 @@ export default {
 
 <style scoped>
 .aboutUs {
+  background: transparent !important;
   position: relative;
   z-index: 1;
-}
-
-.background-overlay {
-  background-color: var(--color-dark-violet);
 }
 
 .aboutUs > div:first-of-type {
@@ -456,12 +447,8 @@ video {
 }
 
 @supports (-webkit-touch-callout: none) {
-  .background-overlay {
-    background-color: var(--color-dark-violet);
-  }
-
   .aboutUs {
-    isolation: isolate;
+    background: none !important;
   }
 }
 
