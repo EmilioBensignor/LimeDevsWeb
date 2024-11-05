@@ -415,7 +415,9 @@ export default {
 
 <style scoped>
 .aboutUs {
-  background: none;
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
 }
 
 .aboutUs > div:first-of-type {
@@ -446,6 +448,12 @@ h3 {
 
 video {
   background: none;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .aboutUs {
+    background: none !important;
+  }
 }
 
 @media (width >= 480px) {
