@@ -39,7 +39,7 @@ h1 > span > span {
 .hero > video {
   width: 75%;
   height: 100%;
-  background-color: transparent;
+  background: none;
 }
 
 @media (width >= 700px) {

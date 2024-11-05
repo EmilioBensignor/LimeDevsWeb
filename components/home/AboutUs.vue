@@ -15,7 +15,11 @@
         </p>
       </div>
     </div>
-    <div v-if="isMobile" class="w-full accordionMobile pb-5">
+    <div
+      v-if="isMobile"
+      class="w-full accordionMobile pb-5"
+      ref="mobileSection"
+    >
       <Accordion :value="0" class="w-full">
         <AccordionPanel
           :value="value.value"
@@ -114,6 +118,8 @@ export default {
       visibleIndex: null,
       isMobile: false,
       isDesktopSectionVisible: false,
+      mobileObserver: null,
+      desktopObserver: null,
       values: [
         {
           value: 0,
@@ -147,11 +153,10 @@ export default {
       handler(newVal) {
         this.$nextTick(() => {
           if (!this.isMobile && this.isDesktopSectionVisible) {
-            const video = this.$refs.currentVideo;
+            const video = this.$refs.desktopVideo;
             if (video) {
-              // Forzar recarga del video
-              video.load();
-              video.play();
+              video.currentTime = 0;
+              video.play().catch(() => {});
             }
           }
         });
@@ -160,11 +165,11 @@ export default {
     isDesktopSectionVisible: {
       handler(isVisible) {
         if (!this.isMobile) {
-          const video = this.$refs.currentVideo;
+          const video = this.$refs.desktopVideo;
           if (video) {
             if (isVisible) {
-              video.load();
-              video.play();
+              video.currentTime = 0;
+              video.play().catch(() => {});
             } else {
               video.pause();
               video.currentTime = 0;
@@ -178,68 +183,132 @@ export default {
   methods: {
     setSelectedStep(index) {
       if (this.selectedValue === index && !this.isMobile) {
-        // Si es el mismo botón, solo reiniciar el video actual
         const video = this.$refs.desktopVideo;
         if (video) {
           video.currentTime = 0;
-          video.play();
+          video.play().catch(() => {});
         }
       } else {
-        // Si es un botón diferente, cambiar el selectedValue
-        // El video se recreará automáticamente por el :key
         this.selectedValue = index;
       }
     },
+
     handleAccordionClick(index) {
-      if (this.isMobile) {
-        const videos = this.$refs.mobileVideos;
-        if (Array.isArray(videos) && videos[index]) {
-          videos[index].currentTime = 0;
-          videos[index].play();
-        }
-      }
       this.visibleIndex = index;
+
+      this.$nextTick(() => {
+        if (this.isMobile) {
+          const videos = this.$refs.mobileVideos;
+          if (Array.isArray(videos)) {
+            // Pausar todos los videos primero
+            videos.forEach((video) => {
+              if (video) video.pause();
+            });
+
+            // Reproducir solo el video seleccionado
+            if (videos[index]) {
+              videos[index].currentTime = 0;
+              videos[index].play().catch(() => {});
+            }
+          } else if (videos) {
+            // Si solo hay un video
+            videos.currentTime = 0;
+            videos.play().catch(() => {});
+          }
+        }
+      });
     },
+
     handleResize() {
-      this.isMobile = window.innerWidth < 768;
+      this.isMobile = window.matchMedia("(max-width: 767px)").matches;
+      this.setupObservers();
     },
-    setupIntersectionObserver() {
+
+    setupObservers() {
+      // Limpiar observers existentes
+      if (this.mobileObserver) this.mobileObserver.disconnect();
+      if (this.desktopObserver) this.desktopObserver.disconnect();
+
       const options = {
-        threshold: 0.5,
+        rootMargin: "0px",
+        threshold: this.isMobile ? 0.2 : 0.3,
       };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          this.isDesktopSectionVisible = entry.isIntersecting;
-          // Manejar la reproducción del video cuando la sección es visible
-          if (entry.isIntersecting) {
-            this.$nextTick(() => {
+      if (this.isMobile) {
+        this.mobileObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (this.$refs.mobileVideos) {
+                const videos = Array.isArray(this.$refs.mobileVideos)
+                  ? this.$refs.mobileVideos
+                  : [this.$refs.mobileVideos];
+
+                videos.forEach((video) => {
+                  if (video) {
+                    video.currentTime = 0;
+                    if (video.closest(".p-accordionpanel-active")) {
+                      video.play().catch(() => {});
+                    }
+                  }
+                });
+              }
+            } else {
+              // Pausar videos cuando no están en vista
+              if (this.$refs.mobileVideos) {
+                const videos = Array.isArray(this.$refs.mobileVideos)
+                  ? this.$refs.mobileVideos
+                  : [this.$refs.mobileVideos];
+
+                videos.forEach((video) => {
+                  if (video) video.pause();
+                });
+              }
+            }
+          });
+        }, options);
+
+        if (this.$refs.mobileSection) {
+          this.mobileObserver.observe(this.$refs.mobileSection);
+        }
+      } else {
+        this.desktopObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            this.isDesktopSectionVisible = entry.isIntersecting;
+            if (entry.isIntersecting) {
+              this.$nextTick(() => {
+                const video = this.$refs.desktopVideo;
+                if (video) {
+                  video.currentTime = 0;
+                  video.play().catch(() => {});
+                }
+              });
+            } else {
               const video = this.$refs.desktopVideo;
               if (video) {
-                video.play();
+                video.pause();
+                video.currentTime = 0;
               }
-            });
-          }
-        });
-      }, options);
+            }
+          });
+        }, options);
 
-      if (this.$refs.desktopSection) {
-        observer.observe(this.$refs.desktopSection);
+        if (this.$refs.desktopSection) {
+          this.desktopObserver.observe(this.$refs.desktopSection);
+        }
       }
-
-      this.observer = observer;
     },
   },
+
   mounted() {
     this.handleResize();
     window.addEventListener("resize", this.handleResize);
-    this.setupIntersectionObserver();
+    this.setupObservers();
   },
+
   beforeDestroy() {
     window.removeEventListener("resize", this.handleResize);
-    if (this.observer) {
-      this.observer.disconnect();
-    }
+    if (this.mobileObserver) this.mobileObserver.disconnect();
+    if (this.desktopObserver) this.desktopObserver.disconnect();
   },
 };
 </script>
@@ -345,6 +414,10 @@ export default {
 </style>
 
 <style scoped>
+.aboutUs {
+  background: none;
+}
+
 .aboutUs > div:first-of-type {
   padding: 2rem 1.5rem 1.25rem 1.5rem;
 }
@@ -372,7 +445,7 @@ h3 {
 }
 
 video {
-  background-color: transparent;
+  background: none;
 }
 
 @media (width >= 480px) {
