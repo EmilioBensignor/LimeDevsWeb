@@ -446,12 +446,12 @@ h3 {
 }
 
 .video {
-  background-color: transparent;
+  background-color: var(--color-dark-violet) !important;
 }
 
 @supports (-webkit-touch-callout: none) {
-  .aboutUs {
-    background: none !important;
+  .video {
+    background-color: var(--color-dark-violet) !important;
   }
 }
 
