@@ -34,6 +34,7 @@
             <div class="columnAlignCenter">
               <div class="animationAbout">
                 <video
+                  class="video"
                   ref="mobileVideos"
                   autoplay
                   muted
@@ -86,6 +87,7 @@
         <div class="columnAlignCenter">
           <div ref="animationContainer" class="animationAbout">
             <video
+              class="video"
               :key="`desktop-video-${selectedValue}`"
               ref="desktopVideo"
               autoplay
@@ -443,8 +445,8 @@ h3 {
   padding: 0 !important;
 }
 
-video {
-  background: none;
+.video {
+  background-color: var(--color-dark-violet)
 }
 
 @supports (-webkit-touch-callout: none) {
