@@ -446,7 +446,6 @@ h3 {
 }
 
 .video {
-  background: none;
   background-color: transparent;
 }
 
