@@ -45,9 +45,13 @@
                   height="auto"
                 >
                   <source
+                    :src="`/videos/Lime-Devs-${values[selectedValue].title}-Product.mov`"
+                    type="video/mov"
+                  />
+                  <!-- <source
                     :src="`/videos/Lime-Devs-${value.title}-Product.webm`"
                     type="video/webm"
-                  />
+                  /> -->
                   Tu navegador no soporta el video.
                 </video>
               </div>
@@ -102,10 +106,10 @@
                 :src="`/videos/Lime-Devs-${values[selectedValue].title}-Product.mov`"
                 type="video/mov"
               />
-              <source
+              <!-- <source
                 :src="`/videos/Lime-Devs-${values[selectedValue].title}-Product.webm`"
                 type="video/webm"
-              />
+              /> -->
               Tu navegador no soporta el video.
             </video>
           </div>
