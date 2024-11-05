@@ -446,7 +446,8 @@ h3 {
 }
 
 .video {
-  background-color: var(--color-dark-violet)
+  background: none;
+  background-color: transparent;
 }
 
 @supports (-webkit-touch-callout: none) {
