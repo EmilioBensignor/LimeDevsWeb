@@ -28,7 +28,7 @@
           <!-- :to="`/projects/${project.slug}`"
           :aria-label="`See more about ${project.title}`" -->
           <img
-            :src="`/images/projects/${project.img}`"
+            :src="`/images/projects/${project.img}-Lime-Devs-Project.webp`"
             :alt="project.alt"
             class="w-full h-full projectImg" />
           <div class="projectInfo">
@@ -41,7 +41,7 @@
         <div>
           <!-- to="#contactUs" aria-label="See more about your next project" -->
           <img
-            src="/images/projects/projectExample.webp"
+            src="/images/projects/Global-Gaming-System-Lime-Devs-Project.webp"
             alt="Your next project"
             class="w-full h-full projectImg" />
           <div class="projectInfo">
@@ -60,7 +60,7 @@
           <!-- :to="`/projects/${project.slug}`"
           :aria-label="`See more about ${project.title}`" -->
           <img
-            :src="`/images/projects/${project.img}`"
+            :src="`/images/projects/${project.img}-Lime-Devs-Project.webp`"
             :alt="project.alt"
             class="w-full h-full" />
           <div class="projectInfo">
@@ -75,7 +75,7 @@
           <!-- to="#contactUs"
           aria-label="See more about your next project" -->
           <img
-            src="/images/projects/projectExample.webp"
+            src="/images/projects/Global-Gaming-System-Lime-Devs-Project.webp"
             alt="Your next project"
             class="w-full h-full" />
           <div class="projectInfo">
@@ -371,25 +371,134 @@
     }
   }
 
-  @media (width >= 1440px) {
+  @media (width >= 1280px) {
     .projectsDesktop {
-      height: 81rem;
+      height: 94rem;
     }
 
     .projectsDesktop article {
-      width: 20.125rem;
-      height: 25.375rem;
+      width: 13rem;
+      height: 18rem;
+    }
+
+    .projectsDesktop article:nth-child(5) {
+      top: 30rem;
+    }
+    .projectsDesktop article:nth-child(6) {
+      top: 38rem;
+    }
+    .projectsDesktop article:nth-child(7) {
+      top: 28rem;
+    }
+    .projectsDesktop article:nth-child(8) {
+      top: 34rem;
+    }
+    .projectsDesktop article:nth-child(9) {
+      top: 56rem;
+    }
+    .projectsDesktop article:nth-child(10) {
+      top: 64rem;
+    }
+    .projectsDesktop article:nth-child(11) {
+      top: 52rem;
+    }
+    .projectsDesktop article:nth-child(12) {
+      top: 60rem;
+    }
+  }
+
+  @media (width >= 1440px) {
+    .projectsDesktop {
+      height: 105rem;
+    }
+
+    .projectsDesktop article {
+      width: 15rem;
+      height: 20rem;
+    }
+
+    .projectsDesktop article:nth-child(5) {
+      top: 34rem;
+    }
+    .projectsDesktop article:nth-child(6) {
+      top: 42rem;
+    }
+    .projectsDesktop article:nth-child(7) {
+      top: 32rem;
+    }
+    .projectsDesktop article:nth-child(8) {
+      top: 38rem;
+    }
+    .projectsDesktop article:nth-child(9) {
+      top: 64rem;
+    }
+    .projectsDesktop article:nth-child(10) {
+      top: 70rem;
+    }
+    .projectsDesktop article:nth-child(11) {
+      top: 58rem;
+    }
+    .projectsDesktop article:nth-child(12) {
+      top: 66rem;
+    }
+  }
+
+  @media (width >= 1650px) {
+    .projectsDesktop {
+      height: 110rem;
+    }
+
+    .projectsDesktop article {
+      width: 17rem;
+      height: 22rem;
+    }
+
+    .projectsDesktop article:nth-child(10) {
+      top: 74rem;
+    }
+
+    .projectsDesktop article:nth-child(11) {
+      top: 60rem;
+    }
+
+    .projectsDesktop article:nth-child(12) {
+      top: 69rem;
     }
   }
 
   @media (width >= 1920px) {
     .projectsDesktop {
-      height: 83rem;
+      height: 122rem;
     }
 
     .projectsDesktop article {
-      width: 25rem;
-      height: 28rem;
+      width: 19rem;
+      height: 24rem;
+    }
+
+    .projectsDesktop article:nth-child(5) {
+      top: 39rem;
+    }
+    .projectsDesktop article:nth-child(6) {
+      top: 46rem;
+    }
+    .projectsDesktop article:nth-child(7) {
+      top: 36rem;
+    }
+    .projectsDesktop article:nth-child(8) {
+      top: 42rem;
+    }
+    .projectsDesktop article:nth-child(9) {
+      top: 72rem;
+    }
+    .projectsDesktop article:nth-child(10) {
+      top: 81rem;
+    }
+    .projectsDesktop article:nth-child(11) {
+      top: 67rem;
+    }
+    .projectsDesktop article:nth-child(12) {
+      top: 76rem;
     }
   }
 </style>
