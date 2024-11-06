@@ -187,7 +187,7 @@ export const projects = [
   },
   {
     slug: "unity-box",
-    img: "Unitybox",
+    img: "UnityBox",
     alt: "Unitybox Lime Devs Project",
     title: "Unitybox",
     service: "Software and Hardware Design",
