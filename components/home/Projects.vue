@@ -4,6 +4,7 @@
     <Swiper
       :slides-per-view="1.3"
       :space-between="12"
+      :free-mode="true"
       :breakpoints="{
         380: {
           slidesPerView: 1.5,
@@ -15,7 +16,7 @@
           slidesPerView: 2.2,
         },
         700: {
-          slidesPerView: 2.8,
+          slidesPerView: 2.3,
           spaceBetween: 16,
         },
       }"
@@ -24,7 +25,7 @@
         v-for="(project, index) in projects"
         :key="index"
         class="slideProject">
-        <div>
+        <div class="h-full">
           <!-- :to="`/projects/${project.slug}`"
           :aria-label="`See more about ${project.title}`" -->
           <img
@@ -38,16 +39,15 @@
         </div>
       </SwiperSlide>
       <SwiperSlide class="slideProject">
-        <div>
-          <!-- to="#contactUs" aria-label="See more about your next project" -->
+        <NuxtLink to="#contactUs" aria-label="See more about your next project" class="h-full">
           <img
-            src="/images/projects/Global-Gaming-System-Lime-Devs-Project.webp"
+            src="/images/projects/Your-Next-Lime-Devs-Project.webp"
             alt="Your next project"
             class="w-full h-full projectImg" />
-          <div class="projectInfo">
+          <div class="projectInfo nextProject">
             <h3 class="text-center text-white">Your Next Project</h3>
           </div>
-        </div>
+        </NuxtLink>
       </SwiperSlide>
     </Swiper>
     <div class="w-full projectsDesktop">
@@ -71,18 +71,16 @@
         </div>
       </article>
       <article :ref="'tiltProjectDesktop' + 6" class="slideProject yourProject">
-        <div class="w-full h-full flex">
-          <!-- to="#contactUs"
-          aria-label="See more about your next project" -->
+        <NuxtLink to="#contactUs" aria-label="See more about your next project" class="w-full h-full flex">
           <img
-            src="/images/projects/Global-Gaming-System-Lime-Devs-Project.webp"
+            src="/images/projects/Your-Next-Lime-Devs-Project.webp"
             alt="Your next project"
             class="w-full h-full" />
           <div class="projectInfo">
             <h3 class="text-center text-white">Your Next Project</h3>
-            <!-- <p class="seeMore text-white underline">See more</p> -->
+            <p class="seeMore text-white underline">See more</p>
           </div>
-        </div>
+        </NuxtLink>
       </article>
     </div>
   </section>
@@ -158,6 +156,24 @@
     right: 0;
     padding: 0.75rem 0;
     background: #39385ef2;
+  }
+
+  .nextProject {
+    width: max-content;
+    height: max-content;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-lime);
+    border-radius: 999px;
+    cursor: pointer;
+    margin: auto;
+    padding: 0.5rem 1rem;
+  }
+
+  .nextProject h3 {
+    color: var(--color-dark-violet) !important;
   }
 
   .slideProject:hover h3,
@@ -337,6 +353,12 @@
       position: relative;
       bottom: 0;
       right: 27%;
+      cursor: pointer;
+    }
+
+    .yourProject h3 {
+      color: var(--color-lime) !important;
+      text-shadow: 2px 10px 10px rgba(0, 0, 0, 0.85);
     }
 
     .projectInfo {
