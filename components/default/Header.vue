@@ -1,6 +1,9 @@
 <template>
   <header class="center sticky top-0 bg-dark-violet">
-    <button class="hamburger absolute" @click="toggleDrawer" aria-label="Open or close menu">
+    <button
+      class="hamburger absolute"
+      @click="toggleDrawer"
+      aria-label="Open or close menu">
       <Icon class="text-white" size="2rem" name="mingcute:menu-fill" />
     </button>
     <NuxtLink :to="'/'">
@@ -8,9 +11,10 @@
     </NuxtLink>
     <div class="menuSidebar">
       <Drawer
+        ref="drawer"
         :visible="drawerMenu"
         :show-close-button="false"
-        @click-outside="closeDrawer">
+        @click="handleDrawerClick">
         <ul class="menuList column">
           <li v-for="(item, index) in menu" :key="index">
             <NuxtLink
@@ -66,29 +70,25 @@
       toggleDrawer() {
         this.drawerMenu = !this.drawerMenu;
       },
-      closeDrawer() {
-        this.drawerMenu = false;
-      },
-      handleClickOutside(event) {
-        const drawer = this.$refs.drawer;
-        if (drawer && !drawer.contains(event.target)) {
+      handleDrawerClick(event) {
+        if (!this.$refs.drawer.$el.contains(event.target)) {
           this.closeDrawer();
         }
       },
-    },
-    mounted() {
-      document.addEventListener("click", this.handleClickOutside);
-    },
-    beforeDestroy() {
-      document.removeEventListener("click", this.handleClickOutside);
+      closeDrawer() {
+        this.drawerMenu = false;
+      },
     },
   };
 </script>
 
 <style>
   .p-drawer-mask {
-    width: 11.25rem !important;
     top: 3rem !important;
+  }
+
+  .p-drawer {
+    width: 100% !important;
   }
 
   .p-drawer-header {
@@ -96,17 +96,18 @@
   }
 
   .p-drawer-content {
+    width: 11.25rem !important;
     background: var(--color-dark-violet) !important;
     padding: 2.5rem 1rem !important;
   }
 
   @media (width >= 700px) {
     .p-drawer-mask {
-      width: 15.125rem !important;
       top: 4.75rem !important;
     }
 
     .p-drawer-content {
+      width: 15.125rem !important;
       padding: 3.75rem !important;
     }
   }
