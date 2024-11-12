@@ -176,17 +176,14 @@
     color: var(--color-dark-violet) !important;
   }
 
-  .slideProject:hover h3,
-  .slideProject:hover p {
-    text-shadow: 2px 10px 10px rgba(0, 0, 0, 0.85);
-  }
-
   .projectInfo h3 {
     font-size: 1.125rem;
+    text-shadow: 2px 10px 10px rgba(0, 0, 0, 0.85);
   }
 
   .projectInfo p {
     font-size: 0.75rem;
+    text-shadow: 2px 10px 10px rgba(0, 0, 0, 0.85);
   }
 
   .slideProject .seeMore {
