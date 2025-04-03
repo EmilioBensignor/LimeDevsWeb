@@ -12,15 +12,20 @@ export default defineNuxtConfig({
     "@primevue/nuxt-module",
     "@nuxt/image",
     "@nuxt/icon",
-    "nuxt-swiper",
     '@nuxtjs/seo',
     'nuxt-vitalizer',
     'nuxt-booster',
     '@nuxtjs/fontaine',
     'nuxt-anchorscroll',
     '@nuxt/scripts',
-    '@vueuse/nuxt',
+    '@nuxt/fonts',
+    "nuxt-swiper",
   ],
+  primevue: {
+    components: {
+      include: []
+    }
+  },
   icon: {
     size: '1rem',
     serverBundle: {
