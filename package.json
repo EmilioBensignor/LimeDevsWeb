@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@iconify-json/mingcute": "^1.2.0",
+    "@zadigetvoltaire/nuxt-gtm": "^0.0.13",
     "nuxt-anchorscroll": "^1.0.3"
   }
 }

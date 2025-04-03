@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/fonts',
     "nuxt-swiper",
+    '@zadigetvoltaire/nuxt-gtm'
   ],
   primevue: {
     components: {
@@ -53,6 +54,11 @@ export default defineNuxtConfig({
         },
       ],
     }
+  },
+  gtm: {
+    id: 'GTM-WQ3RD54N',
+    enabled: true,
+    loadScript: true
   },
   build: {
     transpile: ['aatjs']
