@@ -180,7 +180,7 @@
       </div>
     </section>
     <div class="rightsReserved bg-dark-violet">
-      <p class="text-center">© Lime Devs. All rights reserved.</p>
+      <p class="text-center">{{ new Date().getFullYear() }} Lime Devs © All rights reserved.</p>
     </div>
   </footer>
 </template>
