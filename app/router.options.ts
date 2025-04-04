@@ -1,3 +1,6 @@
+/* Manejar el comportamiento de desplazamiento al hacer clic en un enlace
+  o al ir a otra pagina para que no se trabe el scroll
+ */
 import type { RouterConfig } from '@nuxt/schema';
 
 export default <RouterConfig>{
