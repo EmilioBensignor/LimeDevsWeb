@@ -20,17 +20,17 @@
     "@nuxtjs/seo": "^2.0.0-rc.23",
     "@primevue/nuxt-module": "^4.0.7",
     "aatjs": "^0.0.4",
+    "animate.css": "^4.1.1",
     "nodemailer": "^6.10.0",
     "nuxt": "^3.13.0",
     "nuxt-booster": "^3.1.6",
     "nuxt-og-image": "^5.1.1",
-    "nuxt-swiper": "^1.2.2",
     "nuxt-vitalizer": "^0.10.0",
     "primeflex": "^3.3.1",
-    "swiper": "^11.1.14",
     "vanilla-tilt": "^1.8.1",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "wow.js": "^1.2.2"
   },
   "devDependencies": {
     "@iconify-json/mingcute": "^1.2.0",

@@ -2,7 +2,7 @@
   <section id="outcome" class="outcome projectSection columnAlignCenter">
     <h2 class="w-full">Project Outcome</h2>
     <p class="text-center">{{ project.outcome }}</p>
-    <Swiper
+    <!-- <Swiper
       :modules="[SwiperScrollbar]"
       :slides-per-view="'auto'"
       :free-mode="true"
@@ -21,7 +21,7 @@
           class="w-full h-full"
         />
       </SwiperSlide>
-    </Swiper>
+    </Swiper> -->
   </section>
 </template>
 
@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<!-- <style>
   .swiperOutcome .swiper-scrollbar {
     bottom: 0;
     background: var(--color-white);
@@ -45,7 +45,7 @@ export default {
   .swiperOutcome .swiper-scrollbar-drag {
     background: var(--color-lime,);
   }
-</style>
+</style> -->
 
 <style scoped>
 .outcome {

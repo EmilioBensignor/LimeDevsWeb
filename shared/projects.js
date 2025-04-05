@@ -2,7 +2,7 @@ export const projects = [
   {
     slug: "cladd-industria-textil",
     img: "Cladd",
-    alt: "Cladd Lime Devs Project",
+    alt: "Cladd",
     title: "Cladd Industria Textil",
     service: "Software and Hardware Design",
     web: "unitybox.org",
@@ -101,7 +101,7 @@ export const projects = [
   {
     slug: "mitzvah-for-israel",
     img: "Mitzvah-for-israel",
-    alt: "Mitzvah for israel Lime Devs Project",
+    alt: "Mitzvah for israel",
     title: "Mitzvah for Israel",
     service: "Software Design",
     web: "unitybox.org",
@@ -188,7 +188,7 @@ export const projects = [
   {
     slug: "unity-box",
     img: "UnityBox",
-    alt: "Unitybox Lime Devs Project",
+    alt: "Unitybox",
     title: "Unitybox",
     service: "Software and Hardware Design",
     web: "unitybox.org",
@@ -275,7 +275,7 @@ export const projects = [
   {
     slug: "cteen-summer",
     img: "Cteen",
-    alt: "Cteen Lime Devs Project",
+    alt: "Cteen",
     title: "Cteen Summer",
     service: "Software Design",
     web: "unitybox.org",
@@ -362,7 +362,7 @@ export const projects = [
   {
     slug: "kosher-without-borders",
     img: "Kosher-without-borders",
-    alt: "Kosher without borders Lime Devs Project",
+    alt: "Kosher without borders",
     title: "Kosher without borders",
     service: "Software Design",
     web: "unitybox.org",
@@ -449,7 +449,7 @@ export const projects = [
   {
     slug: "dragonfly-by-iNVAP",
     img: "Dragonfly",
-    alt: "Dragonly Lime Devs Project",
+    alt: "Dragonly",
     title: "Dragonfly by iNVAP",
     service: "Hardware Design",
     web: "unitybox.org",
@@ -536,7 +536,7 @@ export const projects = [
   {
     slug: "streamlion",
     img: "Streamlion",
-    alt: "Streamlion Lime Devs Project",
+    alt: "Streamlion",
     title: "Streamlion",
     service: "Software Design",
     web: "unitybox.org",
@@ -623,7 +623,7 @@ export const projects = [
   {
     slug: "adMouse",
     img: "Mouse4",
-    alt: "Cladd Lime Devs Project",
+    alt: "Cladd",
     title: "AdMouse",
     service: "Hardware Design",
     web: "unitybox.org",
@@ -710,7 +710,7 @@ export const projects = [
   {
     slug: "global-gaming-system",
     img: "Global-Gaming-System",
-    alt: "Cladd Lime Devs Project",
+    alt: "Cladd",
     title: "Global Gaming System",
     service: "Software Design",
     web: "unitybox.org",
@@ -797,7 +797,7 @@ export const projects = [
   {
     slug: "mousebox",
     img: "Mousebox",
-    alt: "Mousebox Lime Devs Project",
+    alt: "Mousebox",
     title: "Mousebox",
     service: "Software and Hardware Design",
     web: "unitybox.org",
@@ -884,7 +884,7 @@ export const projects = [
   {
     slug: "sooning",
     img: "Sooning",
-    alt: "Sooning Lime Devs Project",
+    alt: "Sooning",
     title: "Sooning",
     service: "Software and Hardware Design",
     web: "unitybox.org",
@@ -971,7 +971,7 @@ export const projects = [
   {
     slug: "techni-mobili",
     img: "Techni-Mobili",
-    alt: "Techni Mobili Lime Devs Project",
+    alt: "Techni Mobili",
     title: "Techni Mobili",
     service: "Software Design",
     web: "unitybox.org",

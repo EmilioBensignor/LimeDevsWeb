@@ -61,6 +61,10 @@ export default {
   padding: 2rem 1.5rem;
 }
 
+.services>div {
+  gap: 2rem;
+}
+
 .headerServices {
   position: sticky;
   top: 4.5rem;
@@ -78,7 +82,7 @@ export default {
   display: none;
 }
 
-@media (width >= 700px) {
+@media (width >=700px) {
   .services {
     padding: 2.75rem 3.75rem;
   }
@@ -91,7 +95,7 @@ export default {
     display: block;
   }
 
-  .services > div {
+  .services>div {
     gap: 4rem;
   }
 
@@ -116,18 +120,18 @@ export default {
   }
 }
 
-@media (width >= 1080px) {
+@media (width >=1080px) {
   .services {
     padding: 3.75rem 5.625rem;
   }
 
-  .services > div {
+  .services>div {
     gap: 7rem;
   }
 }
 
 @media (width >=1440px) {
-  .services > div {
+  .services>div {
     gap: 9rem;
   }
 }

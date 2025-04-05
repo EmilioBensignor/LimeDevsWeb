@@ -57,7 +57,7 @@ definePageMeta({
 </script>
 
 <script>
-import { projects } from "~/constants/projects";
+import { projects } from "~/shared/projects";
 import { useRoute } from "vue-router";
 
 export default {

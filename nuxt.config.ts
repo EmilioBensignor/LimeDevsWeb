@@ -1,12 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { projects } from './constants/projects';
+import { projects } from './shared/projects';
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  alias: {
-    "@": "/<srcDir>"
-  },
   css: ["~/assets/main.css"],
   modules: [
     "@primevue/nuxt-module",
@@ -19,12 +16,16 @@ export default defineNuxtConfig({
     'nuxt-anchorscroll',
     '@nuxt/scripts',
     '@nuxt/fonts',
-    "nuxt-swiper",
     '@zadigetvoltaire/nuxt-gtm'
   ],
   primevue: {
     components: {
       include: []
+    }
+  },
+  fonts: {
+    defaults: {
+      weights: [400, 500, 700, 900],
     }
   },
   icon: {
@@ -40,18 +41,6 @@ export default defineNuxtConfig({
           rel: 'stylesheet',
           href: 'https://unpkg.com/primeflex@latest/primeflex.css'
         },
-        {
-          rel: 'preconnect',
-          href: 'https://fonts.googleapis.com'
-        },
-        {
-          rel: 'preconnect',
-          href: 'https://fonts.gstatic.com'
-        },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap'
-        },
       ],
     }
   },
@@ -63,9 +52,6 @@ export default defineNuxtConfig({
   build: {
     transpile: ['aatjs']
   },
-  plugins: [
-    '~/plugins/vanilla-tilt.js'
-  ],
   site: {
     url: 'https://limedevs.com',
     name: 'Lime Devs',
@@ -113,8 +99,5 @@ export default defineNuxtConfig({
   },
   generate: {
     routes: projects.map(project => `/projects/${project.slug}`),
-  },
-  linkChecker: {
-    runOnBuild: false,
   },
 })
