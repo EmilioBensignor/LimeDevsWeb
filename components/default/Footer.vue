@@ -1,122 +1,28 @@
 <template>
   <footer id="contactUs" class="bg-violet-60">
     <section class="column gap-5">
-      <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" />
-      <div class="stepperSocialMedia column gap-5">
-        <div class="column gap-5">
-          <h2>
-            Ready to
-            <span class="text-lime underline">transform your business</span>?
-          </h2>
-          <div class="stepperFooter">
-            <Stepper v-if="form" :value="1" aria-labelledby="Form contact">
-              <StepList>
-                <Step v-for="step in steps" :key="step.value" :value="step.value">
-                  {{ step.title }}
-                </Step>
-              </StepList>
-              <StepPanels>
-                <form @submit.prevent="handleFormSubmission">
-                  <StepPanel v-for="step in steps" :key="step.value" :value="step.value" :class="step.panelClass"
-                    v-slot="{ activateCallback }">
-                    <div>
-                      <div class="inputsNextBack">
-                        <div v-if="step.value !== 1" class="nextBack">
-                          <Button aria-label="Go back to previous step" class="back"
-                            @click="activateCallback(step.value - 1)">
-                            <Icon name="mingcute:arrow-left-line" />
-                          </Button>
-                        </div>
-                        <div class="stepContent column">
-                          <div>
-                            <label :for="step.id" v-html="step.label"></label>
-                            <input v-if="
-                              ['name', 'email', 'companyName'].includes(
-                                step.id
-                              )
-                            " :type="step.type" v-model="formData[step.id]" :id="step.id" :name="step.id"
-                              :placeholder="step.placeholder" autocomplete="off" @keydown.enter.prevent="
-                                handleEnterKey($event, step, activateCallback)
-                                " />
-                            <textarea v-else v-model="formData.idea" :id="step.id" :placeholder="step.placeholder"
-                              @keydown.enter.prevent="
-                                handleEnterKey($event, step, activateCallback)
-                                "></textarea>
-                          </div>
-                        </div>
-                        <div class="nextBack">
-                          <Button aria-label="Go to next step" v-if="step.value < steps.length" class="next"
-                            @click="validateAndProceed(step, activateCallback)">
-                            <Icon name="mingcute:arrow-right-line" />
-                          </Button>
-                          <Button aria-label="Send contact form" v-else type="submit" class="submit">
-                            <Icon name="mingcute:arrow-right-line" />
-                          </Button>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="error gap-1 mt-1" v-if="errors.name && step.id === 'name'">
-                          <Icon name="mingcute:alert-octagon-line" style="color: var(--color-red)" />
-                          <p>{{ errors.name }}</p>
-                        </div>
-                        <div class="error errorMail gap-1 mt-1" v-if="errors.email && step.id === 'email'">
-                          <Icon name="mingcute:alert-octagon-line" style="color: var(--color-red)" />
-                          <p>{{ errors.email }}</p>
-                        </div>
-                      </div>
-                      <div class="nextBackMobile mt-3">
-                        <div v-if="step.value === 1" class="w-full flex justify-content-end">
-                          <Button aria-label="Go to next step" class="next"
-                            @click="validateAndProceed(step, activateCallback)">
-                            <Icon name="mingcute:arrow-right-line" />
-                          </Button>
-                        </div>
-                        <div v-if="step.value !== 1" class="w-full rowSpaceBetween">
-                          <Button aria-label="Go back to previous step" class="back"
-                            @click="activateCallback(step.value - 1)">
-                            <Icon name="mingcute:arrow-left-line" />
-                          </Button>
-                          <Button aria-label="Go to next step" v-if="step.value < steps.length" class="next"
-                            @click="validateAndProceed(step, activateCallback)">
-                            <Icon name="mingcute:arrow-right-line" />
-                          </Button>
-                          <Button aria-label="Send contact form" v-else type="submit" class="submit">
-                            <Icon name="mingcute:arrow-right-line" />
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </StepPanel>
-                </form>
-              </StepPanels>
-            </Stepper>
-            <div v-else class="newMessage columnAlignCenter gap-3">
-              <p class="text-center">
-                We've received your message and will get back to you soon.
-                Thanks for choosing Lime Devs to help
-                <span class="text-lime font-bold">bring your ideas to life.</span>
-              </p>
-              <Button aria-label="Send another contact form" class="btnNewMessage" @click="form = true">
-                Send a new message
-              </Button>
-            </div>
-          </div>
-        </div>
-        <div class="socialMedia column">
-          <p>Or contact us at:</p>
-          <ul class="column">
-            <li v-for="(social, index) in socialMedia" :key="index">
-              <NuxtLink v-if="social.type !== 'email'" :to="social.link" target="_blank" class="rowCenter no-underline">
-                <div class="bgCover" :class="social.img"></div>
-                <p class="text-white no-underline">{{ social.text }}</p>
-              </NuxtLink>
-              <a v-else :href="social.link" @click.prevent="handleEmailClick(social)" class="rowCenter no-underline">
-                <div class="bgCover" :class="social.img"></div>
-                <p class="text-white no-underline">{{ social.text }}</p>
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div class="column gap-5">
+        <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" class="logo" />
+        <h2>
+          Ready to
+          <span class="text-lime underline">transform your business</span>?
+        </h2>
+        <DefaultContact />
+      </div>
+      <div class="socialMedia column">
+        <p>Or contact us at:</p>
+        <ul class="column">
+          <li v-for="(social, index) in socialMedia" :key="index">
+            <NuxtLink v-if="social.type !== 'email'" :to="social.link" target="_blank" class="rowCenter no-underline">
+              <div class="bgCover" :class="social.img"></div>
+              <p class="text-white no-underline">{{ social.text }}</p>
+            </NuxtLink>
+            <a v-else :href="social.link" @click.prevent="handleEmailClick(social)" class="rowCenter no-underline">
+              <div class="bgCover" :class="social.img"></div>
+              <p class="text-white no-underline">{{ social.text }}</p>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
     <div class="rightsReserved bg-dark-violet">
@@ -126,58 +32,9 @@
 </template>
 
 <script setup>
-// Importamos composables necesarios de Nuxt
-import { ref, computed, reactive } from 'vue';
+import Default from '~/layouts/default.vue';
 
-// Estados del formulario
-const form = ref(true);
-const isSubmitting = ref(false);
-const formData = reactive({
-  name: "",
-  email: "",
-  companyName: "",
-  idea: "",
-});
-
-// Pasos del formulario
-const steps = [
-  {
-    value: 1,
-    title: "Name",
-    id: "name",
-    label: "Enter your <span class='labelBold'>name</span>",
-    type: "text",
-    placeholder: "Your name",
-    panelClass: "panelName",
-  },
-  {
-    value: 2,
-    title: "Email",
-    id: "email",
-    label: "Enter your <span class='labelBold'>email</span>",
-    type: "email",
-    placeholder: "Your email",
-  },
-  {
-    value: 3,
-    title: "Company",
-    id: "companyName",
-    label:
-      "Enter your <span class='labelBold'>company name</span> (Optional)",
-    type: "text",
-    placeholder: "Your company name",
-  },
-  {
-    value: 4,
-    title: "Tell us more!",
-    id: "idea",
-    label:
-      "Tell us about your <span class='labelBold'>idea</span> (Optional)",
-    placeholder: "Your idea",
-  },
-];
-
-// Redes sociales
+// Información de redes sociales
 const socialMedia = [
   {
     type: "whatsapp",
@@ -199,16 +56,7 @@ const socialMedia = [
   },
 ];
 
-// Errores del formulario
-const errors = reactive({
-  name: "",
-  email: "",
-});
-
-// Computed para validación general
-const isValid = computed(() => !errors.name && !errors.email);
-
-// Métodos
+// Método para manejar clics en email
 const handleEmailClick = (social) => {
   const mailtoLink = `mailto:${social.text}?subject=Contact%20Lime%20Devs&body=Reaching%20out%20for%20more%20information%20about%20the%20products.`;
   window.location.href = mailtoLink;
@@ -228,389 +76,16 @@ const handleEmailClick = (social) => {
     }
   }, 1000);
 };
-
-const handleEnterKey = (event, step, activateCallback) => {
-  if (step.value === steps.length) {
-    handleFormSubmission();
-  } else {
-    validateAndProceed(step, activateCallback);
-  }
-};
-
-const validateAndProceed = (step, activateCallback) => {
-  if (step.id === "name") {
-    validateName(() => proceedToNextStep(step, activateCallback));
-  } else if (step.id === "email") {
-    validateEmail(() => proceedToNextStep(step, activateCallback));
-  } else {
-    proceedToNextStep(step, activateCallback);
-  }
-};
-
-const proceedToNextStep = (step, activateCallback) => {
-  if (step.value < steps.length) {
-    activateCallback(step.value + 1);
-  }
-};
-
-const validateName = (callback) => {
-  if (!formData.name) {
-    errors.name = "You must enter a name";
-  } else if (formData.name.length <= 2) {
-    errors.name = "The name must be at least 2 characters long";
-  } else {
-    errors.name = "";
-    callback && callback();
-  }
-};
-
-const validateEmail = (callback) => {
-  if (!formData.email) {
-    errors.email = "You must enter an email address";
-  } else if (!/.+@.+\..+/.test(formData.email)) {
-    errors.email = "The email address must include an @ and a . (dot)";
-  } else {
-    errors.email = "";
-    callback && callback();
-  }
-};
-
-const resetForm = () => {
-  // Reinicia el formulario
-  form.value = true;
-  Object.keys(formData).forEach(key => {
-    formData[key] = "";
-  });
-  errors.name = "";
-  errors.email = "";
-};
-
-const handleFormSubmission = async () => {
-  validateName();
-  validateEmail();
-
-  if (isValid.value) {
-    try {
-      isSubmitting.value = true;
-
-      // Formar el cuerpo del mensaje en el formato que espera tu API
-      const formattedMessage = `
-Nombre: ${formData.name}
-Email: ${formData.email}
-Nombre Empresa: ${formData.companyName || 'No proporcionado'}
-Idea: ${formData.idea || 'No proporcionada'}
-`;
-
-      // Llamar a la API de envío de email con la estructura correcta
-      const response = await $fetch('/api/sendEmail', {
-        method: 'POST',
-        body: {
-          body: formattedMessage
-        }
-      });
-
-      // Resetear formulario y mostrar mensaje de confirmación
-      form.value = false;
-
-    } catch (error) {
-      console.error('Error sending form:', error);
-      // Podrías mostrar un mensaje de error aquí si lo deseas
-    } finally {
-      isSubmitting.value = false;
-    }
-  }
-};
 </script>
-
-<style>
-.stepperFooter .p-steppanel {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.stepperFooter .p-step-header {
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--color-violet);
-  border: 2px solid var(--color-lime);
-  border-radius: 999px;
-  color: var(--color-lime);
-}
-
-.stepperFooter .p-steplist {
-  margin-bottom: 1rem;
-}
-
-.stepperFooter .p-step-active .p-step-header {
-  background: var(--color-lime);
-  color: var(--color-violet);
-}
-
-.stepperFooter .p-step-number {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.stepperFooter .p-step-title {
-  display: none;
-}
-
-.stepperFooter .stepContent {
-  margin-top: 1.25rem;
-}
-
-.stepperFooter .stepContent label {
-  font-size: 0.75rem;
-}
-
-.labelBold {
-  font-weight: 700;
-}
-
-.stepperFooter input,
-.stepperFooter textarea {
-  width: 100%;
-  border: 2px solid var(--color-lime);
-  background: var(--color-violet);
-  color: var(--color-white);
-  padding: 0.875rem 1.5rem;
-  margin-top: 0.375rem;
-}
-
-.stepperFooter input {
-  border-radius: 999px;
-}
-
-.stepperFooter textarea {
-  height: 7.5rem;
-  border-radius: 24px;
-  resize: none;
-}
-
-.stepperFooter input:focus-visible,
-.stepperFooter textarea:focus-visible {
-  outline: none !important;
-}
-
-.nextBack {
-  display: none;
-}
-
-.next,
-.back,
-.submit {
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 999px !important;
-  cursor: pointer;
-}
-
-.next:hover,
-.back:hover,
-.submit:hover {
-  box-shadow: -2px -2px 10px 0px #c3c3d5 inset;
-}
-
-.next {
-  align-self: flex-end;
-  background: var(--color-light-violet) !important;
-  border: 2px solid #7372b5 !important;
-  color: var(--color-white) !important;
-}
-
-.back {
-  background: none;
-  border: 2px solid #7372b5 !important;
-  color: var(--color-light-violet) !important;
-}
-
-.submit {
-  background: var(--color-lime) !important;
-  color: var(--color-dark-violet) !important;
-}
-
-@media (width >=600px) {
-  .stepperFooter .p-step-header {
-    width: auto;
-    height: auto;
-    gap: 0.625rem;
-    background: transparent;
-    border: none;
-    border-radius: 50px;
-    color: var(--color-lime);
-    opacity: 0.6;
-    pointer-events: none;
-    padding-right: 1rem;
-  }
-
-  .stepperFooter .p-step-active .p-step-header {
-    background: var(--color-lime);
-    color: var(--color-violet);
-    opacity: 1;
-  }
-
-  .stepperFooter .p-step-number {
-    width: 2.125rem;
-    height: 2.125rem;
-    background: var(--color-violet);
-    border-radius: 999px;
-    border: 2px solid var(--color-lime);
-    font-size: 1.125rem;
-  }
-
-  .stepperFooter .p-step-active .p-step-number {
-    background: var(--color-violet);
-    color: var(--color-lime);
-  }
-
-  .stepperFooter .p-step-title {
-    display: inline;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--color-white);
-  }
-
-  .stepperFooter .p-step-active .p-step-header .p-step-title {
-    color: var(--color-violet) !important;
-  }
-}
-
-@media (width >=700px) {
-  .stepperFooter {
-    max-width: 630px;
-  }
-
-  .stepperFooter .p-steppanel {
-    max-width: 100%;
-    display: flex;
-    gap: 2rem;
-    margin: 0 auto;
-  }
-
-  .nextBackMobile {
-    display: none;
-  }
-
-  .stepperFooter .inputsNextBack {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .errorMail {
-    margin-left: 5rem;
-  }
-
-  .nextBack {
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .stepContent {
-    width: 26.313rem;
-  }
-
-  .labelBold {
-    font-weight: 400;
-  }
-
-  .stepperFooter .stepContent label {
-    font-size: 0.875rem;
-  }
-
-  .stepperFooter input,
-  .stepperFooter textarea {
-    margin-top: 0.75rem;
-  }
-}
-
-@media (width >=1080px) {
-  .stepperFooter {
-    max-width: 750px;
-  }
-
-  .stepperFooter .p-step {
-    padding: 0 !important;
-  }
-
-  .stepperFooter .p-steppanel {
-    gap: 1.563rem;
-  }
-
-  .stepperFooter .panelName {
-    gap: 5.5rem;
-  }
-
-  .stepperFooter .p-step-header {
-    gap: 0.5rem;
-    padding: 0 1.25rem 0 0;
-  }
-
-  .stepperFooter .p-step-number {
-    width: 2.25rem;
-    height: 2.25rem;
-    font-size: 1.25rem;
-  }
-
-  .stepperFooter .p-step-title {
-    font-size: 1.25rem;
-  }
-
-  .stepperFooter .stepContent {
-    width: 100%;
-  }
-
-  .stepperFooter .stepContent label {
-    font-size: 1.125rem;
-  }
-}
-
-@media (width >=1440px) {
-  .stepperFooter {
-    max-width: 850px;
-  }
-
-  .stepperFooter form {
-    max-width: 80%;
-  }
-}
-</style>
 
 <style scoped>
 footer>section {
   padding: 3rem 1.5rem;
 }
 
-footer>section>img:first-of-type {
+.logo {
   width: 3.75rem;
   height: 100%;
-}
-
-.newMessage p {
-  max-width: 395px;
-  font-size: 0.875rem;
-}
-
-.btnNewMessage {
-  background: var(--color-light-violet);
-  border-radius: 999px;
-  border: none;
-  color: var(--color-white);
-  font-size: 0.875rem;
-  font-weight: 700;
-  transition: all 0.3s;
-  cursor: pointer;
-  padding: 0.688rem 1.25rem;
-}
-
-.btnNewMessage:hover {
-  background: var(--color-light-violet) !important;
-  box-shadow: -6px -2px 10px 0px #c3c3d5 inset;
 }
 
 .socialMedia {
@@ -654,12 +129,15 @@ footer>section>img:first-of-type {
   font-size: 0.75rem;
 }
 
+/* No se necesita el estilo para el diálogo ya que ahora está en el componente ContactForm */
+
 @media (width >=700px) {
   footer>section {
+    gap: 4rem !important;
     padding: 2.75rem 3.75rem;
   }
 
-  footer>section>img:first-of-type {
+  .logo {
     width: 5rem;
   }
 
@@ -687,7 +165,6 @@ footer>section>img:first-of-type {
 
   .socialMedia {
     gap: 1.25rem;
-    margin-top: 1.75rem;
   }
 
   .socialMedia p:first-child {
@@ -719,24 +196,16 @@ footer>section>img:first-of-type {
   }
 }
 
-@media (width >=1080px) {
+@media (width >=992px) {
   footer>section {
-    padding: 3.75rem 5.625rem;
-  }
-
-  footer>section>img:first-of-type {
-    width: 6.25rem;
-  }
-
-  footer section .stepperSocialMedia {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 5rem !important;
+    padding: 3.75rem 5.625rem;
   }
 
-  .stepperSocialMedia>div:first-of-type {
-    width: 100%;
+  .logo {
+    width: 6.25rem;
   }
 
   .newMessage {
@@ -779,23 +248,9 @@ footer>section>img:first-of-type {
 }
 
 @media (width >=1440px) {
-  .stepperSocialMedia>div:first-of-type {
-    max-width: 850px;
-  }
-
-  .stepperFooter .stepContent {
-    margin-top: 2.5rem;
-  }
-
   .newMessage p {
     max-width: 700px;
     font-size: 1.5rem;
-  }
-}
-
-@media (width >=1920px) {
-  .stepperSocialMedia>div:first-of-type {
-    max-width: 1000px;
   }
 }
 </style>

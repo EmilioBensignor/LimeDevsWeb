@@ -141,12 +141,14 @@ h2 span {
       var(--color-lime) 50%, var(--color-light-lime) 100%);
   background-size: 200% 100%;
   background-position: left bottom;
+  border: none;
   border-radius: 300px;
   font-weight: 700;
   font-size: 0.875rem;
   color: var(--color-dark-violet);
   text-decoration: none;
   transition: all 0.3s ease;
+  cursor: pointer;
   padding: 0.938rem 2.5rem;
 }
 
@@ -196,6 +198,13 @@ h2 span {
   }
 }
 
+@media (width >=992px) {
+  .primaryButton {
+    font-size: 1.25rem;
+    padding: 1rem 3.75rem;
+  }
+}
+
 @media (width >=1080px) {
   h1 {
     font-size: 3.625rem;
@@ -203,11 +212,6 @@ h2 span {
 
   h2 {
     font-size: 2.25rem;
-  }
-
-  .primaryButton {
-    font-size: 1.25rem;
-    padding: 1rem 3.75rem;
   }
 }
 
