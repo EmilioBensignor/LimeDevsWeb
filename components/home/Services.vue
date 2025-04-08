@@ -6,7 +6,9 @@
           Solutions that drive your
           <span class="text-lime underline">growth.</span>
         </h2>
-        <NuxtLink to="#contactUs" class="primaryButton btnHeader">Get started</NuxtLink>
+        <DefaultContact>
+          Get started
+        </DefaultContact>
       </div>
       <div class="servicesMobile">
         <client-only>
@@ -133,6 +135,16 @@ export default {
 @media (width >=1440px) {
   .services>div {
     gap: 9rem;
+  }
+}
+
+@media (width >=1600px) {
+  .services {
+    padding-bottom: 8rem;
+  }
+
+  .services>div {
+    gap: 10rem;
   }
 }
 </style>

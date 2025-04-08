@@ -3,7 +3,7 @@
     <NuxtLink :to="'/'">
       <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" />
     </NuxtLink>
-    <NuxtLink to="#contactUs" class="headerBtn primaryButton">Contact Us</NuxtLink>
+    <DefaultContact />
   </header>
 </template>
 

@@ -317,9 +317,5 @@ export default {
   .navButton {
     font-size: 1.375rem;
   }
-
-  .service {
-    width: 55rem
-  }
 }
 </style>

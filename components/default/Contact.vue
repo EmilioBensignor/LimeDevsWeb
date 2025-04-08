@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button aria-label="Contact Form" class="primaryButton" @click="openDialog">
+        <button aria-label="Contact Form" :class="buttonClass || 'primaryButton'" @click="openDialog">
             <slot>Contact us</slot>
         </button>
 
@@ -14,12 +14,14 @@
                 <form v-if="form" @submit.prevent="handleFormSubmission" class="column gap-5">
                     <div>
                         <label for="name">Enter your <strong>name</strong></label>
-                        <input type="text" id="name" v-model="formData.name" placeholder="Your name" required />
+                        <input type="text" id="name" v-model="formData.name" placeholder="Your name"
+                            autocomplete="false" required />
                         <p v-if="errors.name" class="errorMessage">{{ errors.name }}</p>
                     </div>
                     <div>
                         <label for="email">Enter your <strong>email</strong></label>
-                        <input type="text" id="email" v-model="formData.email" placeholder="Your email" required />
+                        <input type="text" id="email" v-model="formData.email" placeholder="Your email"
+                            autocomplete="false" required />
                         <p v-if="errors.email" class="errorMessage">{{ errors.email }}</p>
                     </div>
                     <div>
@@ -56,7 +58,7 @@
 const props = defineProps({
     buttonClass: {
         type: String,
-        default: ''
+        default: 'primaryButton'
     }
 });
 
@@ -305,7 +307,9 @@ textarea:focus-visible {
         font-size: 2.5rem;
     }
 
-    input, label, textarea {
+    input,
+    label,
+    textarea {
         font-size: 1.125rem;
     }
 

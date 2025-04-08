@@ -32,8 +32,6 @@
 </template>
 
 <script setup>
-import Default from '~/layouts/default.vue';
-
 // Información de redes sociales
 const socialMedia = [
   {

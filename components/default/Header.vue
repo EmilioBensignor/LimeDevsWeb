@@ -35,6 +35,7 @@
               {{ item.title }}
             </NuxtLink>
           </li>
+          <DefaultContact buttonClass="headerButton" />
         </ul>
       </nav>
     </div>
@@ -57,11 +58,7 @@
           },
           {
             link: "#aboutUs",
-            title: "About Us",
-          },
-          {
-            link: "#contactUs",
-            title: "Contact Us",
+            title: "About us",
           },
         ],
       };
@@ -136,13 +133,13 @@
     gap: 2rem;
   }
 
-  .menuList li {
+  .menuList li, .menuList div {
     position: relative;
     width: max-content;
     padding-bottom: 0.5rem;
   }
 
-  .menuList li::before {
+  .menuList li::before, .menuList div::before {
     content: "";
     position: absolute;
     bottom: 0;
@@ -153,17 +150,17 @@
     transition: width 0.3s ease, background-color 0.3s ease;
   }
 
-  .menuList li:hover::before {
+  .menuList li:hover::before, .menuList div:hover::before {
     width: 100%;
     background-color: var(--color-lime);
   }
 
   .menuList li a {
+    position: relative;
+    z-index: 1;
     font-size: 1.25rem;
     font-weight: 700;
     text-decoration: none;
-    position: relative;
-    z-index: 1;
   }
 
   .menuDesktop {
