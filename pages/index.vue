@@ -12,14 +12,14 @@
 <script setup>
 useSeoMeta({
   title: "Turning ideas into real tech solutions | Lime Devs",
-  description: "Innovating with custom software and hardware solutions to drive growth for startups and established businesses.",
+  description: "Innovating with tailor-made software and hardware solutions to accelerate growth, efficiency, and scalability for startups, enterprises, and established businesses.",
   ogTitle: "Turning ideas into real tech solutions | Lime Devs",
-  ogDescription: "Innovating with custom software and hardware solutions to drive growth for startups and established businesses.",
+  ogDescription: "Innovating with tailor-made software and hardware solutions to accelerate growth, efficiency, and scalability for startups, enterprises, and established businesses.",
   ogImage: "/images/Lime-Devs-Logo.svg",
   ogType: "website",
   ogUrl: "https://limedevs.com",
   twitterTitle: "Turning ideas into real tech solutions | Lime Devs",
-  twitterDescription: "Innovating with custom software and hardware solutions to drive growth for startups and established businesses.",
+  twitterDescription: "Innovating with tailor-made software and hardware solutions to accelerate growth, efficiency, and scalability for startups, enterprises, and established businesses.",
   twitterImage: "/images/Lime-Devs-Logo.svg",
   twitterCard: 'summary_large_image',
 });
@@ -27,13 +27,13 @@ useSeoMeta({
 useSchemaOrg([
   defineWebPage({
     name: "Turning ideas into real tech solutions | Lime Devs",
-    description: "Innovating with custom software and hardware solutions to drive growth for startups and established businesses.",
+    description: "Innovating with tailor-made software and hardware solutions to accelerate growth, efficiency, and scalability for startups, enterprises, and established businesses.",
     image: "/images/Lime-Devs-Logo.svg",
   }),
   {
     '@type': 'CreativeWork',
     name: "Turning ideas into real tech solutions | Lime Devs",
-    description: "Innovating with custom software and hardware solutions to drive growth for startups and established businesses.",
+    description: "Innovating with tailor-made software and hardware solutions to accelerate growth, efficiency, and scalability for startups, enterprises, and established businesses.",
     image: "/images/Lime-Devs-Logo.svg",
     author: {
       '@type': 'Organization',
