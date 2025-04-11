@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     }
   },
   gtm: {
-    id: 'GTM-WQ3RD54N',
+    id: 'GTM-MJG2JDK2',
     enabled: true,
     loadScript: true
   },
