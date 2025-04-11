@@ -2,15 +2,20 @@ export const projects = [
   {
     slug: "cladd-industria-textil",
     img: "Cladd",
-    alt: "Cladd",
+    alt: "Cladd Industria Textil - Software y Hardware para la industria textil",
     title: "Cladd Industria Textil",
     service: "Software and Hardware Design",
     web: "unitybox.org",
     banner: "project-image.png",
-    altBanner: "",
+    altBanner: "Cladd Industria Textil - Software y soluciones de hardware",
     phrase: "Charity box: Empower your giving with a single tap.",
     years: "2022 - 2023",
     country: "Argentina",
+    description: "Software y sistemas de hardware personalizados para optimizar procesos en la industria textil. Soluciones de automatización para mejorar la eficiencia productiva.",
+    keywords: ["industria textil", "automatización", "software", "hardware", "optimización de procesos", "argentina"],
+    publishDate: "2023-03-15T00:00:00Z",
+    type: "software-hardware",
+    client: "Cladd Argentina",
     company: "Unitybox is an innovative platform designed to revolutionize the way people engage in charitable giving. By offering a digital charity box, Unitybox makes it easy for users to give with just a tap, celebrating even the smallest acts of kindness. The platform simplifies the donation process, allowing individuals to make a meaningful impact daily, creating a global community of conscious givers.",
     challenges: [
       {
@@ -101,7 +106,7 @@ export const projects = [
   {
     slug: "mitzvah-for-israel",
     img: "Mitzvah-for-israel",
-    alt: "Mitzvah for israel",
+    alt: "Mitzvah for Israel - Plataforma digital de donaciones",
     title: "Mitzvah for Israel",
     service: "Software Design",
     web: "unitybox.org",
@@ -110,6 +115,11 @@ export const projects = [
     phrase: "Charity box: Empower your giving with a single tap.",
     years: "2022 - 2023",
     country: "Argentina",
+    description: "Plataforma digital para facilitar donaciones a Israel. Diseño de software moderno y accesible que conecta personas en todo el mundo con causas humanitarias.",
+    keywords: ["donaciones", "plataforma digital", "israel", "causas humanitarias", "software", "caridad"],
+    publishDate: "2023-02-10T00:00:00Z",
+    type: "software",
+    client: "Mitzvah Foundation",
     company: "Unitybox is an innovative platform designed to revolutionize the way people engage in charitable giving. By offering a digital charity box, Unitybox makes it easy for users to give with just a tap, celebrating even the smallest acts of kindness. The platform simplifies the donation process, allowing individuals to make a meaningful impact daily, creating a global community of conscious givers.",
     challenges: [
       {
@@ -197,6 +207,11 @@ export const projects = [
     phrase: "Charity box: Empower your giving with a single tap.",
     years: "2022 - 2023",
     country: "Argentina",
+    description: "Plataforma digital de donaciones que transforma la forma de dar a través de un sistema de caja de caridad digital. Facilitando donaciones con solo un toque.",
+    keywords: ["donaciones", "caridad", "plataforma digital", "caja de caridad", "fintech", "impacto social"],
+    publishDate: "2022-06-20T00:00:00Z",
+    type: "software-hardware",
+    client: "Unitybox Foundation",
     company: "Unitybox is an innovative platform designed to revolutionize the way people engage in charitable giving. By offering a digital charity box, Unitybox makes it easy for users to give with just a tap, celebrating even the smallest acts of kindness. The platform simplifies the donation process, allowing individuals to make a meaningful impact daily, creating a global community of conscious givers.",
     challenges: [
       {
@@ -284,6 +299,11 @@ export const projects = [
     phrase: "Charity box: Empower your giving with a single tap.",
     years: "2022 - 2023",
     country: "Argentina",
+    description: "Software para gestión de actividades de verano para jóvenes. Plataforma para inscripción, seguimiento y coordinación de eventos y programas juveniles.",
+    keywords: ["actividades juveniles", "gestión de eventos", "software", "programas de verano", "CTeen", "plataforma educativa"],
+    publishDate: "2022-11-05T00:00:00Z",
+    type: "software",
+    client: "CTeen Organization",
     company: "Unitybox is an innovative platform designed to revolutionize the way people engage in charitable giving. By offering a digital charity box, Unitybox makes it easy for users to give with just a tap, celebrating even the smallest acts of kindness. The platform simplifies the donation process, allowing individuals to make a meaningful impact daily, creating a global community of conscious givers.",
     challenges: [
       {

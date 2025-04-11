@@ -1,8 +1,8 @@
 <template>
   <section class="w-full hero columnAlignCenter gap-4">
     <h1 class="column">
-      <span>Where your <span class="text-lime">ideas</span></span>
-      <span>find their <span class="text-lime">perfect shape.</span></span>
+      <span>Turning <span class="text-lime">ideas</span> into</span>
+      <span>real <span class="text-lime">tech solutions.</span></span>
     </h1>
     <video
       autoplay
@@ -33,7 +33,7 @@ h1 {
 }
 
 h1 > span > span {
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .hero > video {

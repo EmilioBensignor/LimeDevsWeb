@@ -10,11 +10,8 @@
     <nav class="menuProject">
       <ul>
         <li v-for="(item, index) in menu" :key="index">
-          <a
-            :href="item.link"
-            @click.prevent="scrollToSection(item.link)"
-            :class="{ active: activeSection === item.link.substring(1) }"
-          >
+          <a :href="item.link" @click.prevent="scrollToSection(item.link)"
+            :class="{ active: activeSection === item.link.substring(1) }">
             {{ item.title }}
           </a>
         </li>
@@ -30,11 +27,8 @@
         <nav class="menuProjectDesktop">
           <ul>
             <li v-for="(item, index) in menu" :key="index">
-              <a
-                :href="item.link"
-                @click.prevent="scrollToSection(item.link)"
-                :class="{ active: activeSection === item.link.substring(1) }"
-              >
+              <a :href="item.link" @click.prevent="scrollToSection(item.link)"
+                :class="{ active: activeSection === item.link.substring(1) }">
                 {{ item.title }}
               </a>
             </li>
@@ -51,89 +45,130 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { useRoute } from 'vue-router';
+import { projects } from "~/shared/projects";
+
 definePageMeta({
   layout: "views",
 });
-</script>
 
-<script>
-import { projects } from "~/shared/projects";
-import { useRoute } from "vue-router";
+// Datos reactivos
+const activeSection = ref("");
+const project = ref(null);
+const sections = ref([]);
+const menu = ref([
+  { link: "#mainCharacteristics", title: "Main characteristics" },
+  { link: "#theCompany", title: "The company" },
+  { link: "#theChallenge", title: "The challenge" },
+  { link: "#technologiesResources", title: "Technologies and Resources" },
+  { link: "#outcome", title: "Project Outcome" },
+]);
 
-export default {
-  data() {
-    return {
-      activeSection: "",
-      project: null,
-      sections: [],
-      menu: [
-        { link: "#mainCharacteristics", title: "Main characteristics" },
-        { link: "#theCompany", title: "The company" },
-        { link: "#theChallenge", title: "The challenge" },
-        {
-          link: "#technologiesResources",
-          title: "Technologies and Resources",
-        },
-        { link: "#outcome", title: "Project Outcome" },
-      ],
-    };
-  },
-  created() {
-    const route = useRoute();
-    const projectId = route.params.slug;
-    this.project = projects.find((p) => p.slug === projectId);
+// Obtención del proyecto desde la URL
+const route = useRoute();
+const projectId = route.params.slug;
+project.value = projects.find((p) => p.slug === projectId);
 
-    if (!this.project) {
-      throw new Error("Proyecto no encontrado");
-    }
-  },
-  mounted() {
-    this.sections = document.querySelectorAll(".projectSection");
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  beforeDestroy() {
-    window.removeEventListener("scroll", this.handleScroll);
-  },
-  methods: {
-    scrollToSection(link) {
-      const sectionId = link.substring(1);
-      const element = document.getElementById(sectionId);
+if (!project.value) {
+  throw new Error("Proyecto no encontrado");
+}
 
-      if (element) {
-        const offset = this.getOffsetAdjustment();
-        window.scrollTo({
-          top: element.offsetTop - offset,
-          behavior: "smooth",
-        });
-      } else {
-        console.warn(`Elemento con id ${sectionId} no encontrado`);
+// Configuración SEO
+useSeoMeta({
+  title: () => `${project.value.title} | Lime Devs - Projects`,
+  description: () => project.value.description || project.value.phrase,
+  ogTitle: () => `${project.value.title} | Lime Devs - Projects`,
+  ogDescription: () => project.value.description || project.value.phrase,
+  ogImage: () => `/images/projects/${project.value.img}.webp`,
+  ogUrl: () => `https://limedevs.com/projects/${project.value.slug}`,
+  twitterTitle: () => `${project.value.title} | Lime Devs - Projects`,
+  twitterDescription: () => project.value.description || project.value.phrase,
+  twitterImage: () => `/images/projects/${project.value.img}.webp`,
+  twitterCard: 'summary_large_image',
+});
+
+// Configuración de Schema.org para proyecto creativo
+useSchemaOrg([
+  defineWebPage({
+    name: () => project.value.title,
+    description: () => project.value.description || project.value.phrase,
+    image: () => `https://limedevs.com/images/projects/${project.value.img}.webp`,
+  }),
+  {
+    '@type': 'CreativeWork',
+    name: () => project.value.title,
+    description: () => project.value.description || project.value.phrase,
+    image: () => `https://limedevs.com/images/projects/${project.value.img}.webp`,
+    author: {
+      '@type': 'Organization',
+      name: 'Lime Devs',
+      url: 'https://limedevs.com'
+    },
+    headline: () => project.value.phrase || project.value.title,
+    datePublished: () => project.value.publishDate || new Date().toISOString(),
+    keywords: () => project.value.keywords?.join(', ') || project.value.service,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Lime Devs',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://limedevs.com/images/Lime-Devs-Logo.svg'
       }
-    },
-    handleScroll() {
-      const scrollPosition = window.scrollY + this.getOffsetAdjustment();
-      this.sections.forEach((section) => {
-        if (section) {
-          const sectionTop = section.offsetTop - 10;
-          const sectionBottom = sectionTop + section.offsetHeight;
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            this.activeSection = section.id;
-          }
-        }
-      });
-    },
-    getOffsetAdjustment() {
-      const header = document.querySelector("header");
-      const title = document.querySelector(".title");
-      const menu = document.querySelector(".menuProject");
+    }
+  }
+]);
 
-      const headerHeight = header ? header.offsetHeight : 0;
-      const titleHeight = title ? title.offsetHeight : 0;
-      const menuHeight = menu ? menu.offsetHeight : 0;
+// Funciones para navegación
+function scrollToSection(link) {
+  const sectionId = link.substring(1);
+  const element = document.getElementById(sectionId);
 
-      return headerHeight + menuHeight + titleHeight;
-    },
-  },
-};
+  if (element) {
+    const offset = getOffsetAdjustment();
+    window.scrollTo({
+      top: element.offsetTop - offset,
+      behavior: "smooth",
+    });
+  } else {
+    console.warn(`Elemento con id ${sectionId} no encontrado`);
+  }
+}
+
+function handleScroll() {
+  const scrollPosition = window.scrollY + getOffsetAdjustment();
+  sections.value.forEach((section) => {
+    if (section) {
+      const sectionTop = section.offsetTop - 10;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        activeSection.value = section.id;
+      }
+    }
+  });
+}
+
+function getOffsetAdjustment() {
+  const header = document.querySelector("header");
+  const title = document.querySelector(".title");
+  const menu = document.querySelector(".menuProject");
+
+  const headerHeight = header ? header.offsetHeight : 0;
+  const titleHeight = title ? title.offsetHeight : 0;
+  const menuHeight = menu ? menu.offsetHeight : 0;
+
+  return headerHeight + menuHeight + titleHeight;
+}
+
+// Hooks de ciclo de vida
+onMounted(() => {
+  sections.value = document.querySelectorAll(".projectSection");
+  window.addEventListener("scroll", handleScroll);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <style scoped>
@@ -141,7 +176,7 @@ main {
   padding-top: 2rem;
 }
 
-main > .subtitle {
+main>.subtitle {
   width: 100%;
   padding: 0 1rem;
 }
@@ -212,7 +247,7 @@ nav ul li a.active {
   display: none;
 }
 
-@media (width >= 700px) {
+@media (width >=700px) {
   main {
     padding-top: 0;
   }
@@ -236,7 +271,7 @@ nav ul li a.active {
   }
 }
 
-@media (width >= 1080px) {
+@media (width >=1080px) {
   .menuDesktop {
     display: flex;
   }
@@ -318,7 +353,7 @@ nav ul li a.active {
   }
 }
 
-@media (width >= 1440px) {
+@media (width >=1440px) {
   main {
     padding: 5rem 0 5rem 5.625rem;
   }
@@ -332,7 +367,7 @@ nav ul li a.active {
   }
 }
 
-@media (width >= 1920px) {
+@media (width >=1920px) {
   .projectContainer {
     gap: 6rem;
   }
