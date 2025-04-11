@@ -6,7 +6,7 @@
           Solutions that drive your
           <span class="text-lime underline">growth.</span>
         </h2>
-        <DefaultContact>
+        <DefaultContact class="btnHeader">
           Get started
         </DefaultContact>
       </div>
