@@ -307,19 +307,12 @@ textarea:focus-visible {
         font-size: 2.5rem;
     }
 
-    input,
-    label,
-    textarea {
-        font-size: 1.125rem;
-    }
-
     .newMessage p {
         max-width: 560px;
-        font-size: 1.25rem;
     }
 
     .btnNewMessage {
-        font-size: 1.25rem;
+        font-size: 1rem;
     }
 }
 
