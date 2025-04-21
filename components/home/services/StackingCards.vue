@@ -1,321 +1,91 @@
 <template>
-  <div class="servicesWrapper">
-    <div class="navServices column">
-      <button
-        v-for="(service, index) in services"
-        class="navButton"
-        :class="['navButton', { active: activeIndex === index }]"
-        @click="toggleClass(index)"
-        :key="index"
-      >
+  <div class="w-full h-[21.5rem] lg:h-[22.5rem] 3xl:h-[25rem] flex justify-between items-center gap-[1.125rem]">
+    <div
+      class="max-w-[220px] lg:max-w-[240px] xl:max-w-[290px] 2xlmax-w-[340px] 3xl:max-w-[390px] w-[40%] flex flex-col gap-[0.625rem]">
+      <button v-for="(service, index) in services" :key="index"
+        class="relative z-[5] bg-secondary border-none rounded-full text-white text-[0.875rem] lg:text-base xl:text-xl 3xl:text-xl cursor-pointer transition-all duration-300 ease-in-out py-[0.875rem] px-[1.5rem] hover:shadow-[-4px_-2px_6px_0px_#7372B5_inset]"
+        :class="{ 'font-bold bg-lightSecondary': activeIndex === index }"
+        @click="toggleClass(index)">
         {{ service.title }}
       </button>
     </div>
-    <div class="servicesContainer">
-      <div
-        v-for="(service, index) in services"
-        :key="index"
-        class="service bg-gradient-violet shadow-4"
-        :style="getCardStyle(index)"
-      >
-        <div>
-          <NuxtImg :src="`/images/home/${service.img}-Lime-Devs.webp`" alt="service" />
+    <div class="w-[60%] h-full flex justify-center relative">
+      <div v-for="(service, index) in services" :key="index"
+        class="w-[20.375rem] lg:w-[24rem] xl:w-[34rem] 3xl:w-[48.125rem] h-full flex flex-col items-center justify-end absolute rounded-[18px] overflow-hidden bg-gradient-to-br from-secondary to-lightSecondary shadow-xl will-change-transform origin-center p-[1.25rem] xl:p-[2rem] 3xl:p-[2.5rem]"
+        :style="getCardStyle(index)">
+        <div
+          class="h-full absolute top-[1.125rem] xl:top-[2rem] 3xl:top-[2.5rem] right-[1.25rem] xl:right-[2rem] 3xl:right-[2.5rem] z-[2]">
+          <NuxtImg :src="`/images/home/${service.img}-Lime-Devs.webp`" alt="service"
+            class="w-[15.688rem] xl:w-[19.25rem] 3xl:w-[23.375rem] h-[55%] xl:h-[45%] 3xl:h-[55%] object-contain brightness-90" />
         </div>
-        <div>
-          <h3 class="serviceTitle">{{ service.title }}</h3>
-          <p class="serviceDescription">{{ service.text }}</p>
+        <div class="relative flex flex-col gap-[1rem] z-[2]">
+          <h3 class="text-[1.25rem] lg:text-[1.5rem] xl:text-[1.75rem] 3xl:text-[2rem] text-white font-semibold">{{ service.title }}
+          </h3>
+          <p class="text-[0.875rem] lg:text-base xl:text-xl 3xl:text-xl text-white">{{ service.text }}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "StackingServices",
-  props: {
-    services: {
-      type: Array,
-      required: true,
-    },
+<script setup>
+import { ref } from 'vue';
+
+const props = defineProps({
+  services: {
+    type: Array,
+    required: true,
   },
-  data() {
-    return {
-      activeIndex: 0,
-    };
-  },
-  methods: {
-    toggleClass(index) {
-      this.activeIndex = index;
-    },
-    getCardStyle(index) {
-      const isActive = this.activeIndex === index;
-      const distanceFromActive = Math.abs(this.activeIndex - index);
-      let zIndex, transform, rotateY, translateX, brightness;
+});
 
-      switch (distanceFromActive) {
-        case 0:
-          zIndex = 4;
-          rotateY = "none";
-          translateX = 0;
-          brightness = 1;
-          break;
+const activeIndex = ref(0);
 
-        case 1:
-          zIndex = 3;
-          rotateY = `rotate(-15deg)`;
-          translateX = "10px";
-          brightness = 0.7;
-          break;
+const toggleClass = (index) => {
+  activeIndex.value = index;
+};
 
-        case 2:
-          zIndex = 2;
-          rotateY = `rotate(10deg)`;
-          translateX = "-5px";
-          brightness = 0.6;
-          break;
+const getCardStyle = (index) => {
+  const isActive = activeIndex.value === index;
+  const distanceFromActive = Math.abs(activeIndex.value - index);
+  let zIndex, transform, rotateY, translateX, brightness;
 
-        default:
-          zIndex = 1;
-          rotateY = `rotate(-5deg)`;
-          translateX = "-10px";
-          brightness = 0.5;
-          break;
-      }
+  switch (distanceFromActive) {
+    case 0:
+      zIndex = 4;
+      rotateY = "none";
+      translateX = 0;
+      brightness = 1;
+      break;
 
-      transform = isActive ? "none" : `translateX(${translateX}) ${rotateY}`;
+    case 1:
+      zIndex = 3;
+      rotateY = `rotate(-12deg)`;
+      translateX = "10px";
+      brightness = 0.7;
+      break;
 
-      return {
-        zIndex,
-        transform,
-        filter: `brightness(${brightness})`,
-        transition: "all 0.5s ease",
-      };
-    },
-  },
+    case 2:
+      zIndex = 2;
+      rotateY = `rotate(10deg)`;
+      translateX = "-5px";
+      brightness = 0.6;
+      break;
+
+    default:
+      zIndex = 1;
+      rotateY = `rotate(-5deg)`;
+      translateX = "-10px";
+      brightness = 0.5;
+      break;
+  }
+
+  transform = isActive ? "none" : `translateX(${translateX}) ${rotateY}`;
+
+  return {
+    zIndex,
+    transform,
+    filter: `brightness(${brightness})`,
+    transition: "all 0.5s ease",
+  };
 };
 </script>
-
-<style scoped>
-.servicesWrapper {
-  width: 100%;
-  height: 21.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.125rem;
-}
-
-.navServices {
-  max-width: 220px;
-  width: 40%;
-  gap: 0.625rem;
-}
-
-.navButton {
-  position: relative;
-  z-index: 5;
-  background: linear-gradient(
-    90deg,
-    var(--color-60-violet),
-    var(--color-60-violet)
-  );
-  border: none;
-  border-radius: 9999px;
-  color: var(--color-white);
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0.875rem 1.5rem;
-}
-
-.navButton:hover {
-  box-shadow: -4px -2px 6px 0px #7372B5 inset;
-}
-
-.navButton.active {
-  font-weight: bold;
-  background: var(--gradient-violet-light);
-  color: var(--color-white);
-}
-
-.servicesContainer {
-  width: 60%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.service {
-  width: 20.375rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: end;
-  position: absolute;
-  border-radius: 18px;
-  overflow: hidden;
-  will-change: transform;
-  transform-origin: center center;
-  padding: 1.25rem;
-}
-
-.service.active {
-  z-index: 4;
-  transform: none;
-}
-
-.service > div {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  z-index: 2;
-}
-
-.service > div:first-of-type {
-  height: 100%;
-  position: absolute;
-  top: 1.125rem;
-  right: 1.25rem;
-}
-
-.service > div:first-of-type > img {
-  width: 15.688rem;
-  height: 55%;
-  object-fit: contain;
-  filter: brightness(0.9);
-}
-
-.serviceTitle {
-  font-size: 1.25rem;
-}
-
-.serviceDescription {
-  font-size: 0.875rem;
-}
-
-@media (width >= 850px) {
-  .navServices {
-    max-width: 240px;
-  }
-
-  .navButton {
-    font-size: 1rem;
-  }
-
-  .service {
-    width: 24rem;
-  }
-
-  .serviceTitle {
-    font-size: 1.5rem;
-  }
-
-  .serviceDescription {
-    font-size: 1rem;
-  }
-}
-
-@media (width >= 1080px) {
-  .servicesWrapper {
-    height: 22.5rem;
-  }
-
-  .navServices {
-    max-width: 290px;
-  }
-
-  .navButton {
-    font-size: 1.125rem;
-  }
-
-  .service {
-    width: 36.25rem;
-    padding: 2rem;
-  }
-
-  .service > div:first-of-type {
-    top: 2rem;
-    right: 2rem;
-  }
-
-  .service > div:first-of-type > img {
-    width: 19.25rem;
-    height: 45%;
-  }
-
-  .serviceTitle {
-    font-size: 1.75rem;
-  }
-
-  .serviceDescription {
-    font-size: 1.125rem;
-  }
-}
-
-@media (width >= 1280px) {
-  .navServices {
-    max-width: 340px;
-  }
-}
-
-@media (width >=1440px) {
-  .servicesWrapper {
-    height: 25rem;
-  }
-
-  .navServices {
-    max-width: 390px;
-  }
-
-  .navButton {
-    font-size: 1.25rem;
-  }
-
-  .service {
-    width: 48.125rem;
-    padding: 2.5rem;
-  }
-
-  .service > div:first-of-type {
-    top: 2.5rem;
-    right: 2.5rem;
-  }
-
-  .service > div:first-of-type > img {
-    width: 23.375rem;
-    height: 55%;
-  }
-
-  .serviceTitle {
-    font-size: 2rem;
-  }
-
-  .serviceDescription {
-    font-size: 1.25rem;
-  }
-}
-
-@media (width >=1600px) {
-  .navServices {
-    max-width: 420px;
-  }
-
-  .service {
-    width: 55rem
-  }
-}
-
-@media (width >=1920px) {
-  .navServices {
-    max-width: 500px;
-  }
-
-  .navButton {
-    font-size: 1.375rem;
-  }
-}
-</style>

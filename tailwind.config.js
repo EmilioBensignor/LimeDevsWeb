@@ -13,7 +13,7 @@ export default {
                 primary: "#ACCD00",
                 lightPrimary: "#F2FFBB",
                 secondary: "#39385E",
-                secondary60: "rgba(57, 56, 94, 0.6)",
+                secondary60: "#39385E99",
                 midSecondary: "#494874",
                 lightSecondary: "#7372B5",
                 light: "#E7E7F0",

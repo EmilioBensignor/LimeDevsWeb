@@ -28,124 +28,14 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Flex */
-
-/* .center {
-  display: flex;
-  justify-content: center;
-}
-
-.rowCenter {
-  display: flex;
-  align-items: center;
-}
-
-.rowSpaceBetween {
-  display: flex;
-  justify-content: space-between;
-}
-
-.rowSpaceBetweenCenter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-}
-
-.columnAlignCenter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.allCenter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-} */
-
 /* Typography & Background */
 
-h1 {
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-h2 {
-  text-align: center;
-  font-size: 1.25rem;
-}
-
-h2 span {
-  font-weight: 800;
-}
-
-/* .bgCover {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.bgContain {
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.bg-gradient-violet {
+/* .bg-gradient-violet {
   background: var(--gradient-violet-light);
 }
 
 .bg-gradient-light-violet {
   background: var(--gradient-light-violet);
-}
-
-.bg-dark-violet {
-  background-color: var(--color-dark-violet);
-}
-
-.bg-violet-60 {
-  background-color: var(--color-60-violet);
-}
-
-.bg-violet {
-  background-color: var(--color-violet);
-}
-
-.bg-mid-violet {
-  background-color: var(--color-mid-violet);
-}
-
-.text-lime {
-  color: var(--color-lime);
-} */
-
-/* Buttons */
-
-/* .primaryButton {
-  background-image: linear-gradient(to right,
-      var(--color-lime) 0%, var(--color-lime) 50%,
-      var(--color-lime) 50%, var(--color-light-lime) 100%);
-  background-size: 200% 100%;
-  background-position: left bottom;
-  border: none;
-  border-radius: 300px;
-  font-weight: 700;
-  font-size: 0.875rem;
-  color: var(--color-dark-violet);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  padding: 0.938rem 2.5rem;
-}
-
-.primaryButton:hover {
-  background-position: right bottom;
 } */
 
 /* Errors */
@@ -158,54 +48,4 @@ h2 span {
 .error p {
   font-size: 0.875rem;
   color: var(--color-red);
-}
-
-@media (width >=480px) {
-  h1 {
-    font-size: 1.75rem;
-  }
-
-  h2 {
-    font-size: 1.375rem;
-  }
-}
-
-@media (width >=700px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-}
-
-@media (width >=850px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 1.875rem;
-  }
-}
-
-@media (width >=1080px) {
-  h1 {
-    font-size: 3.625rem;
-  }
-
-  h2 {
-    font-size: 2.25rem;
-  }
-}
-
-@media (width >=1440px) {
-  h1 {
-    font-size: 4rem;
-  }
-
-  h2 {
-    font-size: 2.5rem;
-  }
 }

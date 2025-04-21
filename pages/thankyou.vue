@@ -1,6 +1,6 @@
 <template>
     <main>
-        <h1>Thank you for your support!</h1>
+        <TitleH1>Thank you for your support!</TitleH1>
         <p>If you'd like to help us grow, you can leave us a Google review or follow us on LinkedIn 🙌</p>
 
         <div class="buttons">

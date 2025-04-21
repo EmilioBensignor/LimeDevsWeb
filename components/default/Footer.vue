@@ -1,23 +1,23 @@
 <template>
-  <footer id="contactUs" class="bg-violet-60">
-    <section class="column gap-5">
-      <div class="column gap-5">
+  <footer id="contactUs" class="bg-secondary60">
+    <section class="flex flex-col gap-5">
+      <div class="flex flex-col gap-5">
         <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" class="logo" />
-        <h2 class="text-start">
+        <TitleH2 class="text-light text-start">
           Ready to
-          <span class="text-lime underline">transform your business</span>?
-        </h2>
+          <span class="text-primary underline">transform your business</span>?
+        </TitleH2>
         <DefaultContact />
       </div>
-      <div class="socialMedia column">
+      <div class="socialMedia flex flex-col">
         <p>Or contact us at:</p>
-        <ul class="column">
+        <ul class="flex flex-col">
           <li v-for="(social, index) in socialMedia" :key="index">
-            <NuxtLink v-if="social.type !== 'email'" :to="social.link" target="_blank" class="rowCenter no-underline">
+            <NuxtLink v-if="social.type !== 'email'" :to="social.link" target="_blank" class="flex no-underline">
               <div class="bgCover" :class="social.img"></div>
               <p class="text-white no-underline">{{ social.text }}</p>
             </NuxtLink>
-            <a v-else :href="social.link" @click.prevent="handleEmailClick(social)" class="rowCenter no-underline">
+            <a v-else :href="social.link" @click.prevent="handleEmailClick(social)" class="flex no-underline">
               <div class="bgCover" :class="social.img"></div>
               <p class="text-white no-underline">{{ social.text }}</p>
             </a>
@@ -25,8 +25,11 @@
         </ul>
       </div>
     </section>
-    <div class="rightsReserved bg-dark-violet">
-      <p class="text-center">{{ new Date().getFullYear() }} Lime Devs © All rights reserved.</p>
+    <div class="bg-dark p-6 xl:p-5">
+      <DefaultContent>
+        <p class="text-center text-light text-xs md:text-sm xl:text-base">{{ new Date().getFullYear() }} Lime Devs © All
+          rights reserved.</p>
+      </DefaultContent>
     </div>
   </footer>
 </template>
@@ -229,7 +232,7 @@ footer>section {
   }
 
   .socialMedia ul {
-    flex-direction: column;
+    flex-direction: flex flex-col;
   }
 
   .socialMedia ul li a {

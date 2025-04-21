@@ -1,7 +1,7 @@
 <template>
   <main class="w-full columnAlignCenter">
     <div class="title">
-      <h1 class="text-lime">{{ project.title }}</h1>
+      <TitleH1 class="text-lime">{{ project.title }}</TitleH1>
     </div>
     <div class="subtitle columnAlignCenter">
       <p>{{ project.service }}</p>
@@ -20,7 +20,7 @@
     <section class="projectContainer">
       <div class="menuDesktop">
         <div class="column">
-          <h1 class="text-lime">{{ project.title }}</h1>
+          <TitleH1 class="text-lime">{{ project.title }}</TitleH1>
           <p>{{ project.service }}</p>
           <a :href="project.web" class="text-lime">{{ project.web }}</a>
         </div>
