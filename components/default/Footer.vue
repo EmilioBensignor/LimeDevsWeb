@@ -3,7 +3,7 @@
     <section class="column gap-5">
       <div class="column gap-5">
         <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" class="logo" />
-        <h2>
+        <h2 class="text-start">
           Ready to
           <span class="text-lime underline">transform your business</span>?
         </h2>

@@ -1,11 +1,16 @@
 <template>
-  <header class="center sticky top-0 bg-dark-violet">
-    <NuxtLink :to="'/'">
+  <header class="center sticky top-0 bg-dark">
+    <NuxtLink :to="ROUTE_NAMES.HOME">
       <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" />
     </NuxtLink>
     <DefaultContact />
   </header>
 </template>
+
+<script setup>
+import { ROUTE_NAMES } from '~/constants/ROUTE_NAMES';
+</script>
+
 
 <style scoped>
 header {
@@ -22,13 +27,13 @@ header img {
   display: none;
 }
 
-@media (width >= 480px) {
+@media (width >=480px) {
   header img {
     width: 3rem;
   }
 }
 
-@media (width >= 700px) {
+@media (width >=700px) {
   header {
     padding: 1.75rem 3.75rem;
   }
@@ -38,7 +43,7 @@ header img {
   }
 }
 
-@media (width >= 1080px) {
+@media (width >=1080px) {
   header {
     justify-content: space-between;
     align-items: center;

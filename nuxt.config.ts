@@ -4,9 +4,8 @@ import { projects } from './shared/projects';
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  css: ["~/assets/main.css"],
+  css: ["~/assets/css/main.css"],
   modules: [
-    "@primevue/nuxt-module",
     "@nuxt/image",
     "@nuxt/icon",
     '@nuxtjs/seo',
@@ -16,7 +15,9 @@ export default defineNuxtConfig({
     'nuxt-anchorscroll',
     '@nuxt/scripts',
     '@nuxt/fonts',
-    '@zadigetvoltaire/nuxt-gtm'
+    "@primevue/nuxt-module",
+    '@nuxtjs/tailwindcss',
+    '@zadigetvoltaire/nuxt-gtm',
   ],
   primevue: {
     components: {
@@ -39,12 +40,6 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      link: [
-        {
-          rel: 'stylesheet',
-          href: 'https://unpkg.com/primeflex@latest/primeflex.css'
-        },
-      ],
     }
   },
   gtm: {

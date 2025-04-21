@@ -1,73 +1,76 @@
 <template>
-  <header class="center sticky top-0 bg-dark-violet">
-    <button class="hamburger absolute" @click="toggleDrawer" aria-label="Open or close menu">
-      <Icon class="text-white" size="2rem" name="mingcute:menu-fill" />
-    </button>
-    <NuxtLink :to="'/'">
-      <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" />
-    </NuxtLink>
-    <div class="menuSidebar">
-      <Drawer ref="drawer" :visible="drawerMenu" :show-close-button="false" @click="handleDrawerClick">
-        <ul class="menuList column">
-          <li v-for="(item, index) in menu" :key="index">
-            <NuxtLink :to="item.link" class="text-white no-underline" @click="toggleDrawer">
-              {{ item.title }}
-            </NuxtLink>
-          </li>
-        </ul>
-      </Drawer>
-    </div>
-    <div class="menuDesktop">
-      <nav>
-        <ul class="menuList rowSpaceBetweenCenter">
-          <li v-for="(item, index) in menu" :key="index">
-            <NuxtLink :to="item.link" class="text-white no-underline">
-              {{ item.title }}
-            </NuxtLink>
-          </li>
-          <li>
-            <DefaultContact buttonClass="headerButton" />
-          </li>
-        </ul>
-      </nav>
-    </div>
+  <header class="sticky top-0 z-10 bg-dark py-4 md:py-7 2xl:py-8 px-6 md:px-[3.75rem] 2xl:px-[5.625rem]">
+    <DefaultContent class="flex justify-center items-center 2xl:justify-between relative">
+      <button class="flex justify-center items-center absolute left-0 2xl:hidden" @click="toggleDrawer"
+        aria-label="Open or close menu">
+        <Icon class="text-light" size="2rem" name="mingcute:menu-fill" />
+      </button>
+      <NuxtLink :to="'/'">
+        <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo"
+          class="w-[2.5rem] sm:w-12 md:w-[3.75rem] 2xl:w-[5.75rem] h-full object-cover" />
+      </NuxtLink>
+      <div class="2xl:hidden">
+        <Drawer ref="drawer" :visible="drawerMenu" :show-close-button="false" @click="handleDrawerClick">
+          <ul class="flex flex-col gap-8">
+            <HeaderLink v-for="(item, index) in menu" :key="index">
+              <NuxtLink :to="item.link" class="relative z-[1] text-xl md:text-2xl font-bold text-light no-underline"
+                @click="toggleDrawer">
+                {{ item.title }}
+              </NuxtLink>
+            </HeaderLink>
+            <HeaderLink>
+              <DefaultContact :headerButton="true" />
+            </HeaderLink>
+          </ul>
+        </Drawer>
+      </div>
+      <div class="hidden 2xl:inline">
+        <nav>
+          <ul class="flex justify-between items-center gap-[3.75rem]">
+            <HeaderLink v-for="(item, index) in menu" :key="index">
+              <NuxtLink :to="item.link" class="relative z-[1] 2xl:text-2xl font-bold text-light no-underline">
+                {{ item.title }}
+              </NuxtLink>
+            </HeaderLink>
+            <HeaderLink>
+              <DefaultContact :headerButton="true" />
+            </HeaderLink>
+          </ul>
+        </nav>
+      </div>
+    </DefaultContent>
   </header>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      drawerMenu: false,
-      menu: [
-        {
-          link: "#services",
-          title: "Services",
-        },
-        {
-          link: "#projects",
-          title: "Projects",
-        },
-        {
-          link: "#aboutUs",
-          title: "About us",
-        },
-      ],
-    };
+<script setup>
+const drawerMenu = ref(false);
+const menu = ref([
+  {
+    link: "#services",
+    title: "Services",
   },
-  methods: {
-    toggleDrawer() {
-      this.drawerMenu = !this.drawerMenu;
-    },
-    handleDrawerClick(event) {
-      if (!this.$refs.drawer.$el.contains(event.target)) {
-        this.closeDrawer();
-      }
-    },
-    closeDrawer() {
-      this.drawerMenu = false;
-    },
+  {
+    link: "#projects",
+    title: "Projects",
   },
+  {
+    link: "#aboutUs",
+    title: "About us",
+  },
+]);
+
+const toggleDrawer = () => {
+  drawerMenu.value = !drawerMenu.value;
+};
+
+const handleDrawerClick = (event) => {
+  if (!drawer.value.$el.contains(event.target)) {
+    closeDrawer();
+  }
+};
+
+const closeDrawer = () => {
+  drawerMenu.value = false;
 };
 </script>
 
@@ -90,7 +93,7 @@ export default {
   padding: 2.5rem 1rem !important;
 }
 
-@media (width >=700px) {
+@media (width >=660px) {
   .p-drawer-mask {
     top: 4.75rem !important;
   }
@@ -103,87 +106,7 @@ export default {
 </style>
 
 <style scoped>
-header {
-  z-index: 10;
-  padding: 1rem 1.5rem;
-}
-
-header img {
-  width: 2.5rem;
-  height: 100%;
-  object-fit: contain;
-}
-
-.hamburger {
-  left: 1rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.menuList {
-  gap: 2rem;
-}
-
-.menuList li {
-  position: relative;
-  width: max-content;
-  padding-bottom: 0.5rem;
-}
-
-.menuList li::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 4px;
-  background-color: var(--color-dark-violet);
-  transition: width 0.3s ease, background-color 0.3s ease;
-}
-
-.menuList li:hover::before {
-  width: 100%;
-  background-color: var(--color-lime);
-}
-
-.menuList li a {
-  position: relative;
-  z-index: 1;
-  font-size: 1.25rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.menuDesktop {
-  display: none;
-}
-
-@media (width >=480px) {
-  header img {
-    width: 3rem;
-  }
-}
-
-@media (width >=700px) {
-  header {
-    padding: 1.75rem 3.75rem;
-  }
-
-  header img {
-    width: 3.75rem;
-  }
-
-  .hamburger {
-    left: 3.75rem;
-  }
-
-  .menuList li a {
-    font-size: 1.5rem;
-  }
-}
-
-@media (width >=1080px) {
+/* @media (width >=1080px) {
   header {
     justify-content: space-between;
     align-items: center;
@@ -194,11 +117,6 @@ header img {
     width: 5.75rem;
   }
 
-  .menuSidebar,
-  .hamburger {
-    display: none;
-  }
-
   .menuDesktop {
     display: inline;
   }
@@ -206,5 +124,5 @@ header img {
   .menuList {
     gap: 3.75rem;
   }
-}
+} */
 </style>

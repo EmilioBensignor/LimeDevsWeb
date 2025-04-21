@@ -23,22 +23,14 @@
 }
 
 body {
-  background-color: var(--color-dark-violet);
-  color: var(--color-white);
+  height: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
-header,
-main,
-footer {
-  max-width: 1920px;
-  margin: 0 auto;
-}
-
 /* Flex */
 
-.center {
+/* .center {
   display: flex;
   justify-content: center;
 }
@@ -75,7 +67,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
+} */
 
 /* Typography & Background */
 
@@ -93,7 +85,7 @@ h2 span {
   font-weight: 800;
 }
 
-.bgCover {
+/* .bgCover {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -131,11 +123,11 @@ h2 span {
 
 .text-lime {
   color: var(--color-lime);
-}
+} */
 
 /* Buttons */
 
-.primaryButton {
+/* .primaryButton {
   background-image: linear-gradient(to right,
       var(--color-lime) 0%, var(--color-lime) 50%,
       var(--color-lime) 50%, var(--color-light-lime) 100%);
@@ -154,19 +146,7 @@ h2 span {
 
 .primaryButton:hover {
   background-position: right bottom;
-}
-
-.headerButton {
-  position: relative;
-  z-index: 1;
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-size: 1.25rem;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-}
+} */
 
 /* Errors */
 .error {
@@ -198,10 +178,6 @@ h2 span {
   h2 {
     font-size: 1.5rem;
   }
-
-  .headerButton {
-    font-size: 1.5rem;
-  }
 }
 
 @media (width >=850px) {
@@ -211,13 +187,6 @@ h2 span {
 
   h2 {
     font-size: 1.875rem;
-  }
-}
-
-@media (width >=992px) {
-  .primaryButton {
-    font-size: 1.25rem;
-    padding: 1rem 3.75rem;
   }
 }
 
@@ -238,9 +207,5 @@ h2 span {
 
   h2 {
     font-size: 2.5rem;
-  }
-
-  .primaryButton {
-    font-size: 1.5rem;
   }
 }

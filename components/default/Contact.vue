@@ -1,8 +1,13 @@
 <template>
     <div>
-        <button aria-label="Contact Form" :class="buttonClass || 'primaryButton'" @click="openDialog">
+        <button v-if="headerButton" aria-label="Contact Form"
+            class="relative z-10 bg-transparent border-none text-white text-xl md:text-2xl font-bold no-underline cursor-pointer"
+            @click="openDialog">
             <slot>Contact us</slot>
         </button>
+        <ButtonPrimary v-else @click="openDialog" aria-label="Contact Form">
+            <slot>Contact us</slot>
+        </ButtonPrimary>
 
         <dialog ref="contactDialog" class="contactDialog">
             <div class="contactForm column gap-5">
@@ -56,9 +61,9 @@
 
 <script setup>
 const props = defineProps({
-    buttonClass: {
-        type: String,
-        default: 'primaryButton'
+    headerButton: {
+        type: Boolean,
+        default: false
     }
 });
 

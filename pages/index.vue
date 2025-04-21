@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="bg-dark text-white">
     <HomeHero />
     <HomeServices id="services" />
     <HomeProjects id="projects" />
