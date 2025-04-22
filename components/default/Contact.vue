@@ -9,50 +9,62 @@
             <slot>Contact us</slot>
         </ButtonPrimary>
 
-        <dialog ref="contactDialog" class="contactDialog">
-            <div class="contactForm column gap-5">
-                <div class="rowSpaceBetweenCenter">
-                    <h2 class="text-lime">Contact Us</h2>
-                    <button class="closeButton" @click="closeDialog">&times;</button>
+        <dialog ref="contactDialog"
+            class="w-full max-w-[280px] md:max-w-[400px] xl:max-w-[500px] 3xl:max-w-[600px] fixed top-1/2 left-1/2 z-20 bg-secondary border-2 border-primary rounded-[24px] translate-x-[-50%] translate-y-[-50%] p-8 backdrop:bg-black/70">
+            <div class="w-full flex flex-col gap-5">
+                <div class="flex justify-between items-center">
+                    <TitleH2 class="text-primary">Contact Us</TitleH2>
+                    <button class="text-[2rem] xl:text-[2.5rem] text-primary" @click="closeDialog">&times;</button>
                 </div>
 
-                <form v-if="form" @submit.prevent="handleFormSubmission" class="column gap-5">
-                    <div>
-                        <label for="name">Enter your <strong>name</strong></label>
-                        <input type="text" id="name" v-model="formData.name" placeholder="Your name"
+                <form v-if="form" @submit.prevent="handleFormSubmission" class="flex flex-col gap-5">
+                    <div class="flex flex-col gap-2 xl:gap-3">
+                        <label class="text-sm md:text-base text-light" for="name">Enter your
+                            <strong>name</strong></label>
+                        <input
+                            class="w-full border-2 border-primary bg-secondary text-light rounded-full py-[0.875rem] px-5 focus-visible:outline-none"
+                            type="text" id="name" v-model="formData.name" placeholder="Your name" autocomplete="false"
+                            required />
+                        <p v-if="errors.name" class="text-error text-xs mt-1">{{ errors.name }}</p>
+                    </div>
+                    <div class="flex flex-col gap-2 xl:gap-3">
+                        <label class="text-sm md:text-base text-light" for="email">Enter your
+                            <strong>email</strong></label>
+                        <input
+                            class="w-full border-2 border-primary bg-secondary text-light rounded-full py-[0.875rem] px-5 focus-visible:outline-none"
+                            type="text" id="email" v-model="formData.email" placeholder="Your email"
                             autocomplete="false" required />
-                        <p v-if="errors.name" class="errorMessage">{{ errors.name }}</p>
+                        <p v-if="errors.email" class="text-error text-xs mt-1">{{ errors.email }}</p>
                     </div>
-                    <div>
-                        <label for="email">Enter your <strong>email</strong></label>
-                        <input type="text" id="email" v-model="formData.email" placeholder="Your email"
-                            autocomplete="false" required />
-                        <p v-if="errors.email" class="errorMessage">{{ errors.email }}</p>
+                    <div class="flex flex-col gap-2 xl:gap-3">
+                        <label class="text-sm md:text-base text-light" for="companyName">Enter your <strong>company
+                                name</strong></label>
+                        <input
+                            class="w-full border-2 border-primary bg-secondary text-light rounded-full py-[0.875rem] px-5 focus-visible:outline-none"
+                            type="text" id="companyName" v-model="formData.companyName" placeholder="Your company name"
+                            required />
                     </div>
-                    <div>
-                        <label for="companyName">Enter your <strong>company name</strong></label>
-                        <input type="text" id="companyName" v-model="formData.companyName"
-                            placeholder="Your company name" required />
-                    </div>
-                    <div>
-                        <label for="idea">Tell us about your <strong>idea</strong></label>
-                        <textarea id="idea" v-model="formData.idea" placeholder="Your idea"></textarea>
+                    <div class="flex flex-col gap-2 xl:gap-3">
+                        <label class="text-sm md:text-base text-light" for="idea">Tell us about your
+                            <strong>idea</strong></label>
+                        <textarea
+                            class="w-full h-[7.5rem] border-2 border-primary rounded-[24px] resize-none bg-secondary text-light py-[0.875rem] px-5 focus-visible:outline-none"
+                            id="idea" v-model="formData.idea" placeholder="Your idea"></textarea>
                     </div>
 
-                    <button type="submit" aria-label="Submit contact form" :disabled="isSubmitting"
-                        class="primaryButton">
+                    <ButtonPrimary type="submit" aria-label="Submit contact form" :disabled="isSubmitting">
                         {{ isSubmitting ? 'Sending...' : 'Submit' }}
-                    </button>
+                    </ButtonPrimary>
                 </form>
-                <div v-else class="newMessage columnAlignCenter gap-3">
-                    <p class="text-center text-white">
+                <div v-else class="flex flex-col items-center gap-3 xl:gap-5">
+                    <p class="md:w-max-[500px] xl:max-w-[560px] text-center md:text-[1.125rem] text-white">
                         We've received your message and will get back to you soon.
                         Thanks for choosing Lime Devs to help
                         <span class="text-lime font-bold">bring your ideas to life.</span>
                     </p>
-                    <button aria-label="Send another contact form" class="primaryButton" @click="resetForm">
+                    <ButtonPrimary aria-label="Send another contact form" @click="resetForm">
                         Send a new message
-                    </button>
+                    </ButtonPrimary>
                 </div>
             </div>
         </dialog>
@@ -205,125 +217,3 @@ const handleFormSubmission = async () => {
     }
 };
 </script>
-
-<style scoped>
-.contactDialog {
-    width: 100%;
-    max-width: 280px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 20;
-    background-color: var(--color-violet);
-    border: 2px solid var(--color-lime);
-    border-radius: 24px;
-    transform: translate(-50%, -50%);
-    padding: 2rem;
-}
-
-.contactDialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-.contactForm {
-    width: 100%;
-}
-
-.closeButton {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--color-lime);
-}
-
-form>div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-label {
-    font-size: 0.875rem;
-    color: var(--color-white);
-}
-
-input,
-textarea {
-    width: 100%;
-    border: 2px solid var(--color-lime);
-    background: var(--color-violet);
-    color: var(--color-white);
-    padding: 0.875rem 1.25rem;
-}
-
-input {
-    border-radius: 999px;
-}
-
-textarea {
-    height: 7.5rem;
-    border-radius: 24px;
-    resize: none;
-}
-
-input:focus-visible,
-textarea:focus-visible {
-    outline: none !important;
-}
-
-.errorMessage {
-    color: #ff6666;
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
-}
-
-.newMessage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-@media (width >=660px) {
-    .contactDialog {
-        max-width: 400px;
-    }
-
-    label {
-        font-size: 1rem;
-    }
-
-    .newMessage p {
-        max-width: 500px;
-        font-size: 1.125rem;
-    }
-}
-
-@media (width >=992px) {
-    .contactDialog {
-        max-width: 500px;
-    }
-
-    form>div {
-        gap: 0.75rem;
-    }
-
-    .closeButton {
-        font-size: 2.5rem;
-    }
-
-    .newMessage p {
-        max-width: 560px;
-    }
-
-    .btnNewMessage {
-        font-size: 1rem;
-    }
-}
-
-@media (width >=1440px) {
-    .contactDialog {
-        max-width: 600px;
-    }
-}
-</style>
