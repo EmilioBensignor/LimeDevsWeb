@@ -95,7 +95,7 @@ export default defineNuxtConfig({
     disableStylesheets: 'entry',
     disablePrefetchLinks: true
   },
-  generate: {
-    routes: projects.map(project => `/projects/${project.slug}`),
-  },
+  // generate: {
+  //   routes: projects.map(project => `/projects/${project.slug}`),
+  // },
 })

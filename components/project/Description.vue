@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full description columnAlignCenter">
+  <DefaultSection class="w-full flex flex-col items-center gap-8">
     <div id="theCompany" class="projectSection company column">
       <h2>The Company</h2>
       <p class="text-center">{{ project.company }}</p>
@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </DefaultSection>
 </template>
 
 <script>

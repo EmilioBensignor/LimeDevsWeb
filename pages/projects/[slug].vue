@@ -1,19 +1,26 @@
 <template>
   <DefaultMain>
-    <DefaultSection>
+    <DefaultSection class="2xl:hidden">
       <DefaultContent>
-        <div class="title">
+        <div class="w-full sticky top-14 bg-dark pb-1.5 z-[11] 2xl:top-[5.75rem]">
           <TitleH1 class="text-primary">{{ project.title }}</TitleH1>
         </div>
-        <div class="subtitle columnAlignCenter">
+
+        <div class="flex flex-col items-center gap-1 text-center 2xl:hidden">
           <p>{{ project.service }}</p>
           <a :href="project.web" class="text-primary">{{ project.web }}</a>
         </div>
-        <nav class="menuProject">
-          <ul>
+
+        <nav class="w-full sticky top-20 bg-dark overflow-x-auto p-4 pr-0 z-[3] 2xl:hidden">
+          <ul class="flex lg:justify-center gap-3 pr-4 whitespace-nowrap">
             <li v-for="(item, index) in menu" :key="index">
-              <a :href="item.link" @click.prevent="scrollToSection(item.link)"
-                :class="{ active: activeSection === item.link.substring(1) }">
+              <a :href="item.link" @click.prevent="scrollToSection(item.link)" :class="[
+                'block h-[2.625rem] px-3 py-2 rounded text-sm font-medium text-light',
+                'bg-[linear-gradient(90deg,#39385E,#39385E)]',
+                activeSection === item.link.substring(1)
+                  ? 'bg-[linear-gradient(90deg,#39385E,#7372B5)]'
+                  : ''
+              ]">
                 {{ item.title }}
               </a>
             </li>
@@ -21,25 +28,31 @@
         </nav>
       </DefaultContent>
     </DefaultSection>
-    <DefaultSection class="projectContainer">
-      <DefaultContent>
-        <div class="menuDesktop">
-          <div class="column">
-            <TitleH1 class="text-primary">{{ project.title }}</TitleH1>
-            <p>{{ project.service }}</p>
-            <a :href="project.web" class="text-primary">{{ project.web }}</a>
+
+    <DefaultSection>
+      <DefaultContent class="flex gap-7 relative 2xl:flex-row 2xl:gap-[1.75rem] 3xl:gap-[2.5rem] 4xl:gap-[6rem]">
+        <div class="hidden 2xl:flex flex-col gap-5 sticky top-[12rem] h-max">
+          <div class="flex flex-col gap-2.5 text-left">
+            <TitleH1 class="text-primary text-start">{{ project.title }}</TitleH1>
+            <p class="text-xl">{{ project.service }}</p>
+            <a :href="project.web" class="text-primary text-xl">{{ project.web }}</a>
           </div>
-          <nav class="menuProjectDesktop">
-            <ul>
+          <nav>
+            <ul class="flex flex-col gap-2">
               <li v-for="(item, index) in menu" :key="index">
-                <a :href="item.link" @click.prevent="scrollToSection(item.link)"
-                  :class="{ active: activeSection === item.link.substring(1) }">
+                <a :href="item.link" @click.prevent="scrollToSection(item.link)" :class="[
+                  'block w-full rounded-full text-center text-[1.125rem] px-10 py-4 transition-colors',
+                  activeSection === item.link.substring(1)
+                    ? 'text-light'
+                    : 'text-light/60'
+                ]">
                   {{ item.title }}
                 </a>
               </li>
             </ul>
           </nav>
         </div>
+
         <div>
           <ProjectHero :project="project" />
           <ProjectDescription :project="project" />
@@ -49,6 +62,7 @@
     </DefaultSection>
   </DefaultMain>
 </template>
+
 
 <script setup>
 import { projects } from "~/shared/projects";
@@ -168,197 +182,3 @@ onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
 });
 </script>
-
-<style scoped>
-.title {
-  width: 100%;
-  position: sticky;
-  top: 3.5rem;
-  background: var(--color-dark-violet);
-  padding-bottom: 0.375rem;
-  z-index: 11;
-}
-
-nav {
-  width: 100%;
-  display: flex;
-  position: sticky;
-  top: 5rem;
-  background: var(--color-dark-violet);
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding: 1rem;
-  padding-right: 0;
-  z-index: 3;
-}
-
-nav::-webkit-scrollbar {
-  display: none;
-}
-
-nav ul {
-  display: flex;
-  justify-content: flex-start;
-  gap: 0.75rem;
-  white-space: nowrap;
-  overflow-x: auto;
-  scrollbar-width: none;
-  cursor: grab;
-  padding-right: 1rem;
-}
-
-nav ul::-webkit-scrollbar {
-  display: none;
-}
-
-nav ul li {
-  width: max-content;
-}
-
-nav ul li a {
-  display: block;
-  height: 2.625rem;
-  border-radius: 5px;
-  background: var(--gradient-violet-plain);
-  color: var(--color-white);
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 0.75rem;
-}
-
-nav ul li a.active {
-  background: var(--gradient-violet-light);
-}
-
-.menuDesktop {
-  display: none;
-}
-
-@media (width >=700px) {
-  main {
-    padding-top: 0;
-  }
-
-  .title {
-    top: 5.75rem;
-  }
-
-  nav {
-    top: 7.5rem;
-    padding: 3rem 0 3rem 3.75rem;
-  }
-
-  nav ul {
-    padding-right: 3.75rem;
-  }
-
-  nav ul li a {
-    height: 2.75rem;
-    font-size: 1rem;
-  }
-}
-
-@media (width >=1080px) {
-  .menuDesktop {
-    display: flex;
-  }
-
-  .menuProject,
-  .title,
-  .subtitle {
-    display: none;
-  }
-
-  main {
-    padding: 3.75rem 0 3.75rem 5.625rem;
-  }
-
-  .menuDesktop {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .menuDesktop div {
-    gap: 0.625rem;
-  }
-
-  h1 {
-    text-align: start;
-  }
-
-  .menuDesktop div p,
-  .menuDesktop div a {
-    font-size: 1.25rem;
-  }
-
-  .projectContainer {
-    display: flex;
-    gap: 1.75rem;
-    position: relative;
-  }
-
-  .menuDesktop {
-    height: max-content;
-    position: sticky;
-    top: 12rem;
-  }
-
-  .menuProjectDesktop {
-    position: relative;
-    top: auto;
-    padding: 0;
-  }
-
-  nav {
-    position: relative;
-    top: auto;
-  }
-
-  nav ul {
-    width: 100%;
-    flex-direction: column;
-    padding: 0;
-  }
-
-  nav ul li {
-    width: 100%;
-  }
-
-  nav ul li a {
-    width: 100%;
-    height: auto;
-    border-radius: 999px;
-    text-align: center;
-    font-size: 1.125rem;
-    color: #e7e7f099;
-    padding: 1rem 2.5rem;
-  }
-
-  nav ul li a.active {
-    color: var(--color-white);
-  }
-}
-
-@media (width >=1440px) {
-  main {
-    padding: 5rem 0 5rem 5.625rem;
-  }
-
-  .projectContainer {
-    gap: 2.5rem;
-  }
-
-  nav ul li a {
-    font-size: 1.25rem;
-  }
-}
-
-@media (width >=1920px) {
-  .projectContainer {
-    gap: 6rem;
-  }
-}
-</style>
