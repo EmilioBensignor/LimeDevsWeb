@@ -1,60 +1,60 @@
 <template>
-  <DefaultSection class="w-full flex flex-col items-center gap-8">
-    <div id="theCompany" class="projectSection company column">
-      <h2>The Company</h2>
-      <p class="text-center">{{ project.company }}</p>
+  <div class="w-full flex flex-col items-center gap-8">
+    <div id="theCompany" class="flex flex-col gap-3 md:gap-5 2xl:gap-[1.75rem]">
+      <TitleH2>The Company</TitleH2>
+      <p class="text-center text-xs md:text-base 2xl:text-xl">{{ project.company }}</p>
     </div>
-    <div id="theChallenge" class="w-full projectSection column">
-      <h2>The Challenge</h2>
-      <div class="w-full challenges columnAlignCenter">
+    <div id="theChallenge" class="w-full flex flex-col gap-3 md:gap-5 2xl:gap-[1.75rem]">
+      <TitleH2>The Challenge</TitleH2>
+      <div class="w-full flex flex-col items-center gap-3 2xl:gap-6">
         <div
           v-for="(challenge, index) in project.challenges"
           :key="index"
-          class="w-full challenge rowCenter bg-violet-60"
+          class="w-full flex items-center gap-3 bg-secondary60 rounded-[9px] py-2 px-3"
         >
-          <div class="allCenter bg-mid-violet">
-            <Icon :name="challenge.icon" class="text-lime" />
+          <div class="w-8 md:w-[3.125rem] 2xl:w-[3.25rem] h-8 md:h-[3.125rem] 2xl:h-[3.25rem] flex justify-center items-center bg-midSecondary rounded-full">
+            <Icon :name="challenge.icon" class="text-primary md:!text-2xl 2xl:!text-[1.75rem]" />
           </div>
-          <p>{{ challenge.text }}</p>
+          <p class="text-xs md:text-base 2xl:text-xl">{{ challenge.text }}</p>
         </div>
       </div>
     </div>
-    <div id="technologiesResources" class="w-full projectSection column">
-      <h2>Technologies and Resources</h2>
-      <div class="technologiesResources column">
-        <div class="w-full technologies">
+    <div id="technologiesResources" class="w-full flex flex-col gap-3 md:gap-5 2xl:gap-[1.75rem]">
+      <TitleH2>Technologies and Resources</TitleH2>
+      <div class="flex flex-col gap-2 md:gap-3 2xl:gap-5">
+        <div class="w-full flex flex-wrap justify-center md:justify-start gap-2 2xl:gap-3">
           <div
             v-for="(technology, index) in project.technologies"
             :key="index"
-            class="technology rowCenter bg-violet-60"
+            class="flex items-center gap-2 md:gap-4 rounded-[5px] bg-secondary60 py-2 md:py-3 2xl:py-4 px-3 md:px-5 2xl:px-6"
           >
             <div
-              class="bgContain"
+              class="w-6 md:w-8 2xl:w-9 h-6 md:h-8 2xl:h-9 rounded-full bg-cover bg-center bg-no-repeat"
               :style="{
                 backgroundImage: `url(/images/projects/${technology.icon})`,
               }"
             ></div>
-            <p>{{ technology.title }}</p>
+            <p class="text-xs md:text-base 2xl:text-xl">{{ technology.title }}</p>
           </div>
         </div>
-        <div class="w-full resources">
+        <div class="w-full flex flex-wrap justify-center md:justify-start gap-2 2xl:gap-3">
           <div
             v-for="(resource, index) in project.resources"
             :key="index"
-            class="resource rowCenter bg-violet-60"
+            class="flex items-center gap-2 md:gap-4 rounded-[5px] bg-secondary60 py-2 md:py-3 2xl:py-4 px-3 md:px-5 2xl:px-6"
           >
             <div
-              class="bgContain"
+              class="w-[1.875rem] md:w-10 2xl:w-11 h-6 md:h-8 2xl:h-9 bg-cover bg-center bg-no-repeat"
               :style="{
                 backgroundImage: `url(/images/projects/${resource.icon})`,
               }"
             ></div>
-            <p>{{ resource.title }}</p>
+            <p class="text-xs md:text-base 2xl:text-xl">{{ resource.title }}</p>
           </div>
         </div>
       </div>
     </div>
-  </DefaultSection>
+  </div>
 </template>
 
 <script>
@@ -67,238 +67,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.description {
-  gap: 2rem;
-  padding: 2rem 1rem;
-}
-
-.description > div {
-  gap: 0.75rem;
-}
-
-.company p {
-  font-size: 0.75rem;
-}
-
-.challenges {
-  gap: 0.75rem;
-}
-
-.challenge {
-  gap: 0.75rem;
-  border-radius: 9px;
-  padding: 0.5rem 0.75rem;
-}
-
-.challenge > div {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 999px;
-}
-
-.challenge p {
-  font-size: 0.75rem;
-}
-
-.technologiesResources {
-  gap: 0.5rem;
-}
-
-.technologies,
-.resources {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.technology,
-.resource {
-  gap: 0.5rem;
-  border-radius: 5px;
-  padding: 0.5rem 0.75rem;
-}
-
-.technology div {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 999px;
-}
-
-.resource div {
-  width: 1.875rem;
-  height: 1.5rem;
-}
-
-.technology p,
-.resource p {
-  font-size: 0.75rem;
-}
-
-@media (width >= 700px) {
-  .description {
-    gap: 0;
-    padding: 0 3.75rem;
-  }
-
-  .description h2 {
-    text-align: start;
-  }
-
-  .description > div {
-    gap: 1.25rem;
-    padding-bottom: 3rem;
-  }
-
-  .company p {
-    text-align: start !important;
-    font-size: 1rem;
-  }
-
-  .challenge {
-    gap: 1.25rem;
-    padding: 0.75rem 1.25rem;
-  }
-
-  .challenge p {
-    font-size: 1.375rem;
-  }
-
-  .challenge div {
-    width: 3.125rem;
-    height: 3.125rem;
-  }
-
-  .challenge div span {
-    font-size: 1.5rem !important;
-  }
-
-  .technologiesResources {
-    gap: 0.75rem;
-  }
-
-  .technologies,
-  .resources {
-    justify-content: flex-start;
-    gap: 0.75rem;
-  }
-
-  .technology,
-  .resource {
-    gap: 1rem;
-    padding: 0.75rem 1.25rem;
-  }
-
-  .technology p,
-  .resource p {
-    font-size: 1.25rem;
-  }
-
-  .technology div,
-  .resource div {
-    width: 2rem;
-    height: 2rem;
-  }
-}
-
-@media (width >= 1080px) {
-  .description {
-    padding: 0 5.625rem 0 0;
-  }
-
-  .description > div {
-    gap: 1.75rem;
-    padding-bottom: 3.75rem;
-  }
-
-  .company p {
-    font-size: 1.25rem;
-  }
-
-  .challenges {
-    gap: 1rem;
-  }
-
-  .challenge {
-    gap: 2rem;
-    padding: 1rem 1.5rem;
-  }
-
-  .challenge p {
-    font-size: 1.5rem;
-  }
-
-  .challenge div {
-    width: 3.25rem;
-    height: 3.25rem;
-  }
-
-  .challenge div span {
-    font-size: 1.75rem !important;
-  }
-
-  .technologiesResources {
-    gap: 1rem;
-  }
-
-  .technologies,
-  .resources {
-    gap: 1rem;
-  }
-
-  .technology,
-  .resource {
-    gap: 1.25rem;
-    padding: 1rem 1.5rem;
-  }
-
-  .technology p,
-  .resource p {
-    font-size: 1.25rem;
-  }
-
-  .technology div,
-  .resource div {
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-}
-
-@media (width >= 1440px) {
-  .description > div {
-    padding-bottom: 5rem;
-  }
-
-  .company p {
-    font-size: 1.5rem;
-  }
-
-  .challenge {
-    padding: 1.5rem;
-  }
-
-  .challenge div {
-    width: 3.75rem;
-    height: 3.75rem;
-  }
-
-  .challenge div span {
-    font-size: 2rem !important;
-  }
-
-  .challenge p {
-    font-size: 1.625rem;
-  }
-
-  .technology div, .resource div {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
-  .technology p, .resource p {
-    font-size: 1.5rem;
-  }
-}
-</style>

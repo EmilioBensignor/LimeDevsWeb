@@ -15,10 +15,9 @@
           <ul class="flex lg:justify-center gap-3 pr-4 whitespace-nowrap">
             <li v-for="(item, index) in menu" :key="index">
               <a :href="item.link" @click.prevent="scrollToSection(item.link)" :class="[
-                'block h-[2.625rem] px-3 py-2 rounded text-sm font-medium text-light',
-                'bg-[linear-gradient(90deg,#39385E,#39385E)]',
+                'h-[2.625rem] flex justify-center items-center bg-gradient-to-r from-secondary to-secondary rounded text-sm font-medium text-light px-3 py-2',
                 activeSection === item.link.substring(1)
-                  ? 'bg-[linear-gradient(90deg,#39385E,#7372B5)]'
+                  ? 'bg-gradient-to-r from-secondary to-lightSecondary'
                   : ''
               ]">
                 {{ item.title }}
@@ -30,8 +29,8 @@
     </DefaultSection>
 
     <DefaultSection>
-      <DefaultContent class="flex gap-7 relative 2xl:flex-row 2xl:gap-[1.75rem] 3xl:gap-[2.5rem] 4xl:gap-[6rem]">
-        <div class="hidden 2xl:flex flex-col gap-5 sticky top-[12rem] h-max">
+      <DefaultContent class="flex flex-col items-center 2xl:items-start gap-12 relative 2xl:flex-row 3xl:gap-[6rem]">
+        <div class="2xl:w-[35%] 3xl:w-[30%] hidden 2xl:flex flex-col gap-5 sticky top-[12rem] h-max">
           <div class="flex flex-col gap-2.5 text-left">
             <TitleH1 class="text-primary text-start">{{ project.title }}</TitleH1>
             <p class="text-xl">{{ project.service }}</p>
@@ -43,8 +42,8 @@
                 <a :href="item.link" @click.prevent="scrollToSection(item.link)" :class="[
                   'block w-full rounded-full text-center text-[1.125rem] px-10 py-4 transition-colors',
                   activeSection === item.link.substring(1)
-                    ? 'text-light'
-                    : 'text-light/60'
+                    ? 'text-light bg-gradient-to-r from-secondary to-lightSecondary'
+                    : 'text-light/60 bg-gradient-to-r from-secondary to-secondary'
                 ]">
                   {{ item.title }}
                 </a>
@@ -53,10 +52,10 @@
           </nav>
         </div>
 
-        <div>
+        <div class="2xl:w-[65%] 3xl:w-[70%] flex flex-col gap-12">
           <ProjectHero :project="project" />
           <ProjectDescription :project="project" />
-          <ProjectOutcome :project="project" />
+          <!-- <ProjectOutcome :project="project" /> -->
         </div>
       </DefaultContent>
     </DefaultSection>
@@ -79,7 +78,7 @@ const menu = ref([
   { link: "#theCompany", title: "The company" },
   { link: "#theChallenge", title: "The challenge" },
   { link: "#technologiesResources", title: "Technologies and Resources" },
-  { link: "#outcome", title: "Project Outcome" },
+  // { link: "#outcome", title: "Project Outcome" },
 ]);
 
 const route = useRoute();
@@ -182,3 +181,9 @@ onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
 });
 </script>
+
+<style scoped>
+nav::-webkit-scrollbar {
+  visibility: hidden;
+}
+</style>
