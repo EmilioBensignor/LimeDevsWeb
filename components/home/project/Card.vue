@@ -8,10 +8,10 @@
             <div class="flex flex-col items-start gap-3 absolute z-10 top-1/4 left-0 ml-2 px-4 pb-4 md:top-[30%]"
                 style="transform: translateZ(20px)">
                 <p
-                    class="max-w-full relative z-20 text-start text-white text-[1.75rem] font-bold -ml-10 transition-all duration-300 text-shadow">
+                    class="max-w-full relative z-20 text-start text-light text-[1.75rem] font-bold -ml-10 transition-all duration-300 text-shadow">
                     {{ project.title }}</p>
-                <p class="text-start text-white font-medium">{{ project.service }}</p>
-                <!-- <p class="opacity-0 border-b border-white font-['Fjalla_One'] font-bold no-underline pb-0.5 transition-all duration-300 text-white hover:opacity-100">See more</p> -->
+                <p class="text-start text-light font-medium">{{ project.service }}</p>
+                <!-- <p class="opacity-0 border-b border-light font-['Fjalla_One'] font-bold no-underline pb-0.5 transition-all duration-300 text-light hover:opacity-100">See more</p> -->
             </div>
         </div>
     </article>

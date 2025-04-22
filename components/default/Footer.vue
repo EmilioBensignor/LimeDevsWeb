@@ -1,30 +1,33 @@
 <template>
-  <footer id="contactUs" class="bg-secondary60">
-    <section class="flex flex-col gap-5">
-      <div class="flex flex-col gap-5">
-        <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" class="logo" />
-        <TitleH2 class="text-light text-start">
-          Ready to
-          <span class="text-primary underline">transform your business</span>?
-        </TitleH2>
-        <DefaultContact />
-      </div>
-      <div class="socialMedia flex flex-col">
-        <p>Or contact us at:</p>
-        <ul class="flex flex-col">
-          <li v-for="(social, index) in socialMedia" :key="index">
-            <NuxtLink v-if="social.type !== 'email'" :to="social.link" target="_blank" class="flex no-underline">
-              <div class="bgCover" :class="social.img"></div>
-              <p class="text-white no-underline">{{ social.text }}</p>
-            </NuxtLink>
-            <a v-else :href="social.link" @click.prevent="handleEmailClick(social)" class="flex no-underline">
-              <div class="bgCover" :class="social.img"></div>
-              <p class="text-white no-underline">{{ social.text }}</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
+  <footer id="contactUs" class="bg-dark">
+    <DefaultSection class="bg-secondary60">
+      <DefaultContent class="flex flex-col xl:flex-row xl:justify-between xl:items-end gap-5 md:gap-8">
+        <div class="flex flex-col gap-5 md:gap-8">
+          <NuxtImg src="/images/Lime-Devs-Logo.svg" alt="Lime Devs Logo" class="w-[3.75rem] h-full md:w-[5rem] xl:w-[6.25rem]" />
+          <TitleH2 class="text-light text-start">
+            Ready to
+            <span class="text-primary underline">transform your business</span>?
+          </TitleH2>
+          <DefaultContact />
+        </div>
+        <div class="flex flex-col gap-3 md:gap-5">
+          <p class="text-light text-sm md:text-xl md:font-bold xl:text-2xl xl:text-end">Or contact us at:</p>
+          <ul class="flex flex-col md:flex-row md:justify-between xl:flex-col gap-3">
+            <li v-for="(social, index) in socialMedia" :key="index">
+              <NuxtLink v-if="social.type !== 'email'" :to="social.link" target="_blank"
+                class="flex xl:flex-row-reverse items-center gap-3 no-underline">
+                <Icon :name="`mingcute:${social.icon}`" size="1.5rem" class="text-primary" />
+                <p class="text-light text-sm md:text-base xl:text-xl no-underline">{{ social.text }}</p>
+              </NuxtLink>
+              <a v-else :href="social.link" @click.prevent="handleEmailClick(social)" class="flex xl:flex-row-reverse items-center gap-3 no-underline">
+                <Icon :name="`mingcute:${social.icon}`" size="1.5rem" class="text-primary" />
+                <p class="text-light text-sm md:text-base xl:text-xl no-underline">{{ social.text }}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </DefaultContent>
+    </DefaultSection>
     <div class="bg-dark p-6 xl:p-5">
       <DefaultContent>
         <p class="text-center text-light text-xs md:text-sm xl:text-base">{{ new Date().getFullYear() }} Lime Devs © All
@@ -35,29 +38,27 @@
 </template>
 
 <script setup>
-// Información de redes sociales
 const socialMedia = [
   {
     type: "whatsapp",
     link: "https://wa.me/5491156362938",
-    img: "whatsAppIcon",
+    icon: "whatsapp-line",
     text: "+54 9 11 5636 2938",
   },
   {
     type: "email",
     link: "mailto:hello@limedevs.com",
-    img: "emailIcon",
+    icon: "mail-line",
     text: "hello@limedevs.com",
   },
   {
     type: "linkedin",
     link: "https://www.linkedin.com/company/lime-devs",
-    img: "linkedInIcon",
+    icon: "linkedin-line",
     text: "limedevs",
   },
 ];
 
-// Método para manejar clics en email
 const handleEmailClick = (social) => {
   const mailtoLink = `mailto:${social.text}?subject=Contact%20Lime%20Devs&body=Reaching%20out%20for%20more%20information%20about%20the%20products.`;
   window.location.href = mailtoLink;
@@ -78,180 +79,3 @@ const handleEmailClick = (social) => {
   }, 1000);
 };
 </script>
-
-<style scoped>
-footer>section {
-  padding: 3rem 1.5rem;
-}
-
-.logo {
-  width: 3.75rem;
-  height: 100%;
-}
-
-.socialMedia {
-  gap: 0.75rem;
-}
-
-.socialMedia p {
-  font-size: 0.875rem;
-}
-
-.socialMedia ul {
-  gap: 0.75rem;
-}
-
-.socialMedia ul li a {
-  gap: 0.75rem;
-}
-
-.socialMedia ul li div {
-  width: 1.125rem;
-  height: 1.125rem;
-}
-
-.whatsAppIcon {
-  background-image: url("/images/footer/WhatsApp-Icon.svg");
-}
-
-.emailIcon {
-  background-image: url("/images/footer/Email-Icon.svg");
-}
-
-.linkedInIcon {
-  background-image: url("/images/footer/LinkedIn-Icon.svg");
-}
-
-.rightsReserved {
-  padding: 1.5rem;
-}
-
-.rightsReserved p {
-  font-size: 0.75rem;
-}
-
-/* No se necesita el estilo para el diálogo ya que ahora está en el componente ContactForm */
-
-@media (width >=700px) {
-  footer>section {
-    gap: 4rem !important;
-    padding: 2.75rem 3.75rem;
-  }
-
-  .logo {
-    width: 5rem;
-  }
-
-  h2 {
-    text-align: start;
-  }
-
-  section>div:first-of-type {
-    gap: 2rem !important;
-  }
-
-  .newMessage {
-    align-items: flex-start;
-  }
-
-  .newMessage p {
-    max-width: 500px;
-    text-align: start !important;
-    font-size: 1.125rem;
-  }
-
-  .btnNewMessage {
-    padding: 0.938rem 2.5rem;
-  }
-
-  .socialMedia {
-    gap: 1.25rem;
-  }
-
-  .socialMedia p:first-child {
-    font-size: 1.25rem;
-    font-weight: 700;
-  }
-
-  .socialMedia ul {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .socialMedia ul li div {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .socialMedia p {
-    font-size: 1rem;
-  }
-
-  .rightsReserved {
-    padding: 1.5rem;
-  }
-
-  .rightsReserved p {
-    font-size: 0.875rem;
-  }
-}
-
-@media (width >=992px) {
-  footer>section {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 3.75rem 5.625rem;
-  }
-
-  .logo {
-    width: 6.25rem;
-  }
-
-  .newMessage {
-    gap: 1.25rem !important;
-  }
-
-  .newMessage p {
-    max-width: 560px;
-    font-size: 1.25rem;
-  }
-
-  .btnNewMessage {
-    font-size: 1.25rem;
-    padding: 0.75rem 2.5rem;
-  }
-
-  .socialMedia p {
-    font-size: 1.25rem;
-  }
-
-  .socialMedia p:first-child {
-    text-align: end;
-  }
-
-  .socialMedia ul {
-    flex-direction: flex flex-col;
-  }
-
-  .socialMedia ul li a {
-    flex-direction: row-reverse;
-  }
-
-  .rightsReserved {
-    padding: 1.25rem;
-  }
-
-  .rightsReserved p {
-    font-size: 1rem;
-  }
-}
-
-@media (width >=1440px) {
-  .newMessage p {
-    max-width: 700px;
-    font-size: 1.5rem;
-  }
-}
-</style>
