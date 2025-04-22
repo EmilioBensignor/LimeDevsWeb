@@ -1,12 +1,12 @@
 <template>
-  <main class="bg-dark text-light">
+  <DefaultMain>
     <HomeHero />
     <HomeServices id="services" />
     <HomeProjects id="projects" />
     <ClientOnly>
       <HomeAboutUs id="aboutUs" />
     </ClientOnly>
-  </main>
+  </DefaultMain>
 </template>
 
 <script setup>

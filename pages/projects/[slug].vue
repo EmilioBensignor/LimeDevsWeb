@@ -1,30 +1,15 @@
 <template>
-  <main class="w-full columnAlignCenter">
-    <div class="title">
-      <TitleH1 class="text-lime">{{ project.title }}</TitleH1>
-    </div>
-    <div class="subtitle columnAlignCenter">
-      <p>{{ project.service }}</p>
-      <a :href="project.web" class="text-lime">{{ project.web }}</a>
-    </div>
-    <nav class="menuProject">
-      <ul>
-        <li v-for="(item, index) in menu" :key="index">
-          <a :href="item.link" @click.prevent="scrollToSection(item.link)"
-            :class="{ active: activeSection === item.link.substring(1) }">
-            {{ item.title }}
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <section class="projectContainer">
-      <div class="menuDesktop">
-        <div class="column">
-          <TitleH1 class="text-lime">{{ project.title }}</TitleH1>
-          <p>{{ project.service }}</p>
-          <a :href="project.web" class="text-lime">{{ project.web }}</a>
+  <DefaultMain>
+    <DefaultSection>
+      <DefaultContent>
+        <div class="title">
+          <TitleH1 class="text-primary">{{ project.title }}</TitleH1>
         </div>
-        <nav class="menuProjectDesktop">
+        <div class="subtitle columnAlignCenter">
+          <p>{{ project.service }}</p>
+          <a :href="project.web" class="text-primary">{{ project.web }}</a>
+        </div>
+        <nav class="menuProject">
           <ul>
             <li v-for="(item, index) in menu" :key="index">
               <a :href="item.link" @click.prevent="scrollToSection(item.link)"
@@ -34,26 +19,44 @@
             </li>
           </ul>
         </nav>
-      </div>
-      <div>
-        <ProjectHero :project="project" />
-        <ProjectDescription :project="project" />
-        <ProjectOutcome :project="project" />
-      </div>
-    </section>
-  </main>
+      </DefaultContent>
+    </DefaultSection>
+    <DefaultSection class="projectContainer">
+      <DefaultContent>
+        <div class="menuDesktop">
+          <div class="column">
+            <TitleH1 class="text-primary">{{ project.title }}</TitleH1>
+            <p>{{ project.service }}</p>
+            <a :href="project.web" class="text-primary">{{ project.web }}</a>
+          </div>
+          <nav class="menuProjectDesktop">
+            <ul>
+              <li v-for="(item, index) in menu" :key="index">
+                <a :href="item.link" @click.prevent="scrollToSection(item.link)"
+                  :class="{ active: activeSection === item.link.substring(1) }">
+                  {{ item.title }}
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div>
+          <ProjectHero :project="project" />
+          <ProjectDescription :project="project" />
+          <ProjectOutcome :project="project" />
+        </div>
+      </DefaultContent>
+    </DefaultSection>
+  </DefaultMain>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { useRoute } from 'vue-router';
 import { projects } from "~/shared/projects";
 
 definePageMeta({
   layout: "views",
 });
 
-// Datos reactivos
 const activeSection = ref("");
 const project = ref(null);
 const sections = ref([]);
@@ -65,7 +68,6 @@ const menu = ref([
   { link: "#outcome", title: "Project Outcome" },
 ]);
 
-// Obtención del proyecto desde la URL
 const route = useRoute();
 const projectId = route.params.slug;
 project.value = projects.find((p) => p.slug === projectId);
@@ -74,7 +76,6 @@ if (!project.value) {
   throw new Error("Proyecto no encontrado");
 }
 
-// Configuración SEO
 useSeoMeta({
   title: () => `${project.value.title} | Lime Devs - Projects`,
   description: () => project.value.description || project.value.phrase,
@@ -88,7 +89,6 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 });
 
-// Configuración de Schema.org para proyecto creativo
 useSchemaOrg([
   defineWebPage({
     name: () => project.value.title,
@@ -119,7 +119,6 @@ useSchemaOrg([
   }
 ]);
 
-// Funciones para navegación
 function scrollToSection(link) {
   const sectionId = link.substring(1);
   const element = document.getElementById(sectionId);
@@ -160,7 +159,6 @@ function getOffsetAdjustment() {
   return headerHeight + menuHeight + titleHeight;
 }
 
-// Hooks de ciclo de vida
 onMounted(() => {
   sections.value = document.querySelectorAll(".projectSection");
   window.addEventListener("scroll", handleScroll);
@@ -172,15 +170,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-main {
-  padding-top: 2rem;
-}
-
-main>.subtitle {
-  width: 100%;
-  padding: 0 1rem;
-}
-
 .title {
   width: 100%;
   position: sticky;
