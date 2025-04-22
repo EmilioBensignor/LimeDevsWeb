@@ -22,30 +22,14 @@
   scroll-behavior: smooth;
 }
 
+html,
+body,
+body>div:first-of-type {
+  height: 100%;
+}
+
 body {
   height: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
-}
-
-/* Typography & Background */
-
-/* .bg-gradient-violet {
-  background: var(--gradient-violet-light);
-}
-
-.bg-gradient-light-violet {
-  background: var(--gradient-light-violet);
-} */
-
-/* Errors */
-.error {
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.error p {
-  font-size: 0.875rem;
-  color: var(--color-red);
 }

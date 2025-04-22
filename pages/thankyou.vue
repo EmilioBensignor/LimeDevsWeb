@@ -1,21 +1,31 @@
 <template>
-    <main>
-        <TitleH1>Thank you for your support!</TitleH1>
-        <p>If you'd like to help us grow, you can leave us a Google review or follow us on LinkedIn 🙌</p>
+    <main class="flex justify-center items-center bg-dark text-light">
+        <DefaultSection>
+            <DefaultContent class="flex flex-col items-center gap-3 xl:gap-8 2xl:gap-10">
+                <TitleH1>Thank you for your support!</TitleH1>
+                <p class="text-center 2xl:text-2xl">If you'd like to help us grow, you can leave us a Google review or follow us on
+                    LinkedIn 🙌</p>
 
-        <div class="buttons">
-            <a href="https://g.page/r/YOUR_PLACE_ID/review" target="_blank" class="button google">
-                ⭐️ Leave a Google Review
-            </a>
-
-            <a href="https://www.linkedin.com/company/yourcompany" target="_blank" class="button linkedin">
-                🔗 Follow us on LinkedIn
-            </a>
-        </div>
+                <div class="flex flex-wrap justify-center items-center gap-4">
+                    <ButtonPrimary
+                        :to="'https://www.google.com/search?q=limedevs#lrd=0x95bccaf2b74012d5:0x3075f871ddefd219,3'"
+                        target="_blank">
+                        Leave a Google Review
+                    </ButtonPrimary>
+                    <ButtonPrimary :to="'https://www.linkedin.com/company/lime-devs'" target="_blank">
+                        Follow us on LinkedIn
+                    </ButtonPrimary>
+                </div>
+            </DefaultContent>
+        </DefaultSection>
     </main>
 </template>
 
 <script setup>
+definePageMeta({
+    layout: "thankyou",
+});
+
 useSeoMeta({
     title: "Turning ideas into real tech solutions | Lime Devs",
     description: "Innovating with tailor-made software and hardware solutions to accelerate growth, efficiency, and scalability for startups, enterprises, and established businesses.",
