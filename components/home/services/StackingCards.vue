@@ -11,7 +11,7 @@
     </div>
     <div class="w-[60%] h-full flex justify-center relative">
       <div v-for="(service, index) in services" :key="index"
-        class="w-[20.375rem] lg:w-[24rem] xl:w-[34rem] 3xl:w-[48.125rem] h-full flex flex-col items-center justify-end absolute rounded-[18px] overflow-hidden bg-gradient-to-br from-secondary to-lightSecondary shadow-xl will-change-transform origin-center p-[1.25rem] xl:p-[2rem] 3xl:p-[2.5rem]"
+        class="w-[17rem] lg:w-[24rem] xl:w-[34rem] 3xl:w-[48.125rem] h-full flex flex-col items-center justify-end absolute rounded-[18px] overflow-hidden bg-gradient-to-br from-secondary to-lightSecondary shadow-xl will-change-transform origin-center p-[1.25rem] xl:p-[2rem] 3xl:p-[2.5rem]"
         :style="getCardStyle(index)">
         <div
           class="h-full absolute top-[1.125rem] xl:top-[2rem] 3xl:top-[2.5rem] right-[1.25rem] xl:right-[2rem] 3xl:right-[2.5rem] z-[2]">
