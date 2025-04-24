@@ -3,12 +3,12 @@
         <DefaultSection>
             <DefaultContent class="flex flex-col items-center gap-3 xl:gap-8 2xl:gap-10">
                 <TitleH1>Thank you for your support!</TitleH1>
-                <p class="text-center 2xl:text-2xl">If you'd like to help us grow, you can leave us a Google review or follow us on
+                <p class="text-center 2xl:text-2xl">If you'd like to help us grow, you can leave us a Google review or
+                    follow us on
                     LinkedIn 🙌</p>
 
                 <div class="flex flex-wrap justify-center items-center gap-4">
-                    <ButtonPrimary
-                        :to="'https://www.google.com/search?q=limedevs#lrd=0x95bccaf2b74012d5:0x3075f871ddefd219,3'"
+                    <ButtonPrimary to="https://search.google.com/local/writereview?placeid=ChIJ1RJAt_LKvJURGdLv3XH4dTA"
                         target="_blank">
                         Leave a Google Review
                     </ButtonPrimary>
